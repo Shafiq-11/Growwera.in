@@ -43,8 +43,8 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Column — Text & CTAs (col-span-7) */}
-          <motion.div style={{ y: contentY }} className="lg:col-span-7">
+          {/* Left Column — Text & CTAs (col-span-6) */}
+          <motion.div style={{ y: contentY }} className="lg:col-span-6">
             <div>
               {/* Eyebrow badge */}
               <motion.div
@@ -148,10 +148,10 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Column — Hero Visual Notebook Board (col-span-5) */}
+          {/* Right Column — 3D Glossy Hero Visual (col-span-6) */}
           <motion.div
             style={{ y: visualY, scale: visualScale }}
-            className="lg:col-span-5 relative"
+            className="lg:col-span-6 relative"
           >
             <HeroVisual />
           </motion.div>

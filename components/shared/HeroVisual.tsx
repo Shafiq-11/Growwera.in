@@ -1,271 +1,222 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Monitor, Search, BarChart2, Cpu, Sparkles, ArrowRight } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { Layout, BarChart3, Megaphone, Zap } from "lucide-react";
+import HandDrawnArrow from "@/components/decorative/HandDrawnArrow";
+import GlassSphere from "@/components/decorative/GlassSphere";
+import { cn } from "@/lib/utils";
 
 export default function HeroVisual() {
-  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const [activeCard, setActiveCard] = useState<string | null>(null);
 
   return (
     <div
-      className="relative w-full h-[460px] sm:h-[500px] flex items-center justify-center select-none"
-      aria-label="Growwera digital solutions ecosystem"
+      className="relative w-full max-w-[500px] h-[470px] sm:h-[510px] mx-auto flex items-center justify-center select-none"
+      aria-label="Growwera 3D Glossy Ecosystem"
     >
-      {/* Background Ambience Glow */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-72 h-72 rounded-full bg-[var(--color-accent)] opacity-[0.08] blur-3xl" />
+      {/* ── AMBIENT ELECTRIC BLUE LIQUID BACKGLOW ── */}
+      <div className="absolute inset-0 m-auto w-80 h-80 rounded-full bg-gradient-to-tr from-blue-600/25 via-blue-500/20 to-indigo-500/15 blur-3xl pointer-events-none -z-10" />
+
+      {/* ── TOP-RIGHT HANDWRITTEN ANNOTATION WITH CURVED ARROW ── */}
+      <div className="absolute -top-6 -right-2 sm:-right-4 z-40 flex flex-col items-end pointer-events-none select-none">
+        <span className="font-handwriting text-base sm:text-lg text-[var(--color-foreground-secondary)] rotate-6 text-right leading-tight whitespace-nowrap">
+          Different services.<br />
+          A common goal:<br />
+          <span className="text-[#315CFF] font-bold">Your growth.</span>
+        </span>
+        <HandDrawnArrow
+          variant="curved-down-left"
+          className="w-7 h-6 -mt-1 mr-3 text-[var(--color-foreground-muted)] opacity-80"
+          color="currentColor"
+        />
       </div>
 
-      {/* SVG Connecting Lines between Nodes */}
+      {/* ── ORBITAL RINGS & CONNECTING TRACES SVG ── */}
       <svg
-        viewBox="0 0 440 440"
+        viewBox="0 0 480 480"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute inset-0 w-full h-full pointer-events-none z-0"
+        className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible"
+        aria-hidden="true"
       >
-        {/* Core Center to Web (Top Left) */}
-        <path
-          d="M220 70 L95 135"
-          stroke={hoveredNode === "web" ? "var(--color-accent)" : "var(--color-border)"}
-          strokeWidth={hoveredNode === "web" ? "2" : "1.2"}
-          strokeDasharray={hoveredNode === "web" ? "none" : "4 4"}
-          className="transition-all duration-300"
+        {/* Angled Elliptical Orbital Track 1 */}
+        <ellipse
+          cx="240"
+          cy="240"
+          rx="180"
+          ry="115"
+          transform="rotate(-18 240 240)"
+          stroke="currentColor"
+          strokeWidth="1.25"
+          strokeDasharray="5 5"
+          className="text-blue-400/25 dark:text-blue-400/20"
         />
 
-        {/* Core Center to SEO (Top Right) */}
-        <path
-          d="M220 70 L345 135"
-          stroke={hoveredNode === "seo" ? "var(--color-accent)" : "var(--color-border)"}
-          strokeWidth={hoveredNode === "seo" ? "2" : "1.2"}
-          strokeDasharray={hoveredNode === "seo" ? "none" : "4 4"}
-          className="transition-all duration-300"
+        {/* Angled Elliptical Orbital Track 2 */}
+        <ellipse
+          cx="240"
+          cy="240"
+          rx="125"
+          ry="175"
+          transform="rotate(22 240 240)"
+          stroke="currentColor"
+          strokeWidth="1.25"
+          strokeDasharray="5 5"
+          className="text-cyan-400/25 dark:text-cyan-400/20"
         />
 
-        {/* Core Center down to AI & Automation (Center) */}
-        <path
-          d="M220 70 L220 205"
-          stroke={hoveredNode === "ai" ? "var(--color-accent)" : "var(--color-border)"}
-          strokeWidth={hoveredNode === "ai" ? "2" : "1.2"}
-          className="transition-all duration-300"
-        />
-
-        {/* Web down to Marketing (Left to Bottom-Right Flow) */}
-        <path
-          d="M100 190 C100 250 200 270 330 290"
-          stroke={hoveredNode === "web" || hoveredNode === "marketing" ? "var(--color-accent)" : "var(--color-border)"}
-          strokeWidth="1"
-          strokeOpacity="0.5"
-          className="transition-all duration-300"
-        />
-
-        {/* SEO to Marketing */}
-        <path
-          d="M345 190 L330 275"
-          stroke={hoveredNode === "seo" || hoveredNode === "marketing" ? "var(--color-accent)" : "var(--color-border)"}
-          strokeWidth="1"
-          strokeOpacity="0.5"
-          className="transition-all duration-300"
-        />
-
-        {/* AI & Automation to Growth (Bottom) */}
-        <path
-          d="M220 275 L220 375"
-          stroke="var(--color-accent)"
-          strokeWidth="1.6"
-          strokeDasharray="3 3"
-        />
+        {/* Orbiting Luminous Waypoint Dots */}
+        <circle cx="105" cy="185" r="3" fill="#38BDF8" className="animate-pulse" />
+        <circle cx="375" cy="295" r="3" fill="#315CFF" className="animate-pulse [animation-delay:0.5s]" />
+        <circle cx="160" cy="350" r="2.5" fill="#818CF8" />
+        <circle cx="320" cy="120" r="2.5" fill="#60A5FA" />
       </svg>
 
-      {/* NODE 0: GROWWERA (Top Center Core) */}
-      <motion.div
-        initial={{ opacity: 0, y: -16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-5 left-1/2 -translate-x-1/2 z-20"
-      >
-        <div className="flex items-center gap-2 px-4 py-2 bg-[var(--color-surface)] border border-[var(--color-border-strong)] rounded-full shadow-sm hover:border-[var(--color-accent)] transition-colors">
-          <span className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse" />
-          <span className="text-xs font-mono font-bold tracking-widest text-[var(--color-foreground)]">
-            GROWWERA
-          </span>
-          <span className="text-[10px] text-[var(--color-foreground-muted)] uppercase tracking-wider pl-0.5">
-            PLATFORM
-          </span>
-        </div>
-      </motion.div>
+      {/* ── 3D FLOATING BLUE GLASS SPHERES ── */}
+      <GlassSphere
+        size="md"
+        className="absolute top-14 right-14 z-10 shadow-[0_12px_28px_rgba(37,99,235,0.45)]"
+        delay={0.2}
+      />
+      <GlassSphere
+        size="sm"
+        className="absolute bottom-16 left-12 z-10 shadow-[0_8px_20px_rgba(37,99,235,0.35)]"
+        delay={0.5}
+      />
 
-      {/* NODE 1: WEB DESIGN & DEV (Top Left, 4.5s cycle) */}
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 4 SATELLITE FLOATING GLOSSY GLASS CARDS                    */}
+      {/* ────────────────────────────────────────────────────────── */}
+
+      {/* 1. TOP-LEFT: Web Development */}
       <motion.div
-        animate={{
-          y: [-6, 7, -6],
-          rotate: [-1, 1, -1],
-        }}
-        transition={{
-          duration: 4.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        onMouseEnter={() => setHoveredNode("web")}
-        onMouseLeave={() => setHoveredNode(null)}
-        className="absolute top-20 left-2 sm:left-6 z-10"
+        animate={shouldReduceMotion ? {} : { y: [0, -6, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        onMouseEnter={() => setActiveCard("web")}
+        onMouseLeave={() => setActiveCard(null)}
+        className={cn(
+          "absolute top-4 left-0 sm:left-2 z-30 w-40 sm:w-44 p-3.5 sm:p-4 rounded-2xl glass-glossy transition-all duration-300 cursor-pointer group",
+          activeCard === "web"
+            ? "border-[#315CFF]/60 shadow-[0_16px_40px_rgba(49,92,255,0.3)] scale-[1.03]"
+            : "hover:border-[#315CFF]/40 hover:shadow-[0_12px_32px_rgba(49,92,255,0.18)]"
+        )}
       >
-        <Link href="/services/web-development" className="block group">
-          <div
-            className={`px-3.5 py-3 rounded-xl border bg-[var(--color-surface)] shadow-sm transition-all duration-300 w-44 ${
-              hoveredNode === "web"
-                ? "border-[var(--color-accent)] shadow-[0_0_22px_rgba(49,92,255,0.25)] -translate-y-1"
-                : "border-[var(--color-border)] hover:border-[var(--color-border-strong)]"
-            }`}
-          >
-            <div className="flex items-center justify-between mb-1.5">
-              <div className="w-7 h-7 rounded-lg bg-[var(--color-accent)]/15 text-[var(--color-accent)] flex items-center justify-center">
-                <Monitor size={15} />
-              </div>
-              <span className="text-[10px] font-mono text-[var(--color-foreground-muted)] font-semibold">01</span>
-            </div>
-            <p className="text-xs font-bold text-[var(--color-foreground)] leading-tight group-hover:text-[var(--color-accent)] transition-colors">
-              Web Design & Dev
-            </p>
-            <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-[var(--color-border)] text-[10px] text-[var(--color-foreground-muted)] font-mono">
-              <span>Conversion-ready</span>
-              <ArrowRight size={11} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-            </div>
+        <div className="flex items-center justify-between mb-2">
+          <div className="w-7 h-7 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 text-[#315CFF] flex items-center justify-center group-hover:scale-110 transition-transform">
+            <Layout className="w-4 h-4" />
           </div>
-        </Link>
-      </motion.div>
-
-      {/* NODE 2: SEO (Top Right, 5.5s cycle) */}
-      <motion.div
-        animate={{
-          y: [7, -6, 7],
-          rotate: [1, -1, 1],
-        }}
-        transition={{
-          duration: 5.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        onMouseEnter={() => setHoveredNode("seo")}
-        onMouseLeave={() => setHoveredNode(null)}
-        className="absolute top-20 right-2 sm:right-6 z-10"
-      >
-        <Link href="/services/seo" className="block group">
-          <div
-            className={`px-3.5 py-3 rounded-xl border bg-[var(--color-surface)] shadow-sm transition-all duration-300 w-40 ${
-              hoveredNode === "seo"
-                ? "border-[#F59E0B] shadow-[0_0_22px_rgba(245,158,11,0.25)] -translate-y-1"
-                : "border-[var(--color-border)] hover:border-[var(--color-border-strong)]"
-            }`}
-          >
-            <div className="flex items-center justify-between mb-1.5">
-              <div className="w-7 h-7 rounded-lg bg-[#F59E0B]/15 text-[#F59E0B] flex items-center justify-center">
-                <Search size={15} />
-              </div>
-              <span className="text-[10px] font-mono text-[var(--color-foreground-muted)] font-semibold">02</span>
-            </div>
-            <p className="text-xs font-bold text-[var(--color-foreground)] leading-tight group-hover:text-[#F59E0B] transition-colors">
-              Search (SEO)
-            </p>
-            <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-[var(--color-border)] text-[10px] text-[#F59E0B] font-mono">
-              <span>↑ Search visibility</span>
-              <ArrowRight size={11} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-            </div>
-          </div>
-        </Link>
-      </motion.div>
-
-      {/* NODE 3: AI & AUTOMATION (Center Node, 5.0s cycle) */}
-      <motion.div
-        animate={{
-          y: [-5, 6, -5],
-        }}
-        transition={{
-          duration: 5.0,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        onMouseEnter={() => setHoveredNode("ai")}
-        onMouseLeave={() => setHoveredNode(null)}
-        className="absolute top-[200px] left-1/2 -translate-x-1/2 z-20"
-      >
-        <Link href="/services/ai-automation" className="block group">
-          <div
-            className={`px-4 py-3 rounded-xl border bg-[var(--color-surface)] shadow-sm transition-all duration-300 w-52 text-center ${
-              hoveredNode === "ai"
-                ? "border-[#8B5CF6] shadow-[0_0_22px_rgba(139,92,246,0.25)] -translate-y-1"
-                : "border-[var(--color-border)] hover:border-[var(--color-border-strong)]"
-            }`}
-          >
-            <div className="flex items-center justify-center gap-2 mb-1">
-              <div className="w-6 h-6 rounded-md bg-[#8B5CF6]/15 text-[#8B5CF6] flex items-center justify-center">
-                <Cpu size={14} />
-              </div>
-              <p className="text-xs font-bold text-[var(--color-foreground)] group-hover:text-[#8B5CF6] transition-colors">
-                AI & Automation
-              </p>
-            </div>
-            <p className="text-[10px] text-[var(--color-foreground-muted)] font-mono">
-              Workflows · Save team hours
-            </p>
-          </div>
-        </Link>
-      </motion.div>
-
-      {/* NODE 4: DIGITAL MARKETING (Bottom Right, 6.0s cycle) */}
-      <motion.div
-        animate={{
-          y: [7, -7, 7],
-          rotate: [-1, 1, -1],
-        }}
-        transition={{
-          duration: 6.0,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        onMouseEnter={() => setHoveredNode("marketing")}
-        onMouseLeave={() => setHoveredNode(null)}
-        className="absolute bottom-24 right-4 sm:right-10 z-10"
-      >
-        <Link href="/services/digital-marketing" className="block group">
-          <div
-            className={`px-3.5 py-3 rounded-xl border bg-[var(--color-surface)] shadow-sm transition-all duration-300 w-44 ${
-              hoveredNode === "marketing"
-                ? "border-[#EC4899] shadow-[0_0_22px_rgba(236,72,153,0.25)] -translate-y-1"
-                : "border-[var(--color-border)] hover:border-[var(--color-border-strong)]"
-            }`}
-          >
-            <div className="flex items-center justify-between mb-1.5">
-              <div className="w-7 h-7 rounded-lg bg-[#EC4899]/15 text-[#EC4899] flex items-center justify-center">
-                <BarChart2 size={15} />
-              </div>
-              <span className="text-[10px] font-mono text-[var(--color-foreground-muted)] font-semibold">03</span>
-            </div>
-            <p className="text-xs font-bold text-[var(--color-foreground)] leading-tight group-hover:text-[#EC4899] transition-colors">
-              Digital Marketing
-            </p>
-            <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-[var(--color-border)] text-[10px] text-[#EC4899] font-mono">
-              <span>Targeted campaigns</span>
-              <ArrowRight size={11} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-            </div>
-          </div>
-        </Link>
-      </motion.div>
-
-      {/* NODE 5: BUSINESS GROWTH (Bottom Destination) */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.4, duration: 0.6 }}
-        className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 text-center"
-      >
-        <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-accent)] text-white rounded-full shadow-[0_4px_20px_rgba(49,92,255,0.35)] hover:scale-105 transition-transform duration-200">
-          <Sparkles size={14} className="text-white animate-pulse" />
-          <span className="text-xs font-bold tracking-wider uppercase font-mono">
-            BUSINESS GROWTH
+          <span className="text-[10px] font-mono font-bold tracking-wider px-2 py-0.5 rounded-full bg-blue-500/10 text-[#315CFF] border border-blue-500/20">
+            Web
           </span>
         </div>
+        <h3 className="text-xs sm:text-[13px] font-bold text-[var(--color-foreground)] tracking-tight leading-snug">
+          Web Development
+        </h3>
+      </motion.div>
+
+      {/* 2. TOP-RIGHT: SEO */}
+      <motion.div
+        animate={shouldReduceMotion ? {} : { y: [0, 6, 0] }}
+        transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+        onMouseEnter={() => setActiveCard("seo")}
+        onMouseLeave={() => setActiveCard(null)}
+        className={cn(
+          "absolute top-6 right-0 sm:right-2 z-30 w-36 sm:w-40 p-3.5 sm:p-4 rounded-2xl glass-glossy transition-all duration-300 cursor-pointer group",
+          activeCard === "seo"
+            ? "border-[#315CFF]/60 shadow-[0_16px_40px_rgba(49,92,255,0.3)] scale-[1.03]"
+            : "hover:border-[#315CFF]/40 hover:shadow-[0_12px_32px_rgba(49,92,255,0.18)]"
+        )}
+      >
+        <div className="flex items-center justify-between mb-2">
+          <div className="w-7 h-7 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 text-[#315CFF] flex items-center justify-center group-hover:scale-110 transition-transform">
+            <BarChart3 className="w-4 h-4" />
+          </div>
+        </div>
+        <h3 className="text-xs sm:text-[13px] font-bold text-[var(--color-foreground)] tracking-tight leading-snug">
+          SEO
+        </h3>
+      </motion.div>
+
+      {/* 3. BOTTOM-LEFT: Digital Marketing */}
+      <motion.div
+        animate={shouldReduceMotion ? {} : { y: [0, 5, 0] }}
+        transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+        onMouseEnter={() => setActiveCard("marketing")}
+        onMouseLeave={() => setActiveCard(null)}
+        className={cn(
+          "absolute bottom-4 left-0 sm:left-2 z-30 w-40 sm:w-44 p-3.5 sm:p-4 rounded-2xl glass-glossy transition-all duration-300 cursor-pointer group",
+          activeCard === "marketing"
+            ? "border-[#315CFF]/60 shadow-[0_16px_40px_rgba(49,92,255,0.3)] scale-[1.03]"
+            : "hover:border-[#315CFF]/40 hover:shadow-[0_12px_32px_rgba(49,92,255,0.18)]"
+        )}
+      >
+        <div className="flex items-center justify-between mb-2">
+          <div className="w-7 h-7 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 text-[#315CFF] flex items-center justify-center group-hover:scale-110 transition-transform">
+            <Megaphone className="w-4 h-4" />
+          </div>
+          <span className="text-[10px] font-mono font-bold tracking-wider px-2 py-0.5 rounded-full bg-blue-500/10 text-[#315CFF] border border-blue-500/20">
+            SEO
+          </span>
+        </div>
+        <h3 className="text-xs sm:text-[13px] font-bold text-[var(--color-foreground)] tracking-tight leading-snug">
+          Digital Marketing
+        </h3>
+      </motion.div>
+
+      {/* 4. BOTTOM-RIGHT: AI & Automation */}
+      <motion.div
+        animate={shouldReduceMotion ? {} : { y: [0, -5, 0] }}
+        transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+        onMouseEnter={() => setActiveCard("ai")}
+        onMouseLeave={() => setActiveCard(null)}
+        className={cn(
+          "absolute bottom-4 right-0 sm:right-2 z-30 w-40 sm:w-44 p-3.5 sm:p-4 rounded-2xl glass-glossy transition-all duration-300 cursor-pointer group",
+          activeCard === "ai"
+            ? "border-[#315CFF]/60 shadow-[0_16px_40px_rgba(49,92,255,0.3)] scale-[1.03]"
+            : "hover:border-[#315CFF]/40 hover:shadow-[0_12px_32px_rgba(49,92,255,0.18)]"
+        )}
+      >
+        <div className="flex items-center justify-between mb-2">
+          <div className="w-7 h-7 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 text-[#315CFF] flex items-center justify-center group-hover:scale-110 transition-transform">
+            <Zap className="w-4 h-4" />
+          </div>
+          <span className="text-[10px] font-mono font-bold tracking-wider px-2 py-0.5 rounded-full bg-blue-500/10 text-[#315CFF] border border-blue-500/20">
+            PRO
+          </span>
+        </div>
+        <h3 className="text-xs sm:text-[13px] font-bold text-[var(--color-foreground)] tracking-tight leading-snug">
+          AI & Automation
+        </h3>
+      </motion.div>
+
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* CENTER GLOSSY LIQUID GLASS CUBE (MONOGRAM G.)             */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <motion.div
+        animate={
+          shouldReduceMotion
+            ? {}
+            : {
+                y: [0, -5, 0],
+                rotate: [0, 0.5, 0],
+                scale: [1, 1.015, 1],
+              }
+        }
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-[2.5rem] glass-glossy z-20 flex flex-col items-center justify-center shadow-[0_24px_60px_rgba(0,0,0,0.4),0_0_50px_rgba(49,92,255,0.3),inset_0_2px_4px_rgba(255,255,255,0.8),inset_0_-4px_12px_rgba(0,0,0,0.3)] border border-white/40 dark:border-white/20 backdrop-blur-2xl"
+      >
+        {/* Top-Left Specular Sheen Arc */}
+        <div className="absolute top-2.5 left-4 right-4 h-[1.5px] bg-gradient-to-r from-transparent via-white/90 to-transparent" />
+
+        {/* Monogram G. */}
+        <span className="text-5xl sm:text-6xl font-black tracking-tight text-[var(--color-foreground)] font-sans">
+          G<span className="text-[#315CFF]">.</span>
+        </span>
+
+        {/* Bottom Internal Caustic Liquid Glow */}
+        <div className="absolute bottom-3 inset-x-6 h-3 rounded-full bg-blue-500/20 dark:bg-blue-500/30 blur-sm pointer-events-none" />
       </motion.div>
     </div>
   );
