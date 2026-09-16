@@ -13,10 +13,15 @@ import {
   ShieldCheck,
   Rocket,
   HelpCircle,
+  Lightbulb,
+  FileText,
+  Pencil,
+  MessageSquare,
 } from "lucide-react";
 import FadeUp from "@/components/motion/FadeUp";
 import WebDevHeroVisual from "@/components/services/WebDevHeroVisual";
 import WebDevValueChainDiagram from "@/components/services/WebDevValueChainDiagram";
+import CircularProcessOrbit from "@/components/services/CircularProcessOrbit";
 import ServicePricingEnquiry from "@/components/services/ServicePricingEnquiry";
 import HandDrawnArrow from "@/components/decorative/HandDrawnArrow";
 
@@ -94,15 +99,44 @@ const whatsIncluded = [
   },
 ];
 
-/* ── 05: HOW WE WORK (ANIMATED TIMELINE) ── */
-const workflow = [
-  "YOUR BUSINESS",
-  "DISCOVERY",
-  "STRUCTURE",
-  "DESIGN",
-  "DEVELOPMENT",
-  "TESTING",
-  "LAUNCH",
+/* ── 05: HOW WE WORK (CIRCULAR PROCESS ORBIT) ── */
+const processSteps = [
+  {
+    number: "01",
+    title: "Discover",
+    description: "We learn about your business and goals.",
+    icon: Lightbulb,
+  },
+  {
+    number: "02",
+    title: "Plan",
+    description: "We define the right approach for your needs.",
+    icon: FileText,
+  },
+  {
+    number: "03",
+    title: "Design",
+    description: "We create a clean and effective design.",
+    icon: Pencil,
+  },
+  {
+    number: "04",
+    title: "Develop",
+    description: "We build a fast, responsive and functional solution.",
+    icon: Code2,
+  },
+  {
+    number: "05",
+    title: "Review",
+    description: "You give feedback and we make refinements.",
+    icon: MessageSquare,
+  },
+  {
+    number: "06",
+    title: "Launch",
+    description: "We make it live and help you take the next step.",
+    icon: Rocket,
+  },
 ];
 
 /* ── 06: WHAT YOU GET (DELIVERABLES) ── */
@@ -388,21 +422,17 @@ export default function WebDevelopmentPage() {
             </FadeUp>
           </div>
 
-          {/* Horizontal Process Ribbon */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 max-w-6xl mx-auto">
-            {workflow.map((stg, i) => (
-              <FadeUp key={stg} delay={i * 0.05}>
-                <div className="glass-glossy rounded-2xl p-4 text-center border border-[var(--color-border)] shadow-xs flex flex-col items-center justify-center h-24">
-                  <span className="text-[10px] font-mono font-bold text-[#315CFF] mb-1">
-                    0{i + 1}
-                  </span>
-                  <span className="text-xs font-bold text-[var(--color-foreground)] tracking-tight">
-                    {stg}
-                  </span>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
+          {/* Circular Orbit Process Visual */}
+          <FadeUp delay={0.15}>
+            <CircularProcessOrbit
+              steps={processSteps}
+              title="Our"
+              titleAccent="Process"
+              subtitle="From idea to launch."
+              startNote="Your idea starts here."
+              endNote="A digital solution that works for you."
+            />
+          </FadeUp>
         </div>
       </section>
 

@@ -12,10 +12,15 @@ import {
   BarChart3,
   RefreshCw,
   HelpCircle,
+  FileText,
+  Pencil,
+  Rocket,
+  TrendingUp,
 } from "lucide-react";
 import FadeUp from "@/components/motion/FadeUp";
 import MarketingHeroVisual from "@/components/services/MarketingHeroVisual";
 import MarketingValueChainDiagram from "@/components/services/MarketingValueChainDiagram";
+import CircularProcessOrbit from "@/components/services/CircularProcessOrbit";
 import ServicePricingEnquiry from "@/components/services/ServicePricingEnquiry";
 import HandDrawnArrow from "@/components/decorative/HandDrawnArrow";
 
@@ -105,37 +110,43 @@ const whatsIncluded = [
   },
 ];
 
-/* ── 05: HOW WE WORK (TIMELINE) ── */
-const workflow = [
+/* ── 05: HOW WE WORK (CIRCULAR PROCESS ORBIT) ── */
+const marketingProcessSteps = [
   {
-    step: "01",
-    name: "DISCOVER",
-    desc: "We examine your customer lifetime value, market positioning, and revenue targets.",
+    number: "01",
+    title: "Discover",
+    description: "We learn about your business, audience, and commercial margins.",
+    icon: Target,
   },
   {
-    step: "02",
-    name: "PLAN",
-    desc: "We select the highest-performing channels and map an intentional campaign funnel.",
+    number: "02",
+    title: "Plan",
+    description: "We define the right channels and campaign funnel strategy.",
+    icon: FileText,
   },
   {
-    step: "03",
-    name: "CREATE",
-    desc: "We build persuasive copy, tailored visual assets, and high-converting landing pages.",
+    number: "03",
+    title: "Create",
+    description: "We build persuasive ad copy, visual assets, and landing pages.",
+    icon: Pencil,
   },
   {
-    step: "04",
-    name: "LAUNCH",
-    desc: "We test all tracking pixels, configure conversion tags, and launch campaigns live.",
+    number: "04",
+    title: "Launch",
+    description: "We set up tracking pixels, test conversions, and go live.",
+    icon: Rocket,
   },
   {
-    step: "05",
-    name: "MEASURE",
-    desc: "We monitor actual cost per acquisition, bounce rates, and lead quality daily.",
+    number: "05",
+    title: "Measure",
+    description: "We track real cost per lead, click quality, and conversion rates.",
+    icon: BarChart3,
   },
   {
-    step: "06",
-    name: "OPTIMISE",
-    desc: "We reallocate budget toward winning campaigns, test fresh angles, and scale return.",
+    number: "06",
+    title: "Optimise",
+    description: "We scale winning angles, cut underperformers, and compound ROI.",
+    icon: TrendingUp,
   },
 ];
 
@@ -428,31 +439,17 @@ export default function DigitalMarketingPage() {
             </FadeUp>
           </div>
 
-          {/* Process Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {workflow.map((item, i) => (
-              <FadeUp key={item.name} delay={i * 0.06}>
-                <div className="glass-glossy rounded-3xl p-6 border border-[var(--color-border)] shadow-xs flex flex-col justify-between h-full hover:border-[#315CFF]/30 transition-colors">
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-mono font-bold text-[#315CFF]">
-                        {item.step}
-                      </span>
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-[var(--color-foreground-muted)]">
-                        STAGE
-                      </span>
-                    </div>
-                    <h3 className="text-base sm:text-lg font-bold text-[var(--color-foreground)] tracking-tight mb-2">
-                      {item.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-[var(--color-foreground-secondary)] leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
+          {/* Circular Orbit Process Visual */}
+          <FadeUp delay={0.15}>
+            <CircularProcessOrbit
+              steps={marketingProcessSteps}
+              title="Our"
+              titleAccent="Process"
+              subtitle="From strategy to scale."
+              startNote="Your campaign starts here."
+              endNote="Measurable acquisition that works for you."
+            />
+          </FadeUp>
         </div>
       </section>
 

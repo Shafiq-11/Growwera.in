@@ -12,10 +12,13 @@ import {
   FileText,
   LineChart,
   HelpCircle,
+  Code2,
+  Rocket,
 } from "lucide-react";
 import FadeUp from "@/components/motion/FadeUp";
 import SEOHeroVisual from "@/components/services/SEOHeroVisual";
 import SEOValueChainDiagram from "@/components/services/SEOValueChainDiagram";
+import CircularProcessOrbit from "@/components/services/CircularProcessOrbit";
 import ServicePricingEnquiry from "@/components/services/ServicePricingEnquiry";
 import HandDrawnArrow from "@/components/decorative/HandDrawnArrow";
 
@@ -105,37 +108,43 @@ const whatsIncluded = [
   },
 ];
 
-/* ── 05: HOW WE WORK (TIMELINE) ── */
-const workflow = [
+/* ── 05: HOW WE WORK (CIRCULAR PROCESS ORBIT) ── */
+const seoProcessSteps = [
   {
-    step: "01",
-    name: "AUDIT",
-    desc: "We analyze your site's technical health, current visibility, and competitors.",
+    number: "01",
+    title: "Audit",
+    description: "We analyze your website, search health, and competitors.",
+    icon: Search,
   },
   {
-    step: "02",
-    name: "RESEARCH",
-    desc: "We identify high-intent search queries that potential customers actually use.",
+    number: "02",
+    title: "Research",
+    description: "We identify high-intent terms your customers actually use.",
+    icon: KeyRound,
   },
   {
-    step: "03",
-    name: "STRATEGY",
-    desc: "We build a clear, prioritized roadmap of technical fixes and content priorities.",
+    number: "03",
+    title: "Strategy",
+    description: "We define a clear, prioritized SEO and content roadmap.",
+    icon: FileText,
   },
   {
-    step: "04",
-    name: "OPTIMISE",
-    desc: "We execute technical improvements, refine page structures, and optimize content.",
+    number: "04",
+    title: "Optimise",
+    description: "We fix technical issues and refine page heading structures.",
+    icon: Code2,
   },
   {
-    step: "05",
-    name: "MONITOR",
-    desc: "We track indexing status, rankings, search impressions, and organic visitors.",
+    number: "05",
+    title: "Monitor",
+    description: "We track indexing health, search impressions, and rankings.",
+    icon: LineChart,
   },
   {
-    step: "06",
-    name: "IMPROVE",
-    desc: "We review data trends, refine keyword targeting, and compound your visibility.",
+    number: "06",
+    title: "Scale",
+    description: "We review data trends to compound long-term organic traffic.",
+    icon: Rocket,
   },
 ];
 
@@ -427,31 +436,17 @@ export default function SEOPage() {
             </FadeUp>
           </div>
 
-          {/* Process Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {workflow.map((item, i) => (
-              <FadeUp key={item.name} delay={i * 0.06}>
-                <div className="glass-glossy rounded-3xl p-6 border border-[var(--color-border)] shadow-xs flex flex-col justify-between h-full hover:border-[#315CFF]/30 transition-colors">
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-mono font-bold text-[#315CFF]">
-                        {item.step}
-                      </span>
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-[var(--color-foreground-muted)]">
-                        STAGE
-                      </span>
-                    </div>
-                    <h3 className="text-base sm:text-lg font-bold text-[var(--color-foreground)] tracking-tight mb-2">
-                      {item.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-[var(--color-foreground-secondary)] leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
+          {/* Circular Orbit Process Visual */}
+          <FadeUp delay={0.15}>
+            <CircularProcessOrbit
+              steps={seoProcessSteps}
+              title="Our"
+              titleAccent="Process"
+              subtitle="From audit to rankings."
+              startNote="Your search journey starts here."
+              endNote="Sustainable organic visibility that works."
+            />
+          </FadeUp>
         </div>
       </section>
 

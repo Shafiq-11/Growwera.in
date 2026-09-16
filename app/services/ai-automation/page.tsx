@@ -12,10 +12,13 @@ import {
   Workflow,
   ShieldCheck,
   HelpCircle,
+  Lightbulb,
+  Rocket,
 } from "lucide-react";
 import FadeUp from "@/components/motion/FadeUp";
 import AIHeroVisual from "@/components/services/AIHeroVisual";
 import AIValueChainDiagram from "@/components/services/AIValueChainDiagram";
+import CircularProcessOrbit from "@/components/services/CircularProcessOrbit";
 import ServicePricingEnquiry from "@/components/services/ServicePricingEnquiry";
 import HandDrawnArrow from "@/components/decorative/HandDrawnArrow";
 
@@ -105,37 +108,43 @@ const whatsIncluded = [
   },
 ];
 
-/* ── 05: HOW WE WORK (TIMELINE) ── */
-const workflow = [
+/* ── 05: HOW WE WORK (CIRCULAR PROCESS ORBIT) ── */
+const aiProcessSteps = [
   {
-    step: "01",
-    name: "FIND REPETITIVE TASK",
-    desc: "We pinpoint the high-friction tasks consuming unnecessary hours across your team.",
+    number: "01",
+    title: "Identify",
+    description: "We pinpoint the repetitive tasks consuming team hours.",
+    icon: Lightbulb,
   },
   {
-    step: "02",
-    name: "UNDERSTAND WORKFLOW",
-    desc: "We document the step-by-step inputs, conditions, exceptions, and desired outputs.",
+    number: "02",
+    title: "Map",
+    description: "We document the step-by-step inputs, conditions, and outputs.",
+    icon: GitBranch,
   },
   {
-    step: "03",
-    name: "DESIGN AUTOMATION",
-    desc: "We architect the optimal pipeline combining modern AI logic with deterministic rules.",
+    number: "03",
+    title: "Architect",
+    description: "We design the optimal pipeline combining AI with deterministic rules.",
+    icon: Cpu,
   },
   {
-    step: "04",
-    name: "CONNECT TOOLS",
-    desc: "We securely integrate your apps, webhooks, databases, and AI model APIs.",
+    number: "04",
+    title: "Connect",
+    description: "We securely integrate your apps, webhooks, databases, and APIs.",
+    icon: Workflow,
   },
   {
-    step: "05",
-    name: "TEST & VERIFY",
-    desc: "We run exhaustive edge-case simulations to guarantee data integrity and accuracy.",
+    number: "05",
+    title: "Test",
+    description: "We run exhaustive edge-case simulations to guarantee reliability.",
+    icon: ShieldCheck,
   },
   {
-    step: "06",
-    name: "DEPLOY & IMPROVE",
-    desc: "We launch live, train your team, and continuously monitor execution performance.",
+    number: "06",
+    title: "Deploy",
+    description: "We launch live, train your team, and monitor performance.",
+    icon: Rocket,
   },
 ];
 
@@ -429,31 +438,17 @@ export default function AIAutomationPage() {
             </FadeUp>
           </div>
 
-          {/* Process Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {workflow.map((item, i) => (
-              <FadeUp key={item.name} delay={i * 0.06}>
-                <div className="glass-glossy rounded-3xl p-6 border border-[var(--color-border)] shadow-xs flex flex-col justify-between h-full hover:border-[#315CFF]/30 transition-colors">
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-mono font-bold text-[#315CFF]">
-                        {item.step}
-                      </span>
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-[var(--color-foreground-muted)]">
-                        STAGE
-                      </span>
-                    </div>
-                    <h3 className="text-base sm:text-lg font-bold text-[var(--color-foreground)] tracking-tight mb-2">
-                      {item.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-[var(--color-foreground-secondary)] leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
+          {/* Circular Orbit Process Visual */}
+          <FadeUp delay={0.15}>
+            <CircularProcessOrbit
+              steps={aiProcessSteps}
+              title="Our"
+              titleAccent="Process"
+              subtitle="From workflow to automation."
+              startNote="Your automation starts here."
+              endNote="Autonomous systems that work for you."
+            />
+          </FadeUp>
         </div>
       </section>
 
