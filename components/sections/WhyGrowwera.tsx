@@ -109,60 +109,64 @@ function SparkleLines({ className }: { className?: string }) {
   );
 }
 
-/* ── ANIMATED VISUAL 01: Chat Dialogue / Real Conversations ── */
+/* ── LIQUID GLASS VISUAL 01: Chat Dialogue / Real Conversations ── */
 function ChatVisual() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="relative w-36 sm:w-44 h-28 sm:h-32 bg-[var(--color-surface-elevated)]/90 border border-[var(--color-border)] rounded-2xl p-3 sm:p-4 flex flex-col justify-center gap-2.5 shadow-[0_4px_16px_rgba(49,92,255,0.06)] overflow-hidden">
-      {/* Top Speech Bubble (Blue) */}
+    <div className="relative w-36 sm:w-44 h-28 sm:h-32 rounded-[1.35rem] p-3 sm:p-4 flex flex-col justify-center gap-2.5 overflow-hidden backdrop-blur-xl border border-white/70 dark:border-white/15 shadow-[0_10px_28px_rgba(49,92,255,0.08),inset_0_1px_2px_rgba(255,255,255,0.9)] dark:shadow-[0_10px_28px_rgba(0,0,0,0.5),inset_0_1px_1.5px_rgba(255,255,255,0.15)] bg-gradient-to-br from-white/75 via-white/40 to-white/20 dark:from-white/[0.08] dark:via-white/[0.03] dark:to-white/[0.01]">
+      {/* Top Speech Bubble (Liquid Glass Blue) */}
       <motion.div
-        animate={shouldReduceMotion ? {} : { y: [0, -3, 0] }}
+        animate={shouldReduceMotion ? {} : { y: [0, -3.5, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="self-end bg-[var(--color-accent)] text-white px-3 py-2 rounded-xl rounded-br-xs text-[10px] sm:text-xs shadow-xs max-w-[85%]"
+        className="self-end relative bg-gradient-to-br from-[#315CFF] via-[#3B82F6] to-[#1D4ED8] text-white px-3.5 py-2 rounded-2xl rounded-br-xs text-[10px] sm:text-xs shadow-[0_6px_16px_rgba(49,92,255,0.35),inset_0_1px_1.5px_rgba(255,255,255,0.65)] border border-white/40 max-w-[85%] overflow-hidden"
       >
-        <div className="space-y-1">
-          <div className="w-16 h-1.5 bg-white/90 rounded-full" />
-          <div className="w-10 h-1.5 bg-white/70 rounded-full" />
+        {/* Specular glass reflection bar */}
+        <div className="absolute inset-x-0 top-0 h-[35%] bg-gradient-to-b from-white/35 to-transparent pointer-events-none" />
+        <div className="space-y-1 relative z-10">
+          <div className="w-16 h-1.5 bg-white/95 rounded-full" />
+          <div className="w-10 h-1.5 bg-white/75 rounded-full" />
         </div>
       </motion.div>
 
-      {/* Bottom Speech Bubble (Light / Surface) */}
+      {/* Bottom Speech Bubble (Frosted Crystal Glass) */}
       <motion.div
-        animate={shouldReduceMotion ? {} : { y: [0, 3, 0] }}
+        animate={shouldReduceMotion ? {} : { y: [0, 3.5, 0] }}
         transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-        className="self-start bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-foreground)] px-3 py-2 rounded-xl rounded-bl-xs text-[10px] sm:text-xs shadow-xs max-w-[85%]"
+        className="self-start relative bg-white/80 dark:bg-white/[0.09] backdrop-blur-md border border-white/85 dark:border-white/20 text-[var(--color-foreground)] px-3.5 py-2 rounded-2xl rounded-bl-xs text-[10px] sm:text-xs shadow-[0_4px_14px_rgba(0,0,0,0.05),inset_0_1px_1.5px_rgba(255,255,255,0.95)] max-w-[85%] overflow-hidden"
       >
-        <div className="space-y-1">
+        <div className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-white/50 dark:from-white/15 to-transparent pointer-events-none" />
+        <div className="space-y-1 relative z-10">
           <div className="w-14 h-1.5 bg-[var(--color-foreground-muted)]/50 rounded-full" />
           <div className="w-8 h-1.5 bg-[var(--color-foreground-muted)]/30 rounded-full" />
         </div>
       </motion.div>
 
-      {/* Ambient background glow */}
-      <div className="absolute -top-6 -right-6 w-20 h-20 bg-[var(--color-accent)]/10 rounded-full blur-xl pointer-events-none" />
+      {/* Ambient liquid backlight */}
+      <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-[#315CFF]/20 to-[#06B6D4]/15 rounded-full blur-xl pointer-events-none" />
     </div>
   );
 }
 
-/* ── ANIMATED VISUAL 02: Document Scanning / Clarity before Code ── */
+/* ── LIQUID GLASS VISUAL 02: Document Scanning / Clarity before Code ── */
 function DocumentVisual() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="relative w-36 sm:w-44 h-28 sm:h-32 bg-[var(--color-surface-elevated)]/90 border border-[var(--color-border)] rounded-2xl p-3 sm:p-4 flex items-center justify-center shadow-[0_4px_16px_rgba(49,92,255,0.06)] overflow-hidden">
-      {/* Document Sheet */}
-      <div className="w-20 sm:w-24 h-20 sm:h-22 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-2.5 shadow-xs flex flex-col justify-between">
-        <div className="space-y-1.5">
-          <div className="w-6 h-1.5 bg-[var(--color-accent)]/40 rounded-full" />
-          <div className="w-full h-1 bg-[var(--color-foreground-muted)]/20 rounded-full" />
-          <div className="w-4/5 h-1 bg-[var(--color-foreground-muted)]/20 rounded-full" />
-          <div className="w-full h-1 bg-[var(--color-foreground-muted)]/20 rounded-full" />
+    <div className="relative w-36 sm:w-44 h-28 sm:h-32 rounded-[1.35rem] p-3 sm:p-4 flex items-center justify-center overflow-hidden backdrop-blur-xl border border-white/70 dark:border-white/15 shadow-[0_10px_28px_rgba(49,92,255,0.08),inset_0_1px_2px_rgba(255,255,255,0.9)] dark:shadow-[0_10px_28px_rgba(0,0,0,0.5),inset_0_1px_1.5px_rgba(255,255,255,0.15)] bg-gradient-to-br from-white/75 via-white/40 to-white/20 dark:from-white/[0.08] dark:via-white/[0.03] dark:to-white/[0.01]">
+      {/* Translucent Glass Document Sheet */}
+      <div className="w-20 sm:w-24 h-20 sm:h-22 bg-white/70 dark:bg-white/[0.08] backdrop-blur-md border border-white/80 dark:border-white/20 rounded-xl p-2.5 shadow-[0_4px_14px_rgba(0,0,0,0.04),inset_0_1px_1.5px_rgba(255,255,255,0.9)] flex flex-col justify-between relative overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-white/40 to-transparent pointer-events-none" />
+        <div className="space-y-1.5 relative z-10">
+          <div className="w-7 h-1.5 bg-[#315CFF]/50 rounded-full" />
+          <div className="w-full h-1 bg-[var(--color-foreground-muted)]/25 rounded-full" />
+          <div className="w-4/5 h-1 bg-[var(--color-foreground-muted)]/25 rounded-full" />
+          <div className="w-full h-1 bg-[var(--color-foreground-muted)]/25 rounded-full" />
         </div>
-        <div className="w-10 h-1 bg-[var(--color-accent)]/30 rounded-full self-end" />
+        <div className="w-10 h-1 bg-[#315CFF]/40 rounded-full self-end relative z-10" />
       </div>
 
-      {/* Floating Magnifying Glass */}
+      {/* Floating Liquid Glass Magnifying Lens */}
       <motion.div
         animate={
           shouldReduceMotion
@@ -174,46 +178,50 @@ function DocumentVisual() {
               }
         }
         transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute right-4 sm:right-6 bottom-3 sm:bottom-4 w-9 h-9 rounded-full bg-[var(--color-surface)]/90 border-2 border-[var(--color-accent)] shadow-md flex items-center justify-center text-[var(--color-accent)] backdrop-blur-xs"
+        className="absolute right-3.5 sm:right-5 bottom-2.5 sm:bottom-3.5 w-10 h-10 rounded-full border-2 border-[#315CFF] bg-gradient-to-br from-white/75 via-[#315CFF]/15 to-transparent backdrop-blur-lg shadow-[0_8px_20px_rgba(49,92,255,0.3),inset_0_2px_3px_rgba(255,255,255,0.85)] flex items-center justify-center text-[#315CFF]"
       >
+        {/* Specular glass reflection arc */}
+        <div className="absolute top-1 left-1.5 w-3.5 h-1.5 bg-white/70 rounded-full blur-[0.5px] rotate-[-25deg]" />
         <Search size={16} strokeWidth={2.4} />
       </motion.div>
 
-      <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-[var(--color-accent)]/10 rounded-full blur-xl pointer-events-none" />
+      <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-[#06B6D4]/20 to-[#315CFF]/15 rounded-full blur-xl pointer-events-none" />
     </div>
   );
 }
 
-/* ── ANIMATED VISUAL 03: Browser Wireframe / Built for Your Growth ── */
+/* ── LIQUID GLASS VISUAL 03: Browser Wireframe / Built for Your Growth ── */
 function BrowserVisual() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="relative w-36 sm:w-44 h-28 sm:h-32 bg-[var(--color-surface-elevated)]/90 border border-[var(--color-border)] rounded-2xl p-2.5 sm:p-3 shadow-[0_4px_16px_rgba(49,92,255,0.06)] overflow-hidden flex flex-col justify-between">
-      {/* Browser Window Chrome */}
+    <div className="relative w-36 sm:w-44 h-28 sm:h-32 rounded-[1.35rem] p-2.5 sm:p-3 overflow-hidden backdrop-blur-xl border border-white/70 dark:border-white/15 shadow-[0_10px_28px_rgba(49,92,255,0.08),inset_0_1px_2px_rgba(255,255,255,0.9)] dark:shadow-[0_10px_28px_rgba(0,0,0,0.5),inset_0_1px_1.5px_rgba(255,255,255,0.15)] bg-gradient-to-br from-white/75 via-white/40 to-white/20 dark:from-white/[0.08] dark:via-white/[0.03] dark:to-white/[0.01] flex flex-col justify-between">
+      {/* Frosted Acrylic Browser Window */}
       <motion.div
-        animate={shouldReduceMotion ? {} : { y: [0, -2, 0] }}
+        animate={shouldReduceMotion ? {} : { y: [0, -2.5, 0] }}
         transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-        className="w-full h-full bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-2 sm:p-2.5 flex flex-col justify-between shadow-xs"
+        className="w-full h-full bg-white/70 dark:bg-white/[0.08] backdrop-blur-md border border-white/80 dark:border-white/20 rounded-xl p-2 sm:p-2.5 flex flex-col justify-between shadow-[0_4px_12px_rgba(0,0,0,0.04),inset_0_1px_1.5px_rgba(255,255,255,0.9)] relative overflow-hidden"
       >
-        {/* Top 3 window dots */}
-        <div className="flex items-center gap-1 pb-1.5 border-b border-[var(--color-border)]">
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]" />
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]/60" />
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]/30" />
+        <div className="absolute inset-x-0 top-0 h-[35%] bg-gradient-to-b from-white/40 to-transparent pointer-events-none" />
+
+        {/* 3 Jewel-like Liquid Glass Dots */}
+        <div className="flex items-center gap-1.5 pb-1.5 border-b border-[var(--color-border)] relative z-10">
+          <span className="w-1.5 h-1.5 rounded-full bg-rose-500/80 shadow-[0_0_6px_rgba(244,63,94,0.6)]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500/80 shadow-[0_0_6px_rgba(245,158,11,0.6)]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80 shadow-[0_0_6px_rgba(16,185,129,0.6)]" />
         </div>
 
-        {/* Browser Layout Wireframe */}
-        <div className="grid grid-cols-12 gap-1.5 py-1 items-center flex-1">
-          {/* Left image block */}
-          <div className="col-span-5 h-full rounded-md bg-[var(--color-accent)]/15 border border-[var(--color-accent)]/25 flex items-center justify-center text-[var(--color-accent)]">
+        {/* Layout Wireframe with Liquid Glass Tile */}
+        <div className="grid grid-cols-12 gap-1.5 py-1 items-center flex-1 relative z-10">
+          {/* Left iridescent glass tile */}
+          <div className="col-span-5 h-full rounded-lg bg-gradient-to-br from-[#315CFF]/25 via-[#06B6D4]/20 to-[#8B5CF6]/15 border border-white/60 dark:border-white/15 flex items-center justify-center text-[#315CFF] shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.8)]">
             <ImageIcon size={14} />
           </div>
-          {/* Right text lines */}
+          {/* Right frosted text lines */}
           <div className="col-span-7 space-y-1.5 pl-1">
             <div className="w-full h-1.5 bg-[var(--color-foreground-muted)]/30 rounded-full" />
             <div className="w-3/4 h-1.5 bg-[var(--color-foreground-muted)]/20 rounded-full" />
-            <div className="w-1/2 h-1.5 bg-[var(--color-accent)]/40 rounded-full" />
+            <div className="w-1/2 h-1.5 bg-[#315CFF]/45 rounded-full shadow-xs" />
           </div>
         </div>
       </motion.div>
@@ -221,87 +229,93 @@ function BrowserVisual() {
   );
 }
 
-/* ── ANIMATED VISUAL 04: Upward Growth Chart / From Launch to Growth ── */
+/* ── LIQUID GLASS VISUAL 04: Upward Growth Chart / From Launch to Growth ── */
 function ChartVisual() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="relative w-36 sm:w-44 h-28 sm:h-32 bg-[var(--color-surface-elevated)]/90 border border-[var(--color-border)] rounded-2xl p-3 sm:p-4 shadow-[0_4px_16px_rgba(49,92,255,0.06)] overflow-hidden flex flex-col justify-end">
-      {/* Chart Box */}
-      <div className="w-full h-full flex flex-col justify-between">
-        {/* Upward Curved Spline Arrow */}
-        <div className="flex justify-end pr-1 pt-1">
+    <div className="relative w-36 sm:w-44 h-28 sm:h-32 rounded-[1.35rem] p-3 sm:p-4 overflow-hidden backdrop-blur-xl border border-white/70 dark:border-white/15 shadow-[0_10px_28px_rgba(49,92,255,0.08),inset_0_1px_2px_rgba(255,255,255,0.9)] dark:shadow-[0_10px_28px_rgba(0,0,0,0.5),inset_0_1px_1.5px_rgba(255,255,255,0.15)] bg-gradient-to-br from-white/75 via-white/40 to-white/20 dark:from-white/[0.08] dark:via-white/[0.03] dark:to-white/[0.01] flex flex-col justify-end">
+      {/* Chart Canvas */}
+      <div className="w-full h-full flex flex-col justify-between relative z-10">
+        {/* Upward Luminous Spline Arrow */}
+        <div className="flex justify-end pr-1 pt-0.5">
           <motion.div
             animate={shouldReduceMotion ? {} : { y: [0, -3, 0], x: [0, 2, 0] }}
             transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-7 h-7 rounded-full bg-gradient-to-br from-[#315CFF] to-[#06B6D4] text-white flex items-center justify-center shadow-[0_4px_12px_rgba(49,92,255,0.4),inset_0_1px_1px_rgba(255,255,255,0.7)] border border-white/40"
           >
-            <TrendingUp size={18} className="text-[var(--color-accent)]" />
+            <TrendingUp size={14} />
           </motion.div>
         </div>
 
-        {/* 3 Rising Growth Bars */}
-        <div className="flex items-end justify-center gap-3 sm:gap-4 h-14 pb-1">
+        {/* 3 Liquid Crystal Pillars */}
+        <div className="flex items-end justify-center gap-3 sm:gap-4 h-14 pb-0.5">
+          {/* Pillar 1 */}
           <motion.div
-            animate={shouldReduceMotion ? {} : { height: ["35%", "45%", "35%"] }}
+            animate={shouldReduceMotion ? {} : { height: ["36%", "46%", "36%"] }}
             transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-4 rounded-t-md bg-[var(--color-accent)]/25 border-t border-x border-[var(--color-accent)]/40 h-[40%]"
+            className="w-4 rounded-t-lg bg-gradient-to-t from-[#315CFF]/30 to-[#06B6D4]/40 border-t border-x border-white/60 dark:border-white/20 h-[40%] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] backdrop-blur-xs"
           />
+          {/* Pillar 2 */}
           <motion.div
-            animate={shouldReduceMotion ? {} : { height: ["60%", "72%", "60%"] }}
+            animate={shouldReduceMotion ? {} : { height: ["62%", "74%", "62%"] }}
             transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-            className="w-4 rounded-t-md bg-[var(--color-accent)]/55 border-t border-x border-[var(--color-accent)]/70 h-[68%]"
+            className="w-4 rounded-t-lg bg-gradient-to-t from-[#315CFF]/60 to-[#38BDF8]/80 border-t border-x border-white/70 dark:border-white/30 h-[68%] shadow-[0_4px_12px_rgba(49,92,255,0.25),inset_0_1px_1.5px_rgba(255,255,255,0.9)] backdrop-blur-xs"
           />
+          {/* Pillar 3 */}
           <motion.div
-            animate={shouldReduceMotion ? {} : { height: ["85%", "98%", "85%"] }}
+            animate={shouldReduceMotion ? {} : { height: ["86%", "98%", "86%"] }}
             transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
-            className="w-4 rounded-t-md bg-[var(--color-accent)] border-t border-x border-[var(--color-accent)] h-[95%] shadow-xs"
+            className="w-4 rounded-t-lg bg-gradient-to-t from-[#1D4ED8] via-[#315CFF] to-[#38BDF8] border-t border-x border-white/80 h-[95%] shadow-[0_6px_16px_rgba(49,92,255,0.4),inset_0_1.5px_2px_rgba(255,255,255,0.95)]"
           />
         </div>
       </div>
 
-      <div className="absolute -top-6 -right-6 w-20 h-20 bg-[var(--color-accent)]/10 rounded-full blur-xl pointer-events-none" />
+      <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-[#315CFF]/20 to-[#06B6D4]/20 rounded-full blur-xl pointer-events-none" />
     </div>
   );
 }
 
-/* ── ANIMATED VISUAL 05: Evolution Monitor / Always Evolving ── */
+/* ── LIQUID GLASS VISUAL 05: Evolution Monitor / Always Evolving ── */
 function EvolutionVisual() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="relative w-36 sm:w-44 h-28 sm:h-32 bg-[var(--color-surface-elevated)]/90 border border-[var(--color-border)] rounded-2xl p-3 sm:p-4 shadow-[0_4px_16px_rgba(49,92,255,0.06)] overflow-hidden flex flex-col justify-between">
+    <div className="relative w-36 sm:w-44 h-28 sm:h-32 rounded-[1.35rem] p-3 sm:p-4 overflow-hidden backdrop-blur-xl border border-white/70 dark:border-white/15 shadow-[0_10px_28px_rgba(49,92,255,0.08),inset_0_1px_2px_rgba(255,255,255,0.9)] dark:shadow-[0_10px_28px_rgba(0,0,0,0.5),inset_0_1px_1.5px_rgba(255,255,255,0.15)] bg-gradient-to-br from-white/75 via-white/40 to-white/20 dark:from-white/[0.08] dark:via-white/[0.03] dark:to-white/[0.01] flex flex-col justify-between">
       {/* Live Monitor Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between relative z-10">
         <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.7)]" />
           <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-[var(--color-foreground-muted)]">
             Active Pulse
           </span>
         </div>
-        <span className="text-[9px] font-mono text-[var(--color-accent)] bg-[var(--color-accent)]/10 px-1.5 py-0.5 rounded border border-[var(--color-accent)]/20">
-          Ongoing
+        <span className="text-[9px] font-mono text-[#315CFF] bg-[#315CFF]/15 px-2 py-0.5 rounded-full border border-[#315CFF]/30 font-semibold">
+          Live
         </span>
       </div>
 
-      {/* Pulse Heartbeat / Cycle Loop */}
-      <div className="my-auto py-1 flex items-center justify-center">
+      {/* Liquid Glass Orb / Pulse Core */}
+      <div className="my-auto py-1 flex items-center justify-center relative z-10">
         <motion.div
-          animate={shouldReduceMotion ? {} : { scale: [1, 1.05, 1], rotate: [0, 4, 0] }}
+          animate={shouldReduceMotion ? {} : { scale: [1, 1.08, 1], rotate: [0, 6, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="w-12 h-12 rounded-xl bg-[var(--color-surface)] border border-[var(--color-accent)]/40 flex items-center justify-center text-[var(--color-accent)] shadow-xs"
+          className="w-13 h-13 rounded-2xl bg-gradient-to-br from-white/80 via-[#315CFF]/20 to-[#06B6D4]/30 backdrop-blur-md border border-white/80 dark:border-white/25 flex items-center justify-center text-[#315CFF] shadow-[0_8px_20px_rgba(49,92,255,0.25),inset_0_1.5px_2px_rgba(255,255,255,0.95)]"
         >
-          <Activity size={22} className="text-[var(--color-accent)]" />
+          <Activity size={22} className="text-[#315CFF]" />
         </motion.div>
       </div>
 
-      {/* Status Bar */}
-      <div className="w-full bg-[var(--color-surface)] border border-[var(--color-border)] rounded-full h-1.5 overflow-hidden">
+      {/* Liquid Mercury Status Bar */}
+      <div className="w-full bg-white/50 dark:bg-white/10 backdrop-blur-xs border border-white/70 dark:border-white/15 rounded-full h-2 overflow-hidden relative z-10 p-0.5 shadow-inner">
         <motion.div
           animate={shouldReduceMotion ? {} : { x: ["-100%", "100%"] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          className="w-1/2 h-full bg-[var(--color-accent)] rounded-full"
+          className="w-1/2 h-full bg-gradient-to-r from-[#315CFF] via-[#38BDF8] to-[#60A5FA] rounded-full shadow-[0_0_8px_rgba(56,189,248,0.8)]"
         />
       </div>
+
+      <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-[#8B5CF6]/20 to-[#315CFF]/20 rounded-full blur-xl pointer-events-none" />
     </div>
   );
 }
@@ -310,23 +324,23 @@ export default function WhyGrowwera() {
   return (
     <section
       id="why-growwera"
-      className="py-20 lg:py-28 border-t border-[var(--color-border)] relative overflow-hidden"
+      className="py-20 lg:py-28 border-t border-[var(--color-border)] relative"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* ════════════════════════════════════════════════════════════════
-              LEFT COLUMN: Header, Note, CTAs & Trust Indicators (col-span-5)
+              LEFT COLUMN: Sticky on Desktop, Scrolls smoothly with right side
               ════════════════════════════════════════════════════════════════ */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28">
+          <div className="lg:col-span-5 lg:sticky lg:top-24 self-start">
             <FadeUp>
               {/* Eyebrow Pill with horizontal trailing line */}
-              <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-xs font-semibold tracking-wider uppercase text-[var(--color-foreground-muted)] mb-5 shadow-xs">
+              <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-xs font-semibold tracking-wider uppercase text-[var(--color-foreground-muted)] mb-4 shadow-xs">
                 <span>WHY GROWWERA</span>
                 <span className="w-5 h-px bg-[var(--color-border)]" />
               </div>
 
               {/* Main Headline */}
-              <h2 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-[var(--color-foreground)] leading-[1.08] tracking-tight mb-5">
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-bold text-[var(--color-foreground)] leading-[1.1] tracking-tight mb-4">
                 Built around your <br className="hidden sm:block" />
                 business. <br />
                 <span className="font-serif italic font-normal text-[#315CFF]">
@@ -335,13 +349,13 @@ export default function WhyGrowwera() {
               </h2>
 
               {/* Subtitle Copy */}
-              <p className="text-base sm:text-lg text-[var(--color-foreground-secondary)] leading-relaxed mb-8 max-w-lg font-normal">
+              <p className="text-sm sm:text-base text-[var(--color-foreground-secondary)] leading-relaxed mb-6 max-w-md font-normal">
                 We take the time to understand your business, identify what really matters, and
                 build digital solutions that create real impact — not just good-looking websites.
               </p>
 
               {/* Hand-drawn Arrow curving into Post-it Note */}
-              <div className="relative mb-8">
+              <div className="relative mb-6">
                 {/* Curved arrow from above */}
                 <div className="absolute -top-7 left-12 text-[var(--color-foreground-muted)] pointer-events-none hidden sm:block">
                   <svg
@@ -367,7 +381,7 @@ export default function WhyGrowwera() {
                 </div>
 
                 {/* Sticky Post-it Card */}
-                <div className="relative bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 sm:p-7 shadow-[var(--shadow-paper)] max-w-sm rotate-[-2deg] hover:rotate-0 transition-transform duration-300">
+                <div className="relative bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-5 sm:p-6 shadow-[var(--shadow-paper)] max-w-sm rotate-[-2deg] hover:rotate-0 transition-transform duration-300">
                   {/* Tape / Pin header */}
                   <div className="absolute -top-2.5 left-8 w-10 h-4 bg-[var(--sticky-tape)] rounded-xs border border-[var(--sticky-tape-border)]" />
 
@@ -376,11 +390,11 @@ export default function WhyGrowwera() {
                     <SparkleLines className="w-5 h-5" />
                   </div>
 
-                  <div className="space-y-1 font-handwriting text-2xl sm:text-[1.75rem] text-[var(--color-foreground)] leading-snug">
+                  <div className="space-y-0.5 font-handwriting text-xl sm:text-2xl text-[var(--color-foreground)] leading-snug">
                     <p className="text-[var(--color-foreground-secondary)]">Your business</p>
                     <p className="text-[var(--color-foreground-secondary)]">Your goals</p>
                     <p className="text-[var(--color-foreground-secondary)]">Our expertise</p>
-                    <div className="pt-1">
+                    <div className="pt-0.5">
                       <p className="font-bold text-[var(--color-foreground)] underline decoration-[#315CFF] decoration-2 underline-offset-4">
                         Real growth.
                       </p>
@@ -389,8 +403,8 @@ export default function WhyGrowwera() {
                 </div>
 
                 {/* "From Ideas to Impact" Annotation curving towards right column */}
-                <div className="hidden lg:block absolute -right-6 bottom-[-20px] pointer-events-none text-right">
-                  <p className="font-handwriting text-xl text-[var(--color-foreground-secondary)] leading-none rotate-[-6deg] mb-1">
+                <div className="hidden lg:block absolute -right-6 bottom-[-15px] pointer-events-none text-right">
+                  <p className="font-handwriting text-lg text-[var(--color-foreground-secondary)] leading-none rotate-[-6deg] mb-1">
                     From Ideas <br /> to Impact
                   </p>
                   <div className="flex justify-end mr-3">
@@ -398,7 +412,7 @@ export default function WhyGrowwera() {
                       viewBox="0 0 32 40"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-8 text-[var(--color-foreground-muted)]"
+                      className="w-6 h-7 text-[var(--color-foreground-muted)]"
                     >
                       <path
                         d="M8 2C16 12 24 24 18 34"
@@ -419,10 +433,10 @@ export default function WhyGrowwera() {
               </div>
 
               {/* Two CTA Buttons */}
-              <div className="flex flex-wrap items-center gap-3.5 mb-10">
+              <div className="flex flex-wrap items-center gap-3 mb-6">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2 px-6 py-3.5 bg-[var(--color-foreground)] text-[var(--color-background)] font-semibold rounded-xl text-sm hover:opacity-90 transition-all duration-200 shadow-sm"
+                  className="group inline-flex items-center gap-2 px-5 py-3 bg-[var(--color-foreground)] text-[var(--color-background)] font-semibold rounded-xl text-sm hover:opacity-90 transition-all duration-200 shadow-sm"
                 >
                   <span>Start a Project</span>
                   <ArrowRight
@@ -432,25 +446,25 @@ export default function WhyGrowwera() {
                 </Link>
                 <Link
                   href="/work"
-                  className="inline-flex items-center px-6 py-3.5 bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-foreground)] font-semibold rounded-xl text-sm hover:bg-[var(--color-surface-elevated)] hover:border-[var(--color-border-strong)] transition-all duration-200"
+                  className="inline-flex items-center px-5 py-3 bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-foreground)] font-semibold rounded-xl text-sm hover:bg-[var(--color-surface-elevated)] hover:border-[var(--color-border-strong)] transition-all duration-200"
                 >
                   See Our Work
                 </Link>
               </div>
 
               {/* Three Trust Indicators */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-[var(--color-border)] text-[var(--color-foreground-secondary)]">
-                <div className="flex items-start gap-2.5">
-                  <Users size={16} className="text-[var(--color-accent)] shrink-0 mt-0.5" />
-                  <span className="text-xs leading-snug">Flexible & friendly collaboration</span>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-5 border-t border-[var(--color-border)] text-[var(--color-foreground-secondary)]">
+                <div className="flex items-start gap-2">
+                  <Users size={15} className="text-[#315CFF] shrink-0 mt-0.5" />
+                  <span className="text-[11px] leading-snug">Flexible & friendly collaboration</span>
                 </div>
-                <div className="flex items-start gap-2.5">
-                  <ShieldCheck size={16} className="text-[var(--color-accent)] shrink-0 mt-0.5" />
-                  <span className="text-xs leading-snug">Clear communication at every step</span>
+                <div className="flex items-start gap-2">
+                  <ShieldCheck size={15} className="text-[#315CFF] shrink-0 mt-0.5" />
+                  <span className="text-[11px] leading-snug">Clear communication at every step</span>
                 </div>
-                <div className="flex items-start gap-2.5">
-                  <TrendingUp size={16} className="text-[var(--color-accent)] shrink-0 mt-0.5" />
-                  <span className="text-xs leading-snug">Solutions built for long-term growth</span>
+                <div className="flex items-start gap-2">
+                  <TrendingUp size={15} className="text-[#315CFF] shrink-0 mt-0.5" />
+                  <span className="text-[11px] leading-snug">Solutions built for long-term growth</span>
                 </div>
               </div>
             </FadeUp>
@@ -479,7 +493,7 @@ export default function WhyGrowwera() {
 
             <div className="space-y-6">
               {pillars.map((pillar, idx) => (
-                <FadeUp key={pillar.number} delay={idx * 0.09}>
+                <FadeUp key={pillar.number} delay={idx * 0.08}>
                   <div className="relative group bg-[var(--color-surface)] border border-[var(--color-border)] rounded-3xl p-6 sm:p-8 shadow-[var(--shadow-paper)] hover:border-[var(--color-accent)]/40 hover:shadow-[var(--shadow-paper-hover)] hover:-translate-y-0.5 transition-all duration-300">
                     {/* Node Dot on left connector rail */}
                     <div className="hidden lg:flex absolute -left-10 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-[var(--color-surface)] border-2 border-[var(--color-accent)] items-center justify-center shadow-xs">
@@ -519,7 +533,7 @@ export default function WhyGrowwera() {
                         </div>
                       </div>
 
-                      {/* Right: Visual Illustration + Handwritten Label (col-span-5) */}
+                      {/* Right: Liquid Glass Visual + Handwritten Label (col-span-5) */}
                       <div className="md:col-span-5 flex flex-col items-center md:items-end justify-center relative pt-4 md:pt-0">
                         {/* Handwritten Note Annotation */}
                         <div className="flex items-center gap-1.5 mb-2 self-center md:self-end text-[var(--color-foreground-secondary)]">
@@ -529,7 +543,7 @@ export default function WhyGrowwera() {
                           </span>
                         </div>
 
-                        {/* Dedicated Animated Visual */}
+                        {/* Dedicated Liquid Glass Visual */}
                         <div className="relative">
                           {idx === 0 && <ChatVisual />}
                           {idx === 1 && <DocumentVisual />}
