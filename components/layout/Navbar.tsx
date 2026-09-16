@@ -79,7 +79,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-1 bg-[var(--color-surface)]/85 p-1.5 rounded-full border border-[var(--color-border)] shadow-xs">
+            <div className="hidden md:flex items-center gap-1 bg-[var(--color-surface)]/80 backdrop-blur-xl p-1.5 rounded-full border border-[var(--color-border)] shadow-[0_4px_20px_rgba(0,0,0,0.06),inset_0_1px_0_0_rgba(255,255,255,0.15)]">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -104,7 +104,7 @@ export default function Navbar() {
               <ThemeToggle />
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-1.5 px-5 py-2.5 bg-[var(--color-accent)] text-white text-sm font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-[0_2px_12px_rgba(49,92,255,0.3)]"
+                className="group inline-flex items-center gap-1.5 px-5 py-2.5 bg-[var(--color-accent)] text-white text-sm font-semibold rounded-full hover:bg-[var(--color-accent-hover)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-[0_4px_16px_rgba(49,92,255,0.35),inset_0_1px_0_0_rgba(255,255,255,0.25)]"
               >
                 Start a Project
                 <ArrowRight

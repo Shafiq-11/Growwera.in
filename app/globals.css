@@ -175,19 +175,63 @@ html.theme-transition *::after {
   background-size: 44px 44px;
 }
 
-/* ── Paper Card Utility ── */
+/* ── Paper & Glossy Card Utilities ── */
 .paper-card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-paper);
+  box-shadow: var(--shadow-paper), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .paper-card:hover {
   background-color: var(--color-surface-elevated);
   border-color: var(--color-border-strong);
-  box-shadow: var(--shadow-paper-hover);
+  box-shadow: var(--shadow-paper-hover), inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
   transform: translateY(-4px);
+}
+
+/* ── Rich Liquid Glass & Specular Gloss Utilities ── */
+.glass-glossy {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 
+    0 14px 34px -6px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+}
+
+.dark .glass-glossy,
+html.dark .glass-glossy {
+  background: rgba(18, 18, 22, 0.72);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 16px 40px -8px rgba(0, 0, 0, 0.7),
+    0 0 35px -8px rgba(49, 92, 255, 0.15),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+}
+
+.dark .glass-pill,
+html.dark .glass-pill {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
 }
 
 /* ── Sticky Note Aesthetic ── */
