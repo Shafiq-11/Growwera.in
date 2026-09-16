@@ -38,17 +38,17 @@ export default function WebDevHeroVisual() {
         transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
         className="flex flex-col items-center mb-3 text-center"
       >
-        <span className="text-xs font-mono font-bold tracking-widest uppercase text-[#315CFF] bg-[#315CFF]/10 px-3 py-1 rounded-full border border-[#315CFF]/20">
+        <span className="text-xs font-mono font-bold tracking-widest uppercase text-[#F5BA27] bg-[#F5BA27]/10 px-3 py-1 rounded-full border border-[#F5BA27]/20">
           WEBSITE
         </span>
-        <div className="w-[1px] h-3 bg-gradient-to-b from-[#315CFF] to-transparent mt-1" />
+        <div className="w-[1px] h-3 bg-gradient-to-b from-[#F5BA27] to-transparent mt-1" />
       </motion.div>
 
       {/* Central Glossy Interactive Browser Window */}
       <motion.div
         animate={shouldReduceMotion ? {} : { y: [0, -5, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="relative w-[340px] sm:w-[380px] rounded-3xl glass-glossy p-4 shadow-[0_24px_50px_rgba(0,0,0,0.12),0_0_40px_rgba(49,92,255,0.18),inset_0_2px_4px_rgba(255,255,255,0.8)] border border-white/40 dark:border-white/20 backdrop-blur-2xl z-20"
+        className="relative w-[340px] sm:w-[380px] rounded-3xl glass-glossy p-4 shadow-[0_24px_50px_rgba(0,0,0,0.12),0_0_40px_rgba(245, 186, 39,0.18),inset_0_2px_4px_rgba(255,255,255,0.8)] border border-white/40 dark:border-white/20 backdrop-blur-2xl z-20"
       >
         {/* Browser Top Navigation Bar */}
         <div className="flex items-center justify-between pb-3 mb-3 border-b border-[var(--color-border)]">
@@ -65,7 +65,7 @@ export default function WebDevHeroVisual() {
 
         {/* Browser Inner Page Content */}
         <div className="rounded-2xl bg-white/70 dark:bg-black/40 border border-neutral-200/60 dark:border-white/10 p-6 text-center relative overflow-hidden">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-[#315CFF] block mb-1">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#F5BA27] block mb-1">
             ONLINE EXPERIENCES
           </span>
           <h3 className="text-xl sm:text-2xl font-extrabold text-[var(--color-foreground)] tracking-tight mb-2">
@@ -75,7 +75,7 @@ export default function WebDevHeroVisual() {
             Fast, credible, and built to turn visitors into enquiries.
           </p>
 
-          <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#315CFF] text-white text-xs font-semibold shadow-md shadow-[#315CFF]/30">
+          <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#F5BA27] text-black font-bold text-xs font-semibold shadow-md shadow-[#F5BA27]/30">
             <span>Explore</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </div>
@@ -91,9 +91,9 @@ export default function WebDevHeroVisual() {
                   }
             }
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-5 right-12 pointer-events-none text-[#315CFF] drop-shadow-md z-30"
+            className="absolute bottom-5 right-12 pointer-events-none text-[#F5BA27] drop-shadow-md z-30"
           >
-            <MousePointer2 className="w-5 h-5 fill-[#315CFF] stroke-white stroke-[1.5]" />
+            <MousePointer2 className="w-5 h-5 fill-[#F5BA27] stroke-white stroke-[1.5]" />
           </motion.div>
         </div>
       </motion.div>
@@ -121,7 +121,7 @@ export default function WebDevHeroVisual() {
           }}
           className="absolute z-30 hidden sm:inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold glass-pill text-[var(--color-foreground)] shadow-sm border border-white/30 dark:border-white/15"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF] mr-2" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#F5BA27] mr-2" />
           {badge.label}
         </motion.div>
       ))}

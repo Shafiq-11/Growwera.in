@@ -42,7 +42,7 @@ export default function ServicePricingEnquiry({
             <div>
               <Link
                 href={`/contact?service=${serviceId}`}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-white bg-[#315CFF] hover:bg-[#2446D8] transition-all duration-200 shadow-[0_4px_20px_rgba(49,92,255,0.45),inset_0_1px_0_0_rgba(255,255,255,0.3)] hover:-translate-y-0.5 active:translate-y-0"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-black font-bold bg-[#F5BA27] hover:bg-[#D99F04] transition-all duration-200 shadow-[0_4px_20px_rgba(245, 186, 39,0.45),inset_0_1px_0_0_rgba(255,255,255,0.3)] hover:-translate-y-0.5 active:translate-y-0"
               >
                 <span>Enquire for Pricing</span>
                 <ArrowRight className="w-4 h-4" />

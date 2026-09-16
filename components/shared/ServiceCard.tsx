@@ -30,8 +30,8 @@ export default function ServiceCard({
   ctaLabel,
   ctaHref,
   icon,
-  pastelBg = "rgba(49, 92, 255, 0.12)",
-  accentColor = "#315CFF",
+  pastelBg = "rgba(245, 186, 39, 0.12)",
+  accentColor = "#F5BA27",
 }: ServiceCardProps) {
   return (
     <motion.div

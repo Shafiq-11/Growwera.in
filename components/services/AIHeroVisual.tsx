@@ -71,7 +71,7 @@ export default function AIHeroVisual() {
 
             {/* Connecting Pulse Line Between Stages */}
             {idx < stages.length - 1 && (
-              <div className="w-0.5 h-6 bg-gradient-to-b from-[#315CFF] to-cyan-400 relative my-0.5">
+              <div className="w-0.5 h-6 bg-gradient-to-b from-[#F5BA27] to-cyan-400 relative my-0.5">
                 <motion.div
                   animate={shouldReduceMotion ? {} : { y: [0, 24, 0] }}
                   transition={{
@@ -108,7 +108,7 @@ export function AutomationNodeSystem() {
         {nodes.map((node, idx) => (
           <div
             key={node.label}
-            className="glass-glossy rounded-2xl p-4 text-center border border-[var(--color-border)] shadow-xs flex flex-col items-center justify-between h-full group hover:border-[#315CFF]/40 transition-colors"
+            className="glass-glossy rounded-2xl p-4 text-center border border-[var(--color-border)] shadow-xs flex flex-col items-center justify-between h-full group hover:border-[#F5BA27]/40 transition-colors"
           >
             <div className="w-7 h-7 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-xs font-mono font-bold mb-2">
               0{idx + 1}

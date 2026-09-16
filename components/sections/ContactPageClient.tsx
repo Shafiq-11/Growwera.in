@@ -118,7 +118,7 @@ function DiscoveryQuestionnaire({ onComplete }: { onComplete: (data: Partial<For
             <button
               onClick={() => setStep(2)}
               disabled={!businessDesc.trim()}
-              className="px-5 py-2.5 bg-[var(--color-accent)] text-white text-sm font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+              className="px-5 py-2.5 bg-[var(--color-accent)] text-black text-sm font-bold rounded-full hover:bg-[var(--color-accent-hover)] disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
             >
               Continue
             </button>
@@ -291,7 +291,7 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
               className={cn(
                 "px-4 py-2 text-sm font-medium rounded-full border transition-colors cursor-pointer",
                 form.service === s
-                  ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)]"
+                  ? "bg-[var(--color-accent)] text-black font-bold border-[var(--color-accent)]"
                   : "bg-[var(--color-surface-elevated)] text-[var(--color-foreground-secondary)] border-[var(--color-border)] hover:border-[var(--color-accent)] hover:text-[var(--color-foreground)]"
               )}
             >
@@ -367,7 +367,7 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
       <button
         type="submit"
         disabled={formState === "submitting"}
-        className="group w-full inline-flex items-center justify-center gap-2 px-7 py-4 bg-[var(--color-accent)] text-white text-base font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 shadow-[0_4px_16px_rgba(49,92,255,0.3)] cursor-pointer"
+        className="group w-full inline-flex items-center justify-center gap-2 px-7 py-4 bg-[var(--color-accent)] text-white text-base font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 shadow-[0_4px_16px_rgba(245,186,39,0.3)] cursor-pointer"
       >
         {formState === "submitting" ? (
           <>

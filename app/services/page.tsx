@@ -29,8 +29,8 @@ const services = [
     examples: ["Business websites", "Landing pages", "E-commerce", "Portfolios", "Web applications"],
     href: "/services/web-development",
     ctaLabel: "Explore Web Solutions",
-    pastelBg: "rgba(49, 92, 255, 0.12)",
-    accentColor: "#315CFF",
+    pastelBg: "rgba(245, 186, 39, 0.12)",
+    accentColor: "#F5BA27",
   },
   {
     number: "02",
@@ -97,7 +97,7 @@ export default function ServicesPage() {
                 <div className="flex flex-wrap items-center gap-4">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_4px_16px_rgba(49,92,255,0.3)]"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_4px_16px_rgba(245,186,39,0.35)]"
                   >
                     Start a Project
                     <ArrowRight size={15} />
@@ -220,7 +220,7 @@ export default function ServicesPage() {
             </p>
             <Link
               href="/contact#discovery"
-              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_4px_16px_rgba(49,92,255,0.3)]"
+              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_4px_16px_rgba(245,186,39,0.35)]"
             >
               I&apos;m Not Sure What I Need
               <ArrowRight

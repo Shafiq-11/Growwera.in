@@ -37,7 +37,7 @@ export default function SEOHeroVisual() {
         className="relative w-[320px] sm:w-[360px] rounded-2xl glass-glossy p-4 shadow-md border border-white/40 dark:border-white/20 z-20 mb-3"
       >
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-[#315CFF]/15 text-[#315CFF] flex items-center justify-center shrink-0">
+          <div className="w-8 h-8 rounded-xl bg-[#F5BA27]/15 text-[#F5BA27] flex items-center justify-center shrink-0">
             <Search className="w-4 h-4" />
           </div>
           <div className="flex-1">
@@ -53,11 +53,11 @@ export default function SEOHeroVisual() {
 
       {/* Vertical Connecting Pulse Signal */}
       <div className="flex flex-col items-center my-1 z-10">
-        <div className="w-0.5 h-6 bg-gradient-to-b from-[#315CFF] to-transparent relative">
+        <div className="w-0.5 h-6 bg-gradient-to-b from-[#F5BA27] to-transparent relative">
           <motion.div
             animate={shouldReduceMotion ? {} : { y: [0, 24, 0] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-            className="w-1.5 h-1.5 rounded-full bg-[#315CFF] -left-[2px] absolute shadow-[0_0_8px_#315CFF]"
+            className="w-1.5 h-1.5 rounded-full bg-[#F5BA27] -left-[2px] absolute shadow-[0_0_8px_#F5BA27]"
           />
         </div>
       </div>
@@ -66,7 +66,7 @@ export default function SEOHeroVisual() {
       <motion.div
         animate={shouldReduceMotion ? {} : { y: [0, -3, 0], scale: [1, 1.01, 1] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-        className="relative w-[280px] sm:w-[320px] rounded-2xl glass-glossy p-4 shadow-lg border border-[#315CFF]/40 z-20 mb-3"
+        className="relative w-[280px] sm:w-[320px] rounded-2xl glass-glossy p-4 shadow-lg border border-[#F5BA27]/40 z-20 mb-3"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -74,7 +74,7 @@ export default function SEOHeroVisual() {
               G
             </div>
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-wider text-[#315CFF] block">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-[#F5BA27] block">
                 RELEVANCE & AUTHORITY
               </span>
               <p className="text-xs sm:text-sm font-bold text-[var(--color-foreground)]">
@@ -88,7 +88,7 @@ export default function SEOHeroVisual() {
 
       {/* Vertical Connecting Pulse Signal */}
       <div className="flex flex-col items-center my-1 z-10">
-        <div className="w-0.5 h-6 bg-gradient-to-b from-[#315CFF] to-transparent relative">
+        <div className="w-0.5 h-6 bg-gradient-to-b from-[#F5BA27] to-transparent relative">
           <motion.div
             animate={shouldReduceMotion ? {} : { y: [0, 24, 0] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "linear", delay: 1 }}
@@ -104,7 +104,7 @@ export default function SEOHeroVisual() {
         className="relative w-[320px] sm:w-[360px] rounded-2xl glass-glossy p-4 shadow-md border border-white/40 dark:border-white/20 z-20"
       >
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[10px] font-mono uppercase tracking-wider text-[#315CFF]">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-[#F5BA27]">
             ORGANIC DISCOVERY
           </span>
           <span className="text-[10px] font-mono text-[var(--color-foreground-muted)]">
@@ -149,7 +149,7 @@ export function SEODiscoveryFlow() {
             key={step.label}
             className="glass-glossy rounded-2xl p-4 text-center border border-[var(--color-border)] shadow-xs relative flex flex-col items-center justify-center"
           >
-            <span className="text-[10px] font-mono font-bold text-[#315CFF] mb-1">
+            <span className="text-[10px] font-mono font-bold text-[#F5BA27] mb-1">
               0{idx + 1}
             </span>
             <span className="text-xs sm:text-sm font-bold text-[var(--color-foreground)] tracking-tight">

@@ -183,15 +183,15 @@ export default function WebDevelopmentPage() {
             <div className="lg:col-span-6">
               <FadeUp>
                 <div className="inline-flex items-center gap-2 mb-4">
-                  <span className="w-2 h-2 rounded-full bg-[#315CFF] shadow-[0_0_8px_#315CFF]" />
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  <span className="w-2 h-2 rounded-full bg-[#F5BA27] shadow-[0_0_8px_#F5BA27]" />
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F5BA27] select-none">
                     WEB DESIGN & DEVELOPMENT
                   </p>
                 </div>
 
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[var(--color-foreground)] tracking-tight leading-[1.12] mb-6">
                   Your business deserves a digital home{" "}
-                  <span className="font-serif italic font-normal text-[#315CFF]">
+                  <span className="font-serif italic font-normal text-[#F5BA27]">
                     that works.
                   </span>
                 </h1>
@@ -205,7 +205,7 @@ export default function WebDevelopmentPage() {
                 <div className="flex flex-wrap items-center gap-4">
                   <Link
                     href="/contact?service=web-development"
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white bg-[#315CFF] hover:bg-[#2446D8] transition-all duration-200 shadow-[0_4px_20px_rgba(49,92,255,0.4),inset_0_1px_0_0_rgba(255,255,255,0.3)] hover:-translate-y-0.5 active:translate-y-0"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-black font-bold bg-[#F5BA27] hover:bg-[#D99F04] transition-all duration-200 shadow-[0_4px_20px_rgba(245,186,39,0.4),inset_0_1px_0_0_rgba(255,255,255,0.3)] hover:-translate-y-0.5 active:translate-y-0"
                   >
                     <span>Enquire for Pricing</span>
                     <ArrowRight className="w-4 h-4" />
@@ -213,7 +213,7 @@ export default function WebDevelopmentPage() {
 
                   <Link
                     href="/work"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-[var(--color-foreground)] hover:text-[#315CFF] glass-pill transition-all duration-200 hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-[var(--color-foreground)] hover:text-[#F5BA27] glass-pill transition-all duration-200 hover:-translate-y-0.5"
                   >
                     <span>See Our Work</span>
                     <ChevronRight className="w-4 h-4 text-[var(--color-foreground-muted)]" />
@@ -241,8 +241,8 @@ export default function WebDevelopmentPage() {
             <div className="lg:col-span-6">
               <FadeUp>
                 <div className="inline-flex items-center gap-2 mb-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#F5BA27]" />
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F5BA27] select-none">
                     WHY WEB DESIGN?
                   </p>
                 </div>
@@ -253,7 +253,7 @@ export default function WebDevelopmentPage() {
                   A website shouldn&apos;t simply look attractive. It should help people
                   understand your business immediately without confusion.
                 </p>
-                <p className="text-sm font-semibold text-[#315CFF] mb-2">
+                <p className="text-sm font-semibold text-[#F5BA27] mb-2">
                   A good website makes four things crystal clear:
                 </p>
               </FadeUp>
@@ -269,7 +269,7 @@ export default function WebDevelopmentPage() {
                     "What they should do next (enquire, book, purchase)",
                   ].map((point) => (
                     <div key={point} className="flex items-center gap-3">
-                      <div className="w-6 h-6 rounded-full bg-[#315CFF] text-white flex items-center justify-center shrink-0 shadow-xs">
+                      <div className="w-6 h-6 rounded-full bg-[#F5BA27] text-black font-bold flex items-center justify-center shrink-0 shadow-xs">
                         <Check className="w-3.5 h-3.5 stroke-[3]" />
                       </div>
                       <span className="text-sm font-semibold text-[var(--color-foreground)]">
@@ -297,8 +297,8 @@ export default function WebDevelopmentPage() {
           <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
             <FadeUp>
               <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F5BA27]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F5BA27] select-none">
                   WHAT WE DO
                 </p>
               </div>
@@ -316,13 +316,13 @@ export default function WebDevelopmentPage() {
               const Icon = item.icon;
               return (
                 <FadeUp key={item.step} delay={idx * 0.08}>
-                  <div className="glass-glossy rounded-3xl p-6 sm:p-7 border border-[var(--color-border)] hover:border-[#315CFF]/40 hover:-translate-y-1.5 transition-all duration-300 shadow-xs h-full flex flex-col justify-between">
+                  <div className="glass-glossy rounded-3xl p-6 sm:p-7 border border-[var(--color-border)] hover:border-[#F5BA27]/40 hover:-translate-y-1.5 transition-all duration-300 shadow-xs h-full flex flex-col justify-between">
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-[#315CFF] flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl bg-[#F5BA27]/10 text-[#F5BA27] flex items-center justify-center">
                           <Icon className="w-5 h-5" />
                         </div>
-                        <span className="text-xs font-mono font-bold text-[#315CFF]">
+                        <span className="text-xs font-mono font-bold text-[#F5BA27]">
                           {item.step}
                         </span>
                       </div>
@@ -343,7 +343,7 @@ export default function WebDevelopmentPage() {
           <FadeUp delay={0.2}>
             <div className="pt-10 border-t border-[var(--color-border)]">
               <div className="text-center mb-4">
-                <span className="text-xs font-mono font-bold text-[#315CFF] uppercase tracking-wider">
+                <span className="text-xs font-mono font-bold text-[#F5BA27] uppercase tracking-wider">
                   The Complete Web Development Value Chain
                 </span>
               </div>
@@ -361,8 +361,8 @@ export default function WebDevelopmentPage() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 sm:mb-16 gap-4">
             <FadeUp>
               <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F5BA27]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F5BA27] select-none">
                   WHAT&apos;S INCLUDED
                 </p>
               </div>
@@ -381,9 +381,9 @@ export default function WebDevelopmentPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {whatsIncluded.map((item, idx) => (
               <FadeUp key={item.num} delay={idx * 0.06}>
-                <div className="glass-glossy rounded-3xl p-6 sm:p-7 border border-[var(--color-border)] shadow-xs h-full flex flex-col justify-between group hover:border-[#315CFF]/30 transition-colors">
+                <div className="glass-glossy rounded-3xl p-6 sm:p-7 border border-[var(--color-border)] shadow-xs h-full flex flex-col justify-between group hover:border-[#F5BA27]/30 transition-colors">
                   <div>
-                    <span className="block text-xs font-mono font-bold text-[#315CFF] mb-2">
+                    <span className="block text-xs font-mono font-bold text-[#F5BA27] mb-2">
                       {item.num}
                     </span>
                     <h3 className="text-lg font-bold text-[var(--color-foreground)] tracking-tight mb-2">
@@ -408,8 +408,8 @@ export default function WebDevelopmentPage() {
           <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
             <FadeUp>
               <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F5BA27]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F5BA27] select-none">
                   HOW WE WORK
                 </p>
               </div>
@@ -444,8 +444,8 @@ export default function WebDevelopmentPage() {
           <div className="text-center mb-12 sm:mb-14">
             <FadeUp>
               <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F5BA27]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F5BA27] select-none">
                   WHAT YOU GET
                 </p>
               </div>
@@ -462,7 +462,7 @@ export default function WebDevelopmentPage() {
             <div className="glass-glossy rounded-3xl p-6 sm:p-8 border border-[var(--color-border)] shadow-sm grid grid-cols-1 sm:grid-cols-2 gap-4">
               {deliverables.map((item) => (
                 <div key={item} className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-white/[0.03] border border-[var(--color-border)]">
-                  <div className="w-5 h-5 rounded-full bg-[#315CFF] text-white flex items-center justify-center shrink-0">
+                  <div className="w-5 h-5 rounded-full bg-[#F5BA27] text-black font-bold flex items-center justify-center shrink-0">
                     <Check className="w-3 h-3 stroke-[3]" />
                   </div>
                   <span className="text-sm font-semibold text-[var(--color-foreground)]">
@@ -483,8 +483,8 @@ export default function WebDevelopmentPage() {
           <div className="text-center mb-12 sm:mb-16">
             <FadeUp>
               <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F5BA27]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F5BA27] select-none">
                   FAQ
                 </p>
               </div>
@@ -499,7 +499,7 @@ export default function WebDevelopmentPage() {
               <FadeUp key={faq.q} delay={i * 0.05}>
                 <div className="glass-glossy rounded-2xl p-6 border border-[var(--color-border)] shadow-xs">
                   <h3 className="text-base font-bold text-[var(--color-foreground)] tracking-tight mb-2 flex items-start gap-2.5">
-                    <HelpCircle className="w-4 h-4 text-[#315CFF] shrink-0 mt-1" />
+                    <HelpCircle className="w-4 h-4 text-[#F5BA27] shrink-0 mt-1" />
                     <span>{faq.q}</span>
                   </h3>
                   <p className="text-sm text-[var(--color-foreground-secondary)] leading-relaxed pl-6.5">

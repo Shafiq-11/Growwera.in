@@ -14,9 +14,9 @@
   --color-border: rgba(255, 255, 255, 0.10);
   --color-border-strong: rgba(255, 255, 255, 0.16);
 
-  --color-accent: #315CFF;
-  --color-accent-hover: #2446D8;
-  --color-accent-soft: rgba(49, 92, 255, 0.12);
+  --color-accent: #F5BA27;
+  --color-accent-hover: #D99F04;
+  --color-accent-soft: rgba(245, 186, 39, 0.14);
 
   --grid-color: rgba(255, 255, 255, 0.025);
   --grain-opacity: 0.035;
@@ -45,9 +45,9 @@ html.dark, :root[data-theme="dark"], .dark {
   --color-border: rgba(255, 255, 255, 0.10);
   --color-border-strong: rgba(255, 255, 255, 0.16);
 
-  --color-accent: #315CFF;
-  --color-accent-hover: #2446D8;
-  --color-accent-soft: rgba(49, 92, 255, 0.12);
+  --color-accent: #F5BA27;
+  --color-accent-hover: #D99F04;
+  --color-accent-soft: rgba(245, 186, 39, 0.14);
 
   --grid-color: rgba(255, 255, 255, 0.025);
   --grain-opacity: 0.035;
@@ -76,9 +76,9 @@ html.light, :root[data-theme="light"], .light {
   --color-border: #E4E2DC;
   --color-border-strong: #D6D4CE;
 
-  --color-accent: #315CFF;
-  --color-accent-hover: #2446D8;
-  --color-accent-soft: rgba(49, 92, 255, 0.08);
+  --color-accent: #D99F04;
+  --color-accent-hover: #B88200;
+  --color-accent-soft: rgba(217, 159, 4, 0.12);
 
   --grid-color: rgba(0, 0, 0, 0.035);
   --grain-opacity: 0.04;
@@ -209,7 +209,7 @@ html.dark .glass-glossy {
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 
     0 16px 40px -8px rgba(0, 0, 0, 0.7),
-    0 0 35px -8px rgba(49, 92, 255, 0.15),
+    0 0 35px -8px rgba(245, 186, 39, 0.18),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
 }
 
@@ -312,7 +312,7 @@ html.dark .glass-pill {
 
 /* ── Selection ── */
 ::selection {
-  background-color: rgba(49, 92, 255, 0.25);
+  background-color: rgba(245, 186, 39, 0.3);
   color: var(--color-foreground);
 }
 

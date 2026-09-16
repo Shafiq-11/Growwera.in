@@ -157,7 +157,7 @@ export default function ServicesEcosystem() {
               <div
                 className={`p-3 sm:p-3.5 rounded-xl border bg-[var(--color-surface)] shadow-md transition-all duration-300 w-36 sm:w-40 ${
                   isHovered
-                    ? "border-[var(--color-accent)] shadow-[0_0_24px_rgba(49,92,255,0.28)] scale-105"
+                    ? "border-[var(--color-accent)] shadow-[0_0_24px_rgba(245, 186, 39,0.28)] scale-105"
                     : "border-[var(--color-border)] hover:border-[var(--color-border-strong)]"
                 }`}
               >

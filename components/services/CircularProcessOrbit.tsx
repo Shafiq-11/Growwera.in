@@ -77,7 +77,7 @@ export default function CircularProcessOrbit({
       <div className="absolute inset-0 bg-radial from-blue-950/20 via-transparent to-black pointer-events-none" />
 
       {/* Top-right floating glass sphere reflection */}
-      <div className="absolute -top-16 -right-16 w-72 h-72 rounded-full bg-gradient-to-br from-white/15 via-blue-500/10 to-transparent blur-2xl pointer-events-none border border-white/10 shadow-[inset_0_2px_30px_rgba(255,255,255,0.2)]" />
+      <div className="absolute -top-16 -right-16 w-72 h-72 rounded-full bg-gradient-to-br from-white/15 via-amber-500/10 to-transparent blur-2xl pointer-events-none border border-white/10 shadow-[inset_0_2px_30px_rgba(255,255,255,0.2)]" />
 
       {/* Bottom-left floating dark glass sphere reflection */}
       <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-blue-900/30 via-blue-600/10 to-transparent blur-3xl pointer-events-none border border-white/5 shadow-[inset_0_2px_40px_rgba(59,130,246,0.3)]" />
@@ -269,7 +269,7 @@ export default function CircularProcessOrbit({
                 }}
               >
                 {/* Subtle Inner Glow on Hover */}
-                <div className="absolute inset-0 rounded-full bg-blue-500/0 group-hover:bg-blue-500/20 transition-colors duration-300 pointer-events-none" />
+                <div className="absolute inset-0 rounded-full bg-blue-500/0 group-hover:bg-[#F5BA27]/20 transition-colors duration-300 pointer-events-none" />
                 <Icon className="w-6 h-6 text-white group-hover:text-blue-300 transition-colors duration-200" />
               </motion.div>
 
@@ -321,7 +321,7 @@ export default function CircularProcessOrbit({
         {/* Connected Vertical Stepped Nodes */}
         <div className="space-y-4 relative">
           {/* Vertical Connecting Light Guide Line */}
-          <div className="absolute left-[34px] top-6 bottom-6 w-0.5 bg-gradient-to-b from-blue-500/40 via-blue-400/20 to-blue-500/40" />
+          <div className="absolute left-[34px] top-6 bottom-6 w-0.5 bg-gradient-to-b from-amber-500/40 via-[#F5BA27]/20 to-amber-500/40" />
 
           {steps.map((step) => {
             const Icon = step.icon;

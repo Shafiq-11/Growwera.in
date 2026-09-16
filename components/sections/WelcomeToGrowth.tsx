@@ -5,7 +5,7 @@ import DoodleStar from "@/components/decorative/DoodleStar";
 
 export default function WelcomeToGrowth() {
   return (
-    <section className="pt-24 pb-4 sm:pt-28 sm:pb-6 relative overflow-hidden select-none">
+    <section id="home" className="pt-24 pb-4 sm:pt-28 sm:pb-6 relative overflow-hidden select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Cinematic Opening Container */}
         <div className="relative">

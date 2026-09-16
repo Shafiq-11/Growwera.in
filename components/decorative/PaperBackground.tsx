@@ -39,8 +39,8 @@ export default function PaperBackground() {
       <div
         className={`absolute inset-0 transition-opacity duration-400 ${
           isDark
-            ? "bg-[radial-gradient(ellipse_at_top,rgba(49,92,255,0.035)_0%,transparent_60%,rgba(0,0,0,0.5)_100%)]"
-            : "bg-[radial-gradient(ellipse_at_top,rgba(49,92,255,0.02)_0%,transparent_65%,rgba(0,0,0,0.02)_100%)]"
+            ? "bg-[radial-gradient(ellipse_at_top,rgba(245, 186, 39,0.035)_0%,transparent_60%,rgba(0,0,0,0.5)_100%)]"
+            : "bg-[radial-gradient(ellipse_at_top,rgba(245, 186, 39,0.02)_0%,transparent_65%,rgba(0,0,0,0.02)_100%)]"
         }`}
       />
     </div>

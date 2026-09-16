@@ -21,7 +21,7 @@ export default function TestimonialsPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)]">
                 Client Stories
               </p>
-              <DoodleStar variant="sparkle" size={14} color="#315CFF" />
+              <DoodleStar variant="sparkle" size={14} color="#F5BA27" />
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--color-foreground)] leading-tight tracking-tight max-w-3xl mb-6">
               What our clients say.

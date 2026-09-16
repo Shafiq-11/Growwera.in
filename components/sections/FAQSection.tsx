@@ -64,7 +64,7 @@ export default function FAQSection() {
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)]">
                 FAQ
               </p>
-              <DoodleStar variant="sparkle" size={13} color="#315CFF" />
+              <DoodleStar variant="sparkle" size={13} color="#F5BA27" />
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)] tracking-tight mb-3">
               Common questions.

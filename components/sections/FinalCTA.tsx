@@ -10,7 +10,7 @@ import PastelBow from "@/components/decorative/PastelBow";
 
 export default function FinalCTA() {
   return (
-    <section className="py-20 lg:py-24 relative overflow-hidden border-t border-[var(--color-border)]">
+    <section id="contact" className="py-20 lg:py-24 relative overflow-hidden border-t border-[var(--color-border)]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <FadeUp>
           {/* Creative Paper Note Card */}
@@ -94,7 +94,7 @@ export default function FinalCTA() {
 
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-accent)] text-white text-base font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-[0_4px_16px_rgba(49,92,255,0.3)] w-full sm:w-auto"
+                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-accent)] text-black text-base font-bold rounded-full hover:bg-[var(--color-accent-hover)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-[0_4px_20px_rgba(245,186,39,0.35),inset_0_1px_0_0_rgba(255,255,255,0.4)] w-full sm:w-auto"
                 >
                   Start a Project
                   <ArrowRight

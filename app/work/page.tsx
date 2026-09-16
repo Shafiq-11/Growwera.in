@@ -24,7 +24,7 @@ export default function WorkPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)]">
                 Portfolio
               </p>
-              <DoodleStar variant="sparkle" size={13} color="#315CFF" />
+              <DoodleStar variant="sparkle" size={13} color="#F5BA27" />
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--color-foreground)] leading-tight tracking-tight max-w-3xl mb-6">
               Work we&apos;re proud of.
@@ -125,7 +125,7 @@ export default function WorkPage() {
               </p>
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-accent)] text-white text-sm font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-sm"
+                className="group inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-accent)] text-black text-sm font-bold rounded-full hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_4px_16px_rgba(245,186,39,0.3)]"
               >
                 Discuss your project
                 <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-1" />

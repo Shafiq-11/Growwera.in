@@ -105,8 +105,8 @@ export default function AboutPage() {
               <FadeUp>
                 {/* Eyebrow */}
                 <div className="inline-flex items-center gap-2 mb-4">
-                  <span className="w-2 h-2 rounded-full bg-[#315CFF] shadow-[0_0_8px_#315CFF]" />
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  <span className="w-2 h-2 rounded-full bg-[#F5BA27] shadow-[0_0_8px_#F5BA27]" />
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F5BA27] select-none">
                     ABOUT GROWWERA
                   </p>
                 </div>
@@ -114,7 +114,7 @@ export default function AboutPage() {
                 {/* Main Headline with italic serif blue 'simpler.' */}
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[var(--color-foreground)] tracking-tight leading-[1.12] mb-6">
                   Technology should make business{" "}
-                  <span className="font-serif italic font-normal text-[#315CFF]">
+                  <span className="font-serif italic font-normal text-[#F5BA27]">
                     simpler.
                   </span>
                 </h1>
@@ -128,7 +128,7 @@ export default function AboutPage() {
                 <div className="flex flex-wrap items-center gap-4">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-white bg-[#315CFF] hover:bg-[#2446D8] transition-all duration-200 shadow-[0_4px_20px_rgba(49,92,255,0.38),inset_0_1px_0_0_rgba(255,255,255,0.3)] hover:-translate-y-0.5 active:translate-y-0"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-black font-bold bg-[#F5BA27] hover:bg-[#D99F04] transition-all duration-200 shadow-[0_4px_20px_rgba(245,186,39,0.38),inset_0_1px_0_0_rgba(255,255,255,0.3)] hover:-translate-y-0.5 active:translate-y-0"
                   >
                     <span>Start a Conversation</span>
                     <ArrowRight className="w-4 h-4" />
@@ -136,9 +136,9 @@ export default function AboutPage() {
 
                   <a
                     href="#philosophy"
-                    className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full text-sm font-semibold text-[var(--color-foreground)] hover:text-[#315CFF] glass-pill transition-all duration-200 hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full text-sm font-semibold text-[var(--color-foreground)] hover:text-[#F5BA27] glass-pill transition-all duration-200 hover:-translate-y-0.5"
                   >
-                    <Play className="w-3.5 h-3.5 fill-[#315CFF] text-[#315CFF]" />
+                    <Play className="w-3.5 h-3.5 fill-[#F5BA27] text-[#F5BA27]" />
                     <span>Meet Our Approach</span>
                   </a>
                 </div>
@@ -165,8 +165,8 @@ export default function AboutPage() {
             <div className="lg:col-span-6">
               <FadeUp>
                 <div className="inline-flex items-center gap-2 mb-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#F5BA27]" />
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F5BA27] select-none">
                     WHY WE EXIST
                   </p>
                 </div>
@@ -190,7 +190,7 @@ export default function AboutPage() {
                       key={point}
                       className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl glass-glossy shadow-xs"
                     >
-                      <div className="w-6 h-6 rounded-full bg-[#315CFF] text-white flex items-center justify-center shrink-0 shadow-sm shadow-[#315CFF]/30">
+                      <div className="w-6 h-6 rounded-full bg-[#F5BA27] text-black font-bold flex items-center justify-center shrink-0 shadow-sm shadow-[#F5BA27]/30">
                         <ChevronRight className="w-3.5 h-3.5 stroke-[3]" />
                       </div>
                       <span className="text-sm font-semibold text-[var(--color-foreground)]">
@@ -260,8 +260,8 @@ export default function AboutPage() {
 
                 {/* Card 2: The Growwera Approach */}
                 <FadeUp delay={0.2}>
-                  <div className="glass-glossy rounded-3xl p-6 sm:p-7 border border-[#315CFF]/35 shadow-[0_12px_36px_rgba(49,92,255,0.12)]">
-                    <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#315CFF] mb-4">
+                  <div className="glass-glossy rounded-3xl p-6 sm:p-7 border border-[#F5BA27]/35 shadow-[0_12px_36px_rgba(245,186,39,0.12)]">
+                    <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#F5BA27] mb-4">
                       The Growwera Approach
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -272,7 +272,7 @@ export default function AboutPage() {
                         "Designed for long-term growth",
                       ].map((item) => (
                         <div key={item} className="flex items-center gap-2.5">
-                          <div className="w-4 h-4 rounded-full bg-[#315CFF] text-white flex items-center justify-center shrink-0 shadow-xs">
+                          <div className="w-4 h-4 rounded-full bg-[#F5BA27] text-black font-bold flex items-center justify-center shrink-0 shadow-xs">
                             <Check className="w-2.5 h-2.5 stroke-[3]" />
                           </div>
                           <span className="text-xs sm:text-sm font-semibold text-[var(--color-foreground)]">
@@ -374,8 +374,8 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 sm:mb-16 gap-4">
             <FadeUp>
               <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F5BA27]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F5BA27] select-none">
                   WHAT WE BELIEVE
                 </p>
               </div>
@@ -406,15 +406,15 @@ export default function AboutPage() {
               const Icon = item.icon;
               return (
                 <FadeUp key={item.num} delay={idx * 0.08}>
-                  <div className="glass-glossy rounded-2xl p-6 h-full flex flex-col justify-between border border-[var(--color-border)] hover:border-[#315CFF]/40 hover:-translate-y-1.5 transition-all duration-300 group shadow-xs">
+                  <div className="glass-glossy rounded-2xl p-6 h-full flex flex-col justify-between border border-[var(--color-border)] hover:border-[#F5BA27]/40 hover:-translate-y-1.5 transition-all duration-300 group shadow-xs">
                     <div>
                       {/* Icon */}
-                      <div className="w-10 h-10 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 text-[#315CFF] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                      <div className="w-10 h-10 rounded-xl bg-[#F5BA27]/10 dark:bg-[#F5BA27]/20 text-[#F5BA27] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                         <Icon className="w-5 h-5" />
                       </div>
 
                       {/* Number */}
-                      <span className="block text-xs font-mono font-bold tracking-wider text-[#315CFF] mb-1.5">
+                      <span className="block text-xs font-mono font-bold tracking-wider text-[#F5BA27] mb-1.5">
                         {item.num}
                       </span>
 
@@ -444,8 +444,8 @@ export default function AboutPage() {
           <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
             <FadeUp>
               <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F5BA27]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F5BA27] select-none">
                   HOW WE WORK
                 </p>
               </div>
@@ -475,8 +475,8 @@ export default function AboutPage() {
                 strokeDasharray="6 6"
                 className="text-slate-300 dark:text-neutral-700"
               />
-              <circle cx="150" cy="24" r="3.5" fill="#315CFF" />
-              <circle cx="450" cy="16" r="3.5" fill="#315CFF" />
+              <circle cx="150" cy="24" r="3.5" fill="#F5BA27" />
+              <circle cx="450" cy="16" r="3.5" fill="#F5BA27" />
             </svg>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 relative z-10">
@@ -484,13 +484,13 @@ export default function AboutPage() {
                 const Icon = step.icon;
                 return (
                   <FadeUp key={step.num}>
-                    <div className="glass-glossy rounded-3xl p-7 text-center flex flex-col items-center border border-[var(--color-border)] hover:border-[#315CFF]/30 transition-all shadow-xs">
+                    <div className="glass-glossy rounded-3xl p-7 text-center flex flex-col items-center border border-[var(--color-border)] hover:border-[#F5BA27]/30 transition-all shadow-xs">
                       {/* Icon Circle */}
-                      <div className="w-16 h-16 rounded-full bg-white dark:bg-[#121214] border border-neutral-200/80 dark:border-white/10 shadow-sm flex items-center justify-center text-[#315CFF] mb-4">
+                      <div className="w-16 h-16 rounded-full bg-white dark:bg-[#121214] border border-neutral-200/80 dark:border-white/10 shadow-sm flex items-center justify-center text-[#F5BA27] mb-4">
                         <Icon className="w-7 h-7" />
                       </div>
 
-                      <span className="text-xs font-mono font-bold tracking-wider text-[#315CFF] mb-1">
+                      <span className="text-xs font-mono font-bold tracking-wider text-[#F5BA27] mb-1">
                         {step.num}
                       </span>
                       <h3 className="text-base font-bold text-[var(--color-foreground)] tracking-tight mb-2">
@@ -567,7 +567,7 @@ export default function AboutPage() {
                   <div className="flex flex-wrap items-center gap-4">
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white bg-[#315CFF] hover:bg-[#2446D8] transition-all duration-200 shadow-[0_4px_20px_rgba(49,92,255,0.45),inset_0_1px_0_0_rgba(255,255,255,0.3)] hover:-translate-y-0.5 active:translate-y-0"
+                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-black font-bold bg-[#F5BA27] hover:bg-[#D99F04] transition-all duration-200 shadow-[0_4px_20px_rgba(245,186,39,0.45),inset_0_1px_0_0_rgba(255,255,255,0.3)] hover:-translate-y-0.5 active:translate-y-0"
                     >
                       <span>Start a Project</span>
                       <ArrowRight className="w-4 h-4" />

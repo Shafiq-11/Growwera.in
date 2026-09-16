@@ -17,8 +17,8 @@ const services = [
     ctaLabel: "Explore Web Solutions",
     ctaHref: "/services/web-development",
     icon: <Monitor size={20} />,
-    pastelBg: "rgba(49, 92, 255, 0.12)",
-    accentColor: "#315CFF",
+    pastelBg: "rgba(245, 186, 39, 0.14)",
+    accentColor: "#F5BA27",
   },
   {
     number: "02",
@@ -70,7 +70,7 @@ export default function ServicesSection() {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)]">
                   What we build
                 </p>
-                <DoodleStar variant="sparkle" size={13} color="#315CFF" />
+                <DoodleStar variant="sparkle" size={13} color="#F5BA27" />
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[var(--color-foreground)] tracking-tight leading-tight">
                 Complete digital solutions for real business{" "}

@@ -72,10 +72,10 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               href="/"
-              className="font-bold text-xl tracking-[0.14em] text-[var(--color-foreground)] hover:opacity-85 transition-opacity"
+              className="font-bold text-xl tracking-[0.14em] text-[var(--color-accent)] hover:opacity-90 transition-opacity flex items-center gap-1.5"
               aria-label="Growwera home"
             >
-              GROWWERA
+              <span>GROWWERA</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -104,7 +104,7 @@ export default function Navbar() {
               <ThemeToggle />
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-1.5 px-5 py-2.5 bg-[var(--color-accent)] text-white text-sm font-semibold rounded-full hover:bg-[var(--color-accent-hover)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-[0_4px_16px_rgba(49,92,255,0.35),inset_0_1px_0_0_rgba(255,255,255,0.25)]"
+                className="group inline-flex items-center gap-1.5 px-5 py-2.5 bg-[var(--color-accent)] text-black font-bold text-sm rounded-full hover:bg-[var(--color-accent-hover)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-[0_4px_20px_rgba(245,186,39,0.35),inset_0_1px_0_0_rgba(255,255,255,0.4)]"
               >
                 Start a Project
                 <ArrowRight
@@ -193,7 +193,7 @@ export default function Navbar() {
 
             <Link
               href="/contact"
-              className="flex items-center justify-center gap-2 w-full px-5 py-3.5 bg-[var(--color-accent)] text-white text-base font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] transition-colors shadow-[0_2px_12px_rgba(49,92,255,0.3)]"
+              className="flex items-center justify-center gap-2 w-full px-5 py-3.5 bg-[var(--color-accent)] text-black text-base font-bold rounded-xl hover:bg-[var(--color-accent-hover)] transition-colors shadow-[0_4px_16px_rgba(245,186,39,0.3)]"
             >
               Start a Project
               <ArrowRight size={16} />

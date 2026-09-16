@@ -17,7 +17,7 @@ export default function ProjectCard({
   category,
   description,
   href = "/work",
-  accentColor = "#315CFF",
+  accentColor = "#F5BA27",
 }: ProjectCardProps) {
   return (
     <motion.div

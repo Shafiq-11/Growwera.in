@@ -32,7 +32,7 @@ export default function MarketingHeroVisual() {
           transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
           className="px-4 py-2.5 rounded-2xl glass-glossy border border-white/40 dark:border-white/20 shadow-md flex items-center gap-2"
         >
-          <Users className="w-4 h-4 text-[#315CFF]" />
+          <Users className="w-4 h-4 text-[#F5BA27]" />
           <span className="text-xs font-bold text-[var(--color-foreground)] tracking-tight">
             Target Audience
           </span>
@@ -46,23 +46,23 @@ export default function MarketingHeroVisual() {
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
             className="px-3 py-2 rounded-xl glass-glossy border border-white/30 text-center shadow-xs"
           >
-            <span className="text-[10px] font-mono text-[#315CFF] block">01</span>
+            <span className="text-[10px] font-mono text-[#F5BA27] block">01</span>
             <span className="text-xs font-bold text-[var(--color-foreground)]">Content</span>
           </motion.div>
 
-          <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#315CFF] to-transparent" />
+          <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#F5BA27] to-transparent" />
 
           {/* Center: CAMPAIGN */}
           <motion.div
             animate={shouldReduceMotion ? {} : { scale: [1, 1.03, 1] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="w-24 h-24 rounded-3xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex flex-col items-center justify-center p-3 text-center shadow-[0_12px_32px_rgba(49,92,255,0.45)] border border-blue-400/40"
+            className="w-24 h-24 rounded-3xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex flex-col items-center justify-center p-3 text-center shadow-[0_12px_32px_rgba(245, 186, 39,0.45)] border border-blue-400/40"
           >
             <Megaphone className="w-5 h-5 mb-1" />
             <span className="text-xs font-extrabold tracking-tight">Campaign</span>
           </motion.div>
 
-          <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#315CFF] to-transparent" />
+          <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#F5BA27] to-transparent" />
 
           {/* Right: ACTION */}
           <motion.div
@@ -70,7 +70,7 @@ export default function MarketingHeroVisual() {
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
             className="px-3 py-2 rounded-xl glass-glossy border border-white/30 text-center shadow-xs"
           >
-            <span className="text-[10px] font-mono text-[#315CFF] block">03</span>
+            <span className="text-[10px] font-mono text-[#F5BA27] block">03</span>
             <span className="text-xs font-bold text-[var(--color-foreground)]">Action</span>
           </motion.div>
         </div>
@@ -81,7 +81,7 @@ export default function MarketingHeroVisual() {
           transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
           className="px-4 py-2.5 rounded-2xl glass-glossy border border-white/40 dark:border-white/20 shadow-md flex items-center gap-2"
         >
-          <Target className="w-4 h-4 text-[#315CFF]" />
+          <Target className="w-4 h-4 text-[#F5BA27]" />
           <span className="text-xs font-bold text-[var(--color-foreground)] tracking-tight">
             Your Business Goals
           </span>
@@ -124,7 +124,7 @@ export function MarketingFlowDiagram() {
             key={step}
             className="glass-glossy rounded-2xl p-3 text-center border border-[var(--color-border)] shadow-xs flex flex-col items-center justify-center"
           >
-            <span className="text-[9px] font-mono font-bold text-[#315CFF] mb-1">
+            <span className="text-[9px] font-mono font-bold text-[#F5BA27] mb-1">
               0{idx + 1}
             </span>
             <span className="text-[11px] sm:text-xs font-bold text-[var(--color-foreground)] tracking-tight leading-tight">

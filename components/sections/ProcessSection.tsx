@@ -61,11 +61,11 @@ function IdeaIcon() {
         className="w-10 h-10 text-slate-800 dark:text-neutral-100"
       >
         {/* Radiating rays */}
-        <line x1="24" y1="5" x2="24" y2="9" stroke="#315CFF" strokeWidth="2" strokeLinecap="round" />
-        <line x1="12" y1="10" x2="15" y2="13" stroke="#315CFF" strokeWidth="2" strokeLinecap="round" />
-        <line x1="36" y1="10" x2="33" y2="13" stroke="#315CFF" strokeWidth="2" strokeLinecap="round" />
-        <line x1="7" y1="22" x2="11" y2="22" stroke="#315CFF" strokeWidth="2" strokeLinecap="round" />
-        <line x1="41" y1="22" x2="37" y2="22" stroke="#315CFF" strokeWidth="2" strokeLinecap="round" />
+        <line x1="24" y1="5" x2="24" y2="9" stroke="#F5BA27" strokeWidth="2" strokeLinecap="round" />
+        <line x1="12" y1="10" x2="15" y2="13" stroke="#F5BA27" strokeWidth="2" strokeLinecap="round" />
+        <line x1="36" y1="10" x2="33" y2="13" stroke="#F5BA27" strokeWidth="2" strokeLinecap="round" />
+        <line x1="7" y1="22" x2="11" y2="22" stroke="#F5BA27" strokeWidth="2" strokeLinecap="round" />
+        <line x1="41" y1="22" x2="37" y2="22" stroke="#F5BA27" strokeWidth="2" strokeLinecap="round" />
 
         {/* Bulb outline */}
         <path
@@ -77,7 +77,7 @@ function IdeaIcon() {
         {/* Filament lines */}
         <path d="M21 36H27" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         <path d="M22 39H26" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M22 23L24 21L26 23" stroke="#315CFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M22 23L24 21L26 23" stroke="#F5BA27" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </div>
   );
@@ -107,7 +107,7 @@ function ChatGoalsIcon() {
         {/* Right solid blue filled speech bubble (overlapping foreground) */}
         <path
           d="M24 27C24 23.134 27.134 20 31 20H33C36.866 20 40 23.134 40 27C40 30.866 36.866 34 33 34H31L27 37V33.8C25.2 32.2 24 29.8 24 27Z"
-          fill="#315CFF"
+          fill="#F5BA27"
         />
         {/* Dots inside blue bubble */}
         <circle cx="29" cy="27" r="1" fill="white" />
@@ -150,7 +150,7 @@ function PlanDocumentIcon() {
           cx="29"
           cy="29"
           r="6.5"
-          stroke="#315CFF"
+          stroke="#F5BA27"
           strokeWidth="2.5"
           className="fill-blue-50/70 dark:fill-blue-950/60"
         />
@@ -159,7 +159,7 @@ function PlanDocumentIcon() {
           y1="34"
           x2="41"
           y2="41"
-          stroke="#315CFF"
+          stroke="#F5BA27"
           strokeWidth="2.5"
           strokeLinecap="round"
         />
@@ -201,11 +201,11 @@ function BuildBrowserIcon() {
         <g transform="translate(24, 23)">
           <path
             d="M9 3.5V5.5M9 12.5V14.5M3.5 9H5.5M12.5 9H14.5M5.1 5.1L6.5 6.5M11.5 11.5L12.9 12.9M5.1 12.9L6.5 11.5M11.5 6.5L12.9 5.1"
-            stroke="#315CFF"
+            stroke="#F5BA27"
             strokeWidth="2"
             strokeLinecap="round"
           />
-          <circle cx="9" cy="9" r="4" fill="#315CFF" />
+          <circle cx="9" cy="9" r="4" fill="#F5BA27" />
           <circle cx="9" cy="9" r="1.75" fill="white" />
         </g>
       </svg>
@@ -242,7 +242,7 @@ function LaptopReviewIcon() {
           className="text-slate-800 dark:text-neutral-300"
         />
         {/* Checkmark circle badge on screen */}
-        <circle cx="24" cy="21.5" r="5" fill="#315CFF" />
+        <circle cx="24" cy="21.5" r="5" fill="#F5BA27" />
         <path
           d="M21.8 21.5L23.3 23L26.2 20.1"
           stroke="white"
@@ -261,9 +261,9 @@ function LaunchRocketIcon() {
     <div className="relative flex items-center justify-center">
       {/* 3 speed rays on left side */}
       <div className="absolute -left-5 sm:-left-6 top-1/2 -translate-y-1/2 flex flex-col gap-1.5 pointer-events-none select-none">
-        <span className="w-2.5 h-[2px] bg-blue-500 rounded-full transform -rotate-25 origin-right" />
-        <span className="w-3.5 h-[2px] bg-blue-500 rounded-full" />
-        <span className="w-2.5 h-[2px] bg-blue-500 rounded-full transform rotate-25 origin-right" />
+        <span className="w-2.5 h-[2px] bg-[#F5BA27] rounded-full transform -rotate-25 origin-right" />
+        <span className="w-3.5 h-[2px] bg-[#F5BA27] rounded-full" />
+        <span className="w-2.5 h-[2px] bg-[#F5BA27] rounded-full transform rotate-25 origin-right" />
       </div>
 
       {/* Pure white rocket angled at 45° */}
@@ -278,7 +278,7 @@ export default function ProcessSection() {
 
   return (
     <section
-      id="how-it-works"
+      id="process"
       className="relative py-24 sm:py-28 lg:py-32 overflow-hidden bg-[var(--color-background)]"
       aria-label="How It Works"
     >
@@ -287,14 +287,14 @@ export default function ProcessSection() {
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 lg:mb-24">
           <FadeUp>
             {/* Eyebrow */}
-            <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-[#315CFF] mb-3 select-none">
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-[#F5BA27] mb-3 select-none">
               HOW IT WORKS
             </p>
 
             {/* Headline with serif italic blue 'launch.' */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--color-foreground)]">
               From idea to{" "}
-              <span className="font-serif italic font-normal text-[#315CFF] underline decoration-transparent">
+              <span className="font-serif italic font-normal text-[#F5BA27] underline decoration-transparent">
                 launch.
               </span>
             </h2>
@@ -351,22 +351,22 @@ export default function ProcessSection() {
             />
 
             {/* Intermediate waypoints (solid blue dots on the line) */}
-            <circle cx="200" cy="84" r="3.5" fill="#315CFF" />
-            <circle cx="400" cy="84" r="3.5" fill="#315CFF" />
-            <circle cx="600" cy="84" r="3.5" fill="#315CFF" />
-            <circle cx="800" cy="84" r="3.5" fill="#315CFF" />
-            <circle cx="1000" cy="76" r="3.5" fill="#315CFF" />
+            <circle cx="200" cy="84" r="3.5" fill="#F5BA27" />
+            <circle cx="400" cy="84" r="3.5" fill="#F5BA27" />
+            <circle cx="600" cy="84" r="3.5" fill="#F5BA27" />
+            <circle cx="800" cy="84" r="3.5" fill="#F5BA27" />
+            <circle cx="1000" cy="76" r="3.5" fill="#F5BA27" />
 
             {/* Exit Arrow from Node 6 curving up-right */}
             <path
               d="M 1145 100 C 1170 88, 1195 72, 1215 54"
-              stroke="#315CFF"
+              stroke="#F5BA27"
               strokeWidth="2"
               strokeLinecap="round"
             />
             <path
               d="M 1202 54 L 1215 54 L 1215 67"
-              stroke="#315CFF"
+              stroke="#F5BA27"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -399,14 +399,14 @@ export default function ProcessSection() {
                   >
                     {stage.isRocket ? (
                       /* Highlighted Solid Blue Launch Orb */
-                      <div className="relative w-22 h-22 rounded-full bg-gradient-to-tr from-blue-600 via-blue-500 to-indigo-600 shadow-[0_12px_36px_rgba(49,92,255,0.45)] dark:shadow-[0_12px_42px_rgba(49,92,255,0.65)] flex items-center justify-center transition-all duration-300">
+                      <div className="relative w-22 h-22 rounded-full bg-gradient-to-tr from-amber-600 via-[#F5BA27] to-amber-500 shadow-[0_12px_36px_rgba(245,186,39,0.45)] dark:shadow-[0_12px_42px_rgba(245,186,39,0.65)] flex items-center justify-center transition-all duration-300">
                         <IconComponent />
                       </div>
                     ) : (
                       /* Soft Frosted Glass Node Circle */
-                      <div className="relative w-22 h-22 rounded-full bg-white dark:bg-[#121214] border border-neutral-200/80 dark:border-white/10 shadow-[0_8px_28px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)] flex items-center justify-center transition-all duration-300 group-hover:border-[#315CFF]/40 group-hover:shadow-[0_12px_36px_rgba(49,92,255,0.18)]">
+                      <div className="relative w-22 h-22 rounded-full bg-white dark:bg-[#121214] border border-neutral-200/80 dark:border-white/10 shadow-[0_8px_28px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)] flex items-center justify-center transition-all duration-300 group-hover:border-[#F5BA27]/40 group-hover:shadow-[0_12px_36px_rgba(245,186,39,0.18)]">
                         {/* Soft blue glow backdrop */}
-                        <div className="absolute inset-0 rounded-full bg-blue-500/5 dark:bg-blue-500/10 blur-md pointer-events-none" />
+                        <div className="absolute inset-0 rounded-full bg-amber-500/5 dark:bg-amber-500/10 blur-md pointer-events-none" />
                         <IconComponent />
                       </div>
                     )}
@@ -414,7 +414,7 @@ export default function ProcessSection() {
 
                   {/* Stage Details Below Circle */}
                   <div className="mt-5 max-w-[170px]">
-                    <span className="block text-xs font-bold font-mono tracking-wider text-[#315CFF] mb-1 select-none">
+                    <span className="block text-xs font-bold font-mono tracking-wider text-[#F5BA27] mb-1 select-none">
                       {stage.number}
                     </span>
                     <h3 className="text-sm sm:text-base font-bold text-[var(--color-foreground)] tracking-tight mb-1.5 leading-snug">
@@ -460,7 +460,7 @@ export default function ProcessSection() {
                   {/* Left Circle Node */}
                   <div className="relative z-10 shrink-0">
                     {stage.isRocket ? (
-                      <div className="w-15 h-15 rounded-full bg-gradient-to-tr from-blue-600 via-blue-500 to-indigo-600 shadow-md shadow-blue-500/30 flex items-center justify-center">
+                      <div className="w-15 h-15 rounded-full bg-gradient-to-tr from-amber-600 via-[#F5BA27] to-amber-500 shadow-md shadow-amber-500/30 flex items-center justify-center">
                         <IconComponent />
                       </div>
                     ) : (
@@ -472,7 +472,7 @@ export default function ProcessSection() {
 
                   {/* Text Content */}
                   <div className="pt-1.5 flex-1">
-                    <span className="inline-block text-xs font-bold font-mono tracking-wider text-[#315CFF] mb-0.5">
+                    <span className="inline-block text-xs font-bold font-mono tracking-wider text-[#F5BA27] mb-0.5">
                       {stage.number}
                     </span>
                     <h3 className="text-base font-bold text-[var(--color-foreground)] tracking-tight">
@@ -508,7 +508,7 @@ export default function ProcessSection() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-[#315CFF] hover:bg-[#2446D8] transition-all shadow-md shadow-[#315CFF]/25 hover:shadow-lg hover:shadow-[#315CFF]/40 hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-black font-bold bg-[#F5BA27] hover:bg-[#D99F04] transition-all shadow-md shadow-[#F5BA27]/25 hover:shadow-lg hover:shadow-[#F5BA27]/40 hover:-translate-y-0.5 active:translate-y-0"
             >
               <span>Start a Project</span>
               <ArrowRight className="w-4 h-4" />

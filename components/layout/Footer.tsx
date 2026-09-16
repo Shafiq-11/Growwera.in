@@ -30,7 +30,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link
               href="/"
-              className="inline-block font-bold text-2xl tracking-[0.14em] text-[var(--color-foreground)] hover:opacity-85 transition-opacity mb-4"
+              className="inline-block font-bold text-2xl tracking-[0.14em] text-[var(--color-accent)] hover:opacity-90 transition-opacity mb-4"
             >
               GROWWERA
             </Link>

@@ -26,7 +26,7 @@ export default function WhoWeWorkWith() {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)]">
                   Who we work with
                 </p>
-                <DoodleStar variant="sparkle" size={13} color="#315CFF" />
+                <DoodleStar variant="sparkle" size={13} color="#F5BA27" />
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)] leading-tight tracking-tight mb-4">
                 If technology can solve it, let&apos;s talk.
@@ -39,7 +39,7 @@ export default function WhoWeWorkWith() {
               <div>
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2 px-6 py-3.5 bg-[var(--color-accent)] text-white text-sm font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_2px_12px_rgba(49,92,255,0.3)]"
+                  className="group inline-flex items-center gap-2 px-6 py-3.5 bg-[var(--color-accent)] text-black text-sm font-bold rounded-full hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_4px_16px_rgba(245,186,39,0.35)]"
                 >
                   Start a conversation
                   <ArrowRight

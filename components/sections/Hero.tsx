@@ -32,13 +32,13 @@ export default function Hero() {
         style={{ y: sparkleY }}
         className="absolute top-16 left-8 sm:left-16 pointer-events-none opacity-40"
       >
-        <DoodleStar variant="four-point" size={16} color="#315CFF" />
+        <DoodleStar variant="four-point" size={16} color="#F5BA27" />
       </motion.div>
       <motion.div
         style={{ y: sparkleY }}
         className="absolute bottom-16 left-1/3 pointer-events-none opacity-30"
       >
-        <DoodleStar variant="sparkle" size={14} color="#315CFF" />
+        <DoodleStar variant="sparkle" size={14} color="#F5BA27" />
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
@@ -96,7 +96,7 @@ export default function Hero() {
             >
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-white text-base font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 shadow-[0_4px_16px_0_rgba(49,92,255,0.3)]"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-black text-base font-bold rounded-full hover:bg-[var(--color-accent-hover)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 shadow-[0_4px_20px_0_rgba(245,186,39,0.35),inset_0_1px_0_0_rgba(255,255,255,0.4)]"
               >
                 Start a Project
                 <ArrowRight

@@ -60,7 +60,7 @@ export default function AIValueChainDiagram() {
       {/* ── DESKTOP HORIZONTAL VALUE CHAIN (lg+) ── */}
       <div className="hidden lg:block relative">
         {/* Glowing Conduit Line */}
-        <div className="absolute top-[46px] left-[6%] right-[6%] h-[2px] bg-gradient-to-r from-cyan-500/20 via-blue-500/40 to-cyan-500/20 z-0">
+        <div className="absolute top-[46px] left-[6%] right-[6%] h-[2px] bg-gradient-to-r from-cyan-500/20 via-amber-500/40 to-cyan-500/20 z-0">
           <motion.div
             animate={shouldReduceMotion ? {} : { x: ["-100%", "250%"] }}
             transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}

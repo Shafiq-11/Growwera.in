@@ -20,7 +20,7 @@ export default function TestimonialsSection() {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)]">
                   Testimonials
                 </p>
-                <DoodleStar variant="sparkle" size={13} color="#315CFF" />
+                <DoodleStar variant="sparkle" size={13} color="#F5BA27" />
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)] tracking-tight">
                 What our clients say

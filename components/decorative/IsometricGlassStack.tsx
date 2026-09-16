@@ -21,7 +21,7 @@ export default function IsometricGlassStack() {
       num: "02",
       label: "Build",
       yOffset: 38,
-      glowColor: "rgba(49, 92, 255, 0.4)",
+      glowColor: "rgba(245, 186, 39, 0.4)",
       borderColor: "rgba(96, 165, 250, 0.4)",
       delay: 0.25,
     },
