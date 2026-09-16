@@ -1,230 +1,546 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
-import AnimatedSection from "@/components/shared/AnimatedSection";
-import ProcessStep from "@/components/shared/ProcessStep";
-import FinalCTA from "@/components/sections/FinalCTA";
-import DoodleStar from "@/components/decorative/DoodleStar";
-import { SEOVisual } from "@/components/shared/ServiceVisualizations";
+import {
+  ArrowRight,
+  Check,
+  ChevronRight,
+  Search,
+  FileCode2,
+  MapPin,
+  KeyRound,
+  FileText,
+  LineChart,
+  HelpCircle,
+} from "lucide-react";
+import FadeUp from "@/components/motion/FadeUp";
+import SEOHeroVisual, { SEODiscoveryFlow } from "@/components/services/SEOHeroVisual";
+import ServicePricingEnquiry from "@/components/services/ServicePricingEnquiry";
+import HandDrawnArrow from "@/components/decorative/HandDrawnArrow";
 
-export const metadata: Metadata = {
-  title: "SEO — Search Engine Optimisation",
-  description:
-    "Growwera helps businesses get discovered on Google through technical SEO, on-page optimisation, local SEO, and keyword strategy.",
-};
-
-const whatWeDeliver = [
-  "SEO audit of your current website",
-  "Technical SEO fixes (speed, crawlability, structure)",
-  "On-page optimisation (titles, content, headings)",
-  "Local SEO and Google Business Profile",
-  "Keyword research and content strategy",
-  "Link building and authority development",
-  "Monthly performance reporting",
-  "Ongoing monitoring and adjustments",
+/* ── 03: WHAT WE DO CARDS ── */
+const whatWeDo = [
+  {
+    step: "01",
+    title: "Technical SEO",
+    description:
+      "We audit and fix site structure, page speed, mobile responsiveness, crawlability, and indexing to ensure search bots navigate seamlessly.",
+    icon: FileCode2,
+  },
+  {
+    step: "02",
+    title: "On-Page SEO",
+    description:
+      "We optimize page titles, meta descriptions, heading structures, internal links, and body content so search engines understand your exact relevance.",
+    icon: FileText,
+  },
+  {
+    step: "03",
+    title: "Local SEO",
+    description:
+      "We optimize your Google Business Profile, local directory citations, and geographic signals so nearby customers discover you first on maps and local search.",
+    icon: MapPin,
+  },
+  {
+    step: "04",
+    title: "Keyword Strategy",
+    description:
+      "We uncover high-intent search terms your prospective buyers actually type into Google, prioritizing queries that translate into genuine enquiries.",
+    icon: KeyRound,
+  },
+  {
+    step: "05",
+    title: "Content Strategy",
+    description:
+      "We map clear content structures and topic clusters that directly address customer queries, establishing authority without keyword stuffing.",
+    icon: Search,
+  },
+  {
+    step: "06",
+    title: "SEO Monitoring",
+    description:
+      "We monitor organic impressions, keyword positions, click-through rates, and crawl health, using data to continuously improve search outcomes.",
+    icon: LineChart,
+  },
 ];
 
-const process = [
+/* ── 04: WHAT'S INCLUDED (6 SERVICE BLOCKS) ── */
+const whatsIncluded = [
   {
-    number: "01",
-    title: "Audit",
-    description: "We analyse your current website, keyword rankings, and competitive landscape to understand where you stand.",
+    num: "01",
+    title: "Technical SEO Audit & Fixes",
+    description:
+      "Deep diagnostics of crawl errors, broken redirects, site architecture, and Core Web Vitals performance.",
   },
   {
-    number: "02",
-    title: "Strategy",
-    description: "We identify the most valuable keywords and opportunities for your business and define a clear SEO roadmap.",
+    num: "02",
+    title: "Keyword & Competitor Research",
+    description:
+      "Data-backed discovery of what your ideal clients search for and where your competitors are currently vulnerable.",
   },
   {
-    number: "03",
-    title: "Implementation",
-    description: "We fix technical issues, optimise your pages, and build the right content and link structure.",
+    num: "03",
+    title: "On-Page Structure Optimisation",
+    description:
+      "Precise semantic HTML headings, title tags, OpenGraph previews, and structured metadata for every key page.",
   },
   {
-    number: "04",
-    title: "Monitor & report",
-    description: "We track rankings, traffic, and conversions and report clearly on progress each month.",
+    num: "04",
+    title: "Local SEO & Google Business Profile",
+    description:
+      "Full GBP verification, category calibration, review schema, and local NAP consistency to dominate regional queries.",
   },
   {
-    number: "05",
-    title: "Refine",
-    description: "SEO is ongoing. We continuously refine the strategy based on what's working and what the data shows.",
+    num: "05",
+    title: "Search Console & Sitemaps",
+    description:
+      "Direct indexing integration with Google Search Console, clean XML sitemaps, and robots.txt configuration.",
+  },
+  {
+    num: "06",
+    title: "Monthly Transparent Reporting",
+    description:
+      "Honest, jargon-free monthly reports highlighting ranking movements, traffic growth, and conversion progress.",
+  },
+];
+
+/* ── 05: HOW WE WORK (TIMELINE) ── */
+const workflow = [
+  {
+    step: "01",
+    name: "AUDIT",
+    desc: "We analyze your site's technical health, current visibility, and competitors.",
+  },
+  {
+    step: "02",
+    name: "RESEARCH",
+    desc: "We identify high-intent search queries that potential customers actually use.",
+  },
+  {
+    step: "03",
+    name: "STRATEGY",
+    desc: "We build a clear, prioritized roadmap of technical fixes and content priorities.",
+  },
+  {
+    step: "04",
+    name: "OPTIMISE",
+    desc: "We execute technical improvements, refine page structures, and optimize content.",
+  },
+  {
+    step: "05",
+    name: "MONITOR",
+    desc: "We track indexing status, rankings, search impressions, and organic visitors.",
+  },
+  {
+    step: "06",
+    name: "IMPROVE",
+    desc: "We review data trends, refine keyword targeting, and compound your visibility.",
+  },
+];
+
+/* ── 06: WHAT YOU GET (DELIVERABLES) ── */
+const deliverables = [
+  "Comprehensive technical SEO audit and resolution checklist",
+  "High-intent keyword roadmap mapped to your core offerings",
+  "Optimized meta titles, descriptions, and semantic headings",
+  "Clean site architecture, XML sitemap, and robots.txt setup",
+  "Google Business Profile setup and local citation calibration",
+  "Google Search Console integration and indexing verification",
+  "Monthly transparent ranking, traffic, and conversion reports",
+  "Clear, jargon-free progress reviews and continuous refinement",
+];
+
+/* ── 07: FAQS ── */
+const faqs = [
+  {
+    q: "How long does SEO take to show results?",
+    a: "SEO is a compounding, medium-to-long-term investment. Technical fixes and indexing corrections often take effect in 2 to 4 weeks, while measurable organic rankings and steady search traffic typically build consistently over 3 to 6 months.",
+  },
+  {
+    q: "Can you guarantee the #1 ranking on Google?",
+    a: "No legitimate agency can guarantee #1 rankings because Google's ranking algorithms are proprietary and continually updated. What we guarantee is rigorous, best-practice optimisation, clean technical architecture, and high-intent targeting that consistently improves your search visibility.",
+  },
+  {
+    q: "What is the difference between SEO and paid Google ads?",
+    a: "Google Ads deliver immediate traffic, but the clicks stop the moment you pause your ad budget. SEO builds long-term organic authority and durable search visibility that continues bringing in high-intent visitors without paying for every single click.",
+  },
+  {
+    q: "Do local businesses really need SEO?",
+    a: "Yes. For service businesses, medical practices, trades, and local shops, local SEO and Google Maps optimization are frequently the single highest-converting channels, directly driving phone calls, directions, and local quotes.",
   },
 ];
 
 export default function SEOPage() {
   return (
-    <>
-      <section className="pt-28 pb-16 lg:pt-36 lg:pb-20 relative">
+    <div className="relative overflow-hidden bg-[var(--color-background)]">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 01 — HERO                                                 */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-7">
-              <AnimatedSection>
-                <div className="flex items-center gap-2 mb-6">
-                  <Link href="/services" className="text-sm text-[var(--color-foreground-muted)] hover:text-[var(--color-accent)] transition-colors">Services</Link>
-                  <span className="text-[var(--color-foreground-muted)]">/</span>
-                  <span className="text-sm text-[var(--color-foreground)] font-medium">SEO</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+            {/* Left Column: Copy & Actions */}
+            <div className="lg:col-span-6">
+              <FadeUp>
+                <div className="inline-flex items-center gap-2 mb-4">
+                  <span className="w-2 h-2 rounded-full bg-[#315CFF] shadow-[0_0_8px_#315CFF]" />
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                    SEARCH ENGINE OPTIMISATION
+                  </p>
                 </div>
-                <div className="flex items-center gap-2 mb-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#F59E0B]">02 — SEO</p>
-                  <DoodleStar variant="sparkle" size={13} color="#F59E0B" />
-                </div>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--color-foreground)] leading-tight tracking-tight max-w-3xl mb-6">
-                  Get found by the right people at the right time.
+
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[var(--color-foreground)] tracking-tight leading-[1.12] mb-6">
+                  Be easier to find when your customers{" "}
+                  <span className="font-serif italic font-normal text-[#315CFF]">
+                    are searching.
+                  </span>
                 </h1>
-                <p className="text-xl text-[var(--color-foreground-secondary)] leading-relaxed max-w-2xl mb-10 font-normal">
-                  Help your business appear on Google when potential customers are searching for exactly what you offer.
+
+                <p className="text-base sm:text-lg text-[var(--color-foreground-secondary)] leading-relaxed max-w-xl mb-8">
+                  We help your business appear when high-intent customers search on Google.
+                  We focus on strong technical foundations, honest search relevance, and bringing
+                  the right people to your website.
                 </p>
-                <Link href="/contact" className="group inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_4px_16px_rgba(49,92,255,0.35)]">
-                  Start your SEO project <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
-              </AnimatedSection>
-            </div>
 
-            <div className="lg:col-span-5">
-              <AnimatedSection delay={0.15}>
-                <div className="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl shadow-md">
-                  <SEOVisual />
+                <div className="flex flex-wrap items-center gap-4">
+                  <Link
+                    href="/contact?service=seo"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white bg-[#315CFF] hover:bg-[#2446D8] transition-all duration-200 shadow-[0_4px_20px_rgba(49,92,255,0.4),inset_0_1px_0_0_rgba(255,255,255,0.3)] hover:-translate-y-0.5 active:translate-y-0"
+                  >
+                    <span>Enquire for Pricing</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+
+                  <a
+                    href="#how-we-work"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-[var(--color-foreground)] hover:text-[#315CFF] glass-pill transition-all duration-200 hover:-translate-y-0.5"
+                  >
+                    <span>Our SEO Process</span>
+                    <ChevronRight className="w-4 h-4 text-[var(--color-foreground-muted)]" />
+                  </a>
                 </div>
-              </AnimatedSection>
+              </FadeUp>
+            </div>
+
+            {/* Right Column: Interactive Search & Discovery Visual */}
+            <div className="lg:col-span-6 relative">
+              <FadeUp delay={0.15}>
+                <SEOHeroVisual />
+              </FadeUp>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 lg:py-20 border-t border-[var(--color-border)] relative">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 02 — WHY SEO MATTERS                                       */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <AnimatedSection>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">01 — What is this?</p>
-              <h2 className="text-3xl font-bold text-[var(--color-foreground)] mb-6 tracking-tight">Visibility that compounds.</h2>
-              <p className="text-[var(--color-foreground-secondary)] leading-relaxed mb-4 text-base">
-                SEO (Search Engine Optimisation) is the process of improving how your website appears in Google search results. When done properly, it brings a consistent stream of relevant visitors to your site without paying for every click.
-              </p>
-              <p className="text-[var(--color-foreground-secondary)] leading-relaxed text-base">
-                Growwera takes a practical approach to SEO — focused on what will actually move the needle for your specific business, not generic checklists.
-              </p>
-            </AnimatedSection>
-            <AnimatedSection delay={0.1}>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">02 — Who needs this?</p>
-              <h2 className="text-3xl font-bold text-[var(--color-foreground)] mb-6 tracking-tight">Is this right for you?</h2>
-              <ul className="space-y-3.5">
-                {[
-                  "Your website isn't appearing in Google for relevant searches",
-                  "You're relying entirely on paid ads or word of mouth",
-                  "A competitor is outranking you for important keywords",
-                  "You've launched a new website and need to build visibility",
-                  "You serve a local area and want to appear in local searches",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[var(--color-foreground-secondary)] text-base">
-                    <CheckCircle2 size={18} className="text-[var(--color-accent)] mt-1 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </AnimatedSection>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-6">
+              <FadeUp>
+                <div className="inline-flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                    WHY SEO MATTERS
+                  </p>
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--color-foreground)] tracking-tight mb-5 leading-tight">
+                  Being good at what you do isn&apos;t enough if people can&apos;t find you.
+                </h2>
+                <p className="text-base text-[var(--color-foreground-secondary)] leading-relaxed mb-6">
+                  Most customer journeys start with a search. If you&apos;re not visible when people
+                  search for what you offer, those customers go to competitors who are.
+                </p>
+                <p className="text-sm font-semibold text-[#315CFF] mb-2">
+                  SEO isn&apos;t about tricks—it is about connecting genuine demand with your business:
+                </p>
+              </FadeUp>
+            </div>
+
+            <div className="lg:col-span-6">
+              <FadeUp delay={0.15}>
+                <div className="glass-glossy rounded-3xl p-6 sm:p-8 border border-[var(--color-border)] shadow-sm space-y-4">
+                  {[
+                    "Appearing when customers search for your specific services",
+                    "Attracting high-intent organic visitors, not accidental clicks",
+                    "Building long-term credibility and sustainable digital authority",
+                    "Turning search discovery into enquiries, calls, and qualified sales",
+                  ].map((point) => (
+                    <div key={point} className="flex items-center gap-3">
+                      <div className="w-6 h-6 rounded-full bg-[#315CFF] text-white flex items-center justify-center shrink-0 shadow-xs">
+                        <Check className="w-3.5 h-3.5 stroke-[3]" />
+                      </div>
+                      <span className="text-sm font-semibold text-[var(--color-foreground)]">
+                        {point}
+                      </span>
+                    </div>
+                  ))}
+                  <div className="pt-4 border-t border-[var(--color-border)] mt-4">
+                    <p className="text-xs text-[var(--color-foreground-muted)] leading-relaxed">
+                      Search engine optimization is not an overnight trick—it is a compounding business asset that lowers customer acquisition costs year after year.
+                    </p>
+                  </div>
+                </div>
+              </FadeUp>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 lg:py-20 border-t border-[var(--color-border)] relative">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 03 — WHAT WE DO                                            */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <AnimatedSection>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">03 — What we provide</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)] mb-12 tracking-tight">What Growwera delivers.</h2>
-          </AnimatedSection>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {whatWeDeliver.map((item, i) => (
-              <AnimatedSection key={item} delay={i * 0.05}>
-                <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 hover:border-[var(--color-border-strong)] hover:bg-[var(--color-surface-elevated)] transition-all duration-200">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-mono text-[var(--color-foreground-muted)] font-semibold">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="w-6 h-6 bg-[#F59E0B]/10 border border-[#F59E0B]/20 rounded-lg flex items-center justify-center">
-                      <div className="w-1.5 h-1.5 bg-[#F59E0B] rounded-full" />
+          <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  WHAT WE DO
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-foreground)] tracking-tight mb-4">
+                What does Growwera do for your SEO?
+              </h2>
+              <p className="text-base text-[var(--color-foreground-secondary)] leading-relaxed">
+                A disciplined search optimisation strategy covering technical health, content relevance, and local authority.
+              </p>
+            </FadeUp>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {whatWeDo.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <FadeUp key={item.step} delay={idx * 0.08}>
+                  <div className="glass-glossy rounded-3xl p-6 sm:p-7 border border-[var(--color-border)] hover:border-[#315CFF]/40 hover:-translate-y-1.5 transition-all duration-300 shadow-xs h-full flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-[#315CFF] flex items-center justify-center">
+                          <Icon className="w-5 h-5" />
+                        </div>
+                        <span className="text-xs font-mono font-bold text-[#315CFF]">
+                          {item.step}
+                        </span>
+                      </div>
+                      <h3 className="text-base sm:text-lg font-bold text-[var(--color-foreground)] tracking-tight mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[var(--color-foreground-muted)] leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
-                  <p className="text-[var(--color-foreground)] text-sm font-semibold leading-snug">{item}</p>
+                </FadeUp>
+              );
+            })}
+          </div>
+
+          {/* Embedded Flow Diagram */}
+          <FadeUp delay={0.2}>
+            <div className="pt-8 border-t border-[var(--color-border)]">
+              <div className="text-center mb-4">
+                <span className="text-xs font-mono font-bold text-[#315CFF] uppercase tracking-wider">
+                  The Organic Discovery Path
+                </span>
+              </div>
+              <SEODiscoveryFlow />
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 04 — WHAT'S INCLUDED (6 SERVICE BLOCKS)                    */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 sm:mb-16 gap-4">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  WHAT&apos;S INCLUDED
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-foreground)] tracking-tight">
+                Everything needed for lasting search visibility.
+              </h2>
+            </FadeUp>
+            <div className="hidden sm:flex items-center gap-2 select-none pointer-events-none">
+              <span className="font-handwriting text-xl text-[var(--color-foreground-secondary)] rotate-3">
+                No black-hat shortcuts
+              </span>
+              <HandDrawnArrow
+                variant="curved-down-right"
+                className="w-7 h-6 text-[var(--color-foreground-muted)] opacity-75"
+                color="currentColor"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {whatsIncluded.map((item, idx) => (
+              <FadeUp key={item.num} delay={idx * 0.06}>
+                <div className="glass-glossy rounded-3xl p-6 sm:p-7 border border-[var(--color-border)] shadow-xs h-full flex flex-col justify-between group hover:border-[#315CFF]/30 transition-colors">
+                  <div>
+                    <span className="block text-xs font-mono font-bold text-[#315CFF] mb-2">
+                      {item.num}
+                    </span>
+                    <h3 className="text-lg font-bold text-[var(--color-foreground)] tracking-tight mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[var(--color-foreground-muted)] leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-              </AnimatedSection>
+              </FadeUp>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 lg:py-20 border-t border-[var(--color-border)] relative">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 05 — HOW WE WORK (TIMELINE)                                */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section id="how-we-work" className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-            <div className="lg:col-span-5">
-              <AnimatedSection>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">04 — Process</p>
-                <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)] mb-4 tracking-tight">How SEO works with Growwera.</h2>
-                <p className="text-[var(--color-foreground-secondary)] text-base leading-relaxed">A structured process with clear milestones and honest reporting.</p>
-              </AnimatedSection>
-            </div>
-            <div className="lg:col-span-7">
-              <AnimatedSection delay={0.15}>
-                {process.map((step, i) => (
-                  <ProcessStep key={step.number} {...step} isLast={i === process.length - 1} />
-                ))}
-              </AnimatedSection>
-            </div>
+          <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  HOW WE WORK
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-foreground)] tracking-tight mb-4">
+                Our step-by-step SEO roadmap.
+              </h2>
+              <p className="text-base text-[var(--color-foreground-secondary)]">
+                A methodical, evidence-led approach designed to build steady organic traffic.
+              </p>
+            </FadeUp>
+          </div>
+
+          {/* Process Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {workflow.map((item, i) => (
+              <FadeUp key={item.name} delay={i * 0.06}>
+                <div className="glass-glossy rounded-3xl p-6 border border-[var(--color-border)] shadow-xs flex flex-col justify-between h-full hover:border-[#315CFF]/30 transition-colors">
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-mono font-bold text-[#315CFF]">
+                        {item.step}
+                      </span>
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-[var(--color-foreground-muted)]">
+                        STAGE
+                      </span>
+                    </div>
+                    <h3 className="text-base sm:text-lg font-bold text-[var(--color-foreground)] tracking-tight mb-2">
+                      {item.name}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[var(--color-foreground-secondary)] leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 05 — Client Results & Proof (Solvia) */}
-      <section className="py-16 lg:py-20 border-t border-[var(--color-border)] relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <AnimatedSection>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">05 — Proven Results</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)] mb-8 tracking-tight">SEO Case Study: Solvia.</h2>
-            <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-8 lg:p-10 flex flex-col md:flex-row gap-8 items-center justify-between">
-              <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-500 text-xs font-mono font-semibold mb-3">
-                  Search Engine Optimisation & Marketing
-                </div>
-                <h3 className="text-2xl font-bold text-[var(--color-foreground)] mb-3">Solvia</h3>
-                <p className="text-[var(--color-foreground-secondary)] leading-relaxed text-sm sm:text-base mb-6">
-                  Solvia implemented a comprehensive technical SEO roadmap, local search enhancements, and keyword targeting to drive high-intent organic visitors directly into qualified business enquiries.
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 06 — WHAT YOU GET (DELIVERABLES)                           */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12 sm:mb-14">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  WHAT YOU GET
                 </p>
-                <Link
-                  href="/work"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors"
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--color-foreground)] tracking-tight mb-3">
+                Tangible deliverables on every SEO project.
+              </h2>
+              <p className="text-sm sm:text-base text-[var(--color-foreground-secondary)]">
+                Transparent work without smoke, mirrors, or hidden algorithms.
+              </p>
+            </FadeUp>
+          </div>
+
+          <FadeUp delay={0.1}>
+            <div className="glass-glossy rounded-3xl p-6 sm:p-8 border border-[var(--color-border)] shadow-sm grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {deliverables.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-white/[0.03] border border-[var(--color-border)]"
                 >
-                  View Case Study in Work <ArrowRight size={14} />
-                </Link>
-              </div>
-
-              {/* Client Quote */}
-              <div className="p-6 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)] md:max-w-xs shrink-0">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-foreground-muted)] mb-2">07 — Client Feedback</p>
-                <p className="text-sm italic text-[var(--color-foreground)] mb-4">
-                  &ldquo;Professional, responsive and truly invested in our growth. Our website and SEO have brought in real business opportunities.&rdquo;
-                </p>
-                <p className="text-xs font-bold text-[var(--color-foreground)]">Priya Sharma</p>
-                <p className="text-[11px] text-[var(--color-foreground-muted)]">CEO, Solvia</p>
-              </div>
+                  <div className="w-5 h-5 rounded-full bg-[#315CFF] text-white flex items-center justify-center shrink-0">
+                    <Check className="w-3 h-3 stroke-[3]" />
+                  </div>
+                  <span className="text-sm font-semibold text-[var(--color-foreground)]">
+                    {item}
+                  </span>
+                </div>
+              ))}
             </div>
-          </AnimatedSection>
+          </FadeUp>
         </div>
       </section>
 
-      <section className="py-16 border-t border-[var(--color-border)] relative">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <AnimatedSection>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">08 — Next Step</p>
-            <h2 className="text-3xl font-bold text-[var(--color-foreground)] mb-4 tracking-tight">Ready to improve your search visibility?</h2>
-            <p className="text-[var(--color-foreground-secondary)] text-lg mb-8">Tell us about your business and current situation. We&apos;ll review it and come back with a clear plan.</p>
-            <Link href="/contact" className="group inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_4px_16px_rgba(49,92,255,0.35)]">
-              Start an SEO Project <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
-            </Link>
-          </AnimatedSection>
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 07 — FAQ                                                   */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  FAQ
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--color-foreground)] tracking-tight">
+                Frequently asked questions.
+              </h2>
+            </FadeUp>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, i) => (
+              <FadeUp key={faq.q} delay={i * 0.05}>
+                <div className="glass-glossy rounded-2xl p-6 border border-[var(--color-border)] shadow-xs">
+                  <h3 className="text-base font-bold text-[var(--color-foreground)] tracking-tight mb-2 flex items-start gap-2.5">
+                    <HelpCircle className="w-4 h-4 text-[#315CFF] shrink-0 mt-1" />
+                    <span>{faq.q}</span>
+                  </h3>
+                  <p className="text-sm text-[var(--color-foreground-secondary)] leading-relaxed pl-6.5">
+                    {faq.a}
+                  </p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
         </div>
       </section>
 
-      <FinalCTA />
-    </>
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 08 — ENQUIRE FOR PRICING (SHARED CONVERSION COMPONENT)     */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <ServicePricingEnquiry
+        serviceId="seo"
+        serviceName="Search Engine Optimisation"
+        customHeadline="Ready to make your business easier to find on Google?"
+      />
+    </div>
   );
 }

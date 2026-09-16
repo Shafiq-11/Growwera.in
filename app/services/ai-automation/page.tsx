@@ -1,210 +1,548 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
-import AnimatedSection from "@/components/shared/AnimatedSection";
-import ProcessStep from "@/components/shared/ProcessStep";
-import FinalCTA from "@/components/sections/FinalCTA";
-import DoodleStar from "@/components/decorative/DoodleStar";
-import { AIAutomationVisual } from "@/components/shared/ServiceVisualizations";
+import {
+  ArrowRight,
+  Check,
+  ChevronRight,
+  Cpu,
+  Bot,
+  GitBranch,
+  FileCode2,
+  Workflow,
+  ShieldCheck,
+  HelpCircle,
+} from "lucide-react";
+import FadeUp from "@/components/motion/FadeUp";
+import AIHeroVisual, { AutomationNodeSystem } from "@/components/services/AIHeroVisual";
+import ServicePricingEnquiry from "@/components/services/ServicePricingEnquiry";
+import HandDrawnArrow from "@/components/decorative/HandDrawnArrow";
 
-export const metadata: Metadata = {
-  title: "AI & Automation",
-  description:
-    "Growwera builds AI assistants, workflow automation, and custom AI integrations to help businesses save time and reduce manual work.",
-};
-
-const whatWeDeliver = [
-  "AI-powered chatbots and assistants",
-  "Workflow and process automation",
-  "Integration between business tools",
-  "Custom AI solutions for specific tasks",
-  "Internal tools and dashboards",
-  "Data processing and analysis automation",
-  "Document and form automation",
-  "AI strategy and scoping consultation",
+/* ── 03: WHAT WE DO CARDS ── */
+const whatWeDo = [
+  {
+    step: "01",
+    title: "AI Assistants & Chatbots",
+    description:
+      "We design intelligent 24/7 customer and internal knowledge assistants trained on your specific business documentation, guidelines, and catalog.",
+    icon: Bot,
+  },
+  {
+    step: "02",
+    title: "Workflow Automation",
+    description:
+      "We connect your CRMs, website forms, spreadsheets, and databases so information flows automatically without manual data entry.",
+    icon: GitBranch,
+  },
+  {
+    step: "03",
+    title: "Process Automation",
+    description:
+      "We automate multi-step operational routines including client onboarding, proposal generation, invoice reminders, and lead qualification.",
+    icon: Workflow,
+  },
+  {
+    step: "04",
+    title: "AI API Integrations",
+    description:
+      "We embed modern LLMs, reasoning models, and semantic search directly into your existing software tools to classify, summarize, and extract information.",
+    icon: Cpu,
+  },
+  {
+    step: "05",
+    title: "Custom Internal Portals",
+    description:
+      "We create clean web-based tools and administrative interfaces that empower your non-technical team members to run complex automated tasks safely.",
+    icon: FileCode2,
+  },
+  {
+    step: "06",
+    title: "Monitoring & Reliability",
+    description:
+      "We build resilient error-handling, payload validation, and automatic notifications so automations run reliably without breaking quietly.",
+    icon: ShieldCheck,
+  },
 ];
 
-const process = [
-  { number: "01", title: "Identify the opportunity", description: "We review your current workflows and identify where automation or AI would genuinely save time, reduce errors, or create better outcomes." },
-  { number: "02", title: "Define the solution", description: "We design the most practical solution — which might be a simple automation, an AI integration, or a custom tool." },
-  { number: "03", title: "Build and integrate", description: "We build and connect the solution to your existing systems, keeping it simple and maintainable." },
-  { number: "04", title: "Test and refine", description: "We test thoroughly, gather feedback, and refine until the solution is reliable and easy to use." },
-  { number: "05", title: "Hand over and support", description: "We make sure your team knows how to use it and remain available for questions, updates, or improvements." },
+/* ── 04: WHAT'S INCLUDED (6 SERVICE BLOCKS) ── */
+const whatsIncluded = [
+  {
+    num: "01",
+    title: "Workflow Audit & Opportunity Analysis",
+    description:
+      "Comprehensive evaluation of your current team processes to identify bottlenecks where automation yields the highest time savings.",
+  },
+  {
+    num: "02",
+    title: "Custom AI Knowledge Assistants",
+    description:
+      "Tuned conversational agents that answer customer questions, schedule meetings, and retrieve company knowledge instantly.",
+  },
+  {
+    num: "03",
+    title: "Multi-App Integrations",
+    description:
+      "Seamless integrations across Zapier, Make, custom webhooks, REST APIs, Google Workspace, Slack, and your chosen CRM.",
+  },
+  {
+    num: "04",
+    title: "Lead Routing & CRM Auto-Sync",
+    description:
+      "Automated lead capture, instant qualification, notification routing, and automated email follow-up sequences.",
+  },
+  {
+    num: "05",
+    title: "Document Parsing & Data Extraction",
+    description:
+      "AI-driven extraction of structured data from incoming PDFs, invoices, emails, and forms into your central database.",
+  },
+  {
+    num: "06",
+    title: "System Maintenance & Health Checks",
+    description:
+      "Ongoing monitoring of API endpoints, authentication tokens, and workflow health with automated failure alerts.",
+  },
+];
+
+/* ── 05: HOW WE WORK (TIMELINE) ── */
+const workflow = [
+  {
+    step: "01",
+    name: "FIND REPETITIVE TASK",
+    desc: "We pinpoint the high-friction tasks consuming unnecessary hours across your team.",
+  },
+  {
+    step: "02",
+    name: "UNDERSTAND WORKFLOW",
+    desc: "We document the step-by-step inputs, conditions, exceptions, and desired outputs.",
+  },
+  {
+    step: "03",
+    name: "DESIGN AUTOMATION",
+    desc: "We architect the optimal pipeline combining modern AI logic with deterministic rules.",
+  },
+  {
+    step: "04",
+    name: "CONNECT TOOLS",
+    desc: "We securely integrate your apps, webhooks, databases, and AI model APIs.",
+  },
+  {
+    step: "05",
+    name: "TEST & VERIFY",
+    desc: "We run exhaustive edge-case simulations to guarantee data integrity and accuracy.",
+  },
+  {
+    step: "06",
+    name: "DEPLOY & IMPROVE",
+    desc: "We launch live, train your team, and continuously monitor execution performance.",
+  },
+];
+
+/* ── 06: WHAT YOU GET (DELIVERABLES) ── */
+const deliverables = [
+  "Complete automation blueprint mapping current vs automated workflows",
+  "Fully tested and documented workflow integrations across your software stack",
+  "Custom AI assistant tuned specifically to your proprietary company knowledge",
+  "Resilient error-handling, fallback routing, and instant team alert systems",
+  "Non-technical team training and step-by-step operating documentation",
+  "Enterprise-grade security standards ensuring your data remains private",
+  "Ongoing support, third-party API monitoring, and integration health checks",
+  "Clear visibility into hours saved and operational efficiency gained",
+];
+
+/* ── 07: FAQS ── */
+const faqs = [
+  {
+    q: "Do I need complex software or technical knowledge to use this?",
+    a: "No. We design automations to run quietly and invisibly in the background. Your team continues using familiar tools like email, Slack, Google Sheets, or your CRM—the automation simply takes care of the repetitive steps behind the scenes.",
+  },
+  {
+    q: "Will AI replace my employees?",
+    a: "No. Our automations are designed to assist and empower your team, not replace them. By removing boring, repetitive administrative friction, your staff can focus on creative problem solving, client care, and high-value strategic work.",
+  },
+  {
+    q: "Is our company data secure when using AI tools?",
+    a: "Absolutely. We adhere to strict data privacy principles, using enterprise-grade API connections with strict zero-data-retention agreements that guarantee your proprietary business data is never used to train public AI models.",
+  },
+  {
+    q: "What kind of tasks are best suited for automation?",
+    a: "Any repeatable process: syncing website leads into your CRM, sending automated follow-up sequences, extracting structured data from invoices, triaging incoming support requests, or notifying team members of urgent events.",
+  },
 ];
 
 export default function AIAutomationPage() {
   return (
-    <>
-      <section className="pt-28 pb-16 lg:pt-36 lg:pb-20 relative">
+    <div className="relative overflow-hidden bg-[var(--color-background)]">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 01 — HERO                                                 */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-7">
-              <AnimatedSection>
-                <div className="flex items-center gap-2 mb-6">
-                  <Link href="/services" className="text-sm text-[var(--color-foreground-muted)] hover:text-[var(--color-accent)] transition-colors">Services</Link>
-                  <span className="text-[var(--color-foreground-muted)]">/</span>
-                  <span className="text-sm text-[var(--color-foreground)] font-medium">AI & Automation</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+            {/* Left Column: Copy & Actions */}
+            <div className="lg:col-span-6">
+              <FadeUp>
+                <div className="inline-flex items-center gap-2 mb-4">
+                  <span className="w-2 h-2 rounded-full bg-[#315CFF] shadow-[0_0_8px_#315CFF]" />
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                    AI & AUTOMATION
+                  </p>
                 </div>
-                <div className="flex items-center gap-2 mb-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8B5CF6]">04 — AI & Automation</p>
-                  <DoodleStar variant="sparkle" size={13} color="#8B5CF6" />
-                </div>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--color-foreground)] leading-tight tracking-tight max-w-3xl mb-6">
-                  Make your business work smarter.
+
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[var(--color-foreground)] tracking-tight leading-[1.12] mb-6">
+                  Make repetitive work{" "}
+                  <span className="font-serif italic font-normal text-[#315CFF]">
+                    smarter.
+                  </span>
                 </h1>
-                <p className="text-xl text-[var(--color-foreground-secondary)] leading-relaxed max-w-2xl mb-10 font-normal">
-                  Automate the repetitive. Augment the complex. Free your team to focus on what matters.
+
+                <p className="text-base sm:text-lg text-[var(--color-foreground-secondary)] leading-relaxed max-w-xl mb-8">
+                  We design and build custom AI assistants, automated pipelines, and intelligent
+                  workflows that remove repetitive admin and help your team focus on high-value
+                  business work.
                 </p>
-                <Link href="/contact" className="group inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_4px_16px_rgba(49,92,255,0.35)]">
-                  Explore automation for your business <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
-              </AnimatedSection>
-            </div>
 
-            <div className="lg:col-span-5">
-              <AnimatedSection delay={0.15}>
-                <div className="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl shadow-md">
-                  <AIAutomationVisual />
+                <div className="flex flex-wrap items-center gap-4">
+                  <Link
+                    href="/contact?service=ai-automation"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white bg-[#315CFF] hover:bg-[#2446D8] transition-all duration-200 shadow-[0_4px_20px_rgba(49,92,255,0.4),inset_0_1px_0_0_rgba(255,255,255,0.3)] hover:-translate-y-0.5 active:translate-y-0"
+                  >
+                    <span>Enquire for Pricing</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+
+                  <a
+                    href="#how-we-work"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-[var(--color-foreground)] hover:text-[#315CFF] glass-pill transition-all duration-200 hover:-translate-y-0.5"
+                  >
+                    <span>Our Automation Process</span>
+                    <ChevronRight className="w-4 h-4 text-[var(--color-foreground-muted)]" />
+                  </a>
                 </div>
-              </AnimatedSection>
+              </FadeUp>
+            </div>
+
+            {/* Right Column: 4-Stage Connected Node Pipeline Visual */}
+            <div className="lg:col-span-6 relative">
+              <FadeUp delay={0.15}>
+                <AIHeroVisual />
+              </FadeUp>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 lg:py-20 border-t border-[var(--color-border)] relative">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 02 — WHY AI & AUTOMATION?                                  */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <AnimatedSection>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">01 — What is this?</p>
-              <h2 className="text-3xl font-bold text-[var(--color-foreground)] mb-6 tracking-tight">AI and automation, practically applied.</h2>
-              <p className="text-[var(--color-foreground-secondary)] leading-relaxed mb-4 text-base">
-                AI and automation aren&apos;t just buzzwords. For the right businesses, they can eliminate hours of manual work, reduce errors, and create better customer experiences — without a large engineering team.
-              </p>
-              <p className="text-[var(--color-foreground-secondary)] leading-relaxed text-base">
-                Growwera focuses on practical applications: identifying where automation genuinely makes sense for your business, and building solutions that are reliable, maintainable, and genuinely useful.
-              </p>
-            </AnimatedSection>
-            <AnimatedSection delay={0.1}>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">02 — Who needs this?</p>
-              <h2 className="text-3xl font-bold text-[var(--color-foreground)] mb-6 tracking-tight">Is this right for you?</h2>
-              <ul className="space-y-3.5">
-                {[
-                  "Your team spends significant time on repetitive, manual tasks",
-                  "You need to respond to customers faster but lack the capacity",
-                  "Your business tools don't talk to each other (causing manual data entry)",
-                  "You have an idea for a custom internal tool or AI-powered feature",
-                  "You want to understand what AI can realistically do for your business",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[var(--color-foreground-secondary)] text-base">
-                    <CheckCircle2 size={18} className="text-[var(--color-accent)] mt-1 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </AnimatedSection>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-6">
+              <FadeUp>
+                <div className="inline-flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                    WHY AI & AUTOMATION?
+                  </p>
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--color-foreground)] tracking-tight mb-5 leading-tight">
+                  Not everything needs to be done manually.
+                </h2>
+                <p className="text-base text-[var(--color-foreground-secondary)] leading-relaxed mb-6">
+                  Growing businesses often get bogged down in repetitive admin: copying lead info
+                  across spreadsheets, answering repetitive customer questions, generating standard
+                  reports, or routing emails. Practical AI and automation eliminate tedious manual
+                  tasks so your team can focus on high-value client work.
+                </p>
+                <p className="text-sm font-semibold text-[#315CFF] mb-2">
+                  What thoughtful automation delivers for your business:
+                </p>
+              </FadeUp>
+            </div>
+
+            <div className="lg:col-span-6">
+              <FadeUp delay={0.15}>
+                <div className="glass-glossy rounded-3xl p-6 sm:p-8 border border-[var(--color-border)] shadow-sm space-y-4">
+                  {[
+                    "Eliminating manual data entry and human error across software tools",
+                    "Responding instantly to customer inquiries 24/7 with smart assistants",
+                    "Connecting disjointed apps into seamless, automated business workflows",
+                    "Freeing up valuable team hours for strategic thinking and client relationships",
+                  ].map((point) => (
+                    <div key={point} className="flex items-center gap-3">
+                      <div className="w-6 h-6 rounded-full bg-[#315CFF] text-white flex items-center justify-center shrink-0 shadow-xs">
+                        <Check className="w-3.5 h-3.5 stroke-[3]" />
+                      </div>
+                      <span className="text-sm font-semibold text-[var(--color-foreground)]">
+                        {point}
+                      </span>
+                    </div>
+                  ))}
+                  <div className="pt-4 border-t border-[var(--color-border)] mt-4">
+                    <p className="text-xs text-[var(--color-foreground-muted)] leading-relaxed">
+                      We focus on practical, dependable business utility—not speculative hype. Every automation solves a tangible operational bottleneck.
+                    </p>
+                  </div>
+                </div>
+              </FadeUp>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 lg:py-20 border-t border-[var(--color-border)] relative">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 03 — WHAT WE DO                                            */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <AnimatedSection>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">03 — What we provide</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)] mb-12 tracking-tight">What Growwera can build.</h2>
-          </AnimatedSection>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {whatWeDeliver.map((item, i) => (
-              <AnimatedSection key={item} delay={i * 0.05}>
-                <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 hover:border-[var(--color-border-strong)] hover:bg-[var(--color-surface-elevated)] transition-all duration-200">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-mono text-[var(--color-foreground-muted)] font-semibold">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="w-7 h-7 bg-[#8B5CF6]/10 border border-[#8B5CF6]/20 rounded-lg flex items-center justify-center">
-                      <div className="w-2 h-2 bg-[#8B5CF6] rounded-full" />
+          <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  WHAT WE DO
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-foreground)] tracking-tight mb-4">
+                What does Growwera build for automation?
+              </h2>
+              <p className="text-base text-[var(--color-foreground-secondary)] leading-relaxed">
+                From intelligent conversational assistants to automated background pipelines, we engineer seamless workflows.
+              </p>
+            </FadeUp>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {whatWeDo.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <FadeUp key={item.step} delay={idx * 0.08}>
+                  <div className="glass-glossy rounded-3xl p-6 sm:p-7 border border-[var(--color-border)] hover:border-[#315CFF]/40 hover:-translate-y-1.5 transition-all duration-300 shadow-xs h-full flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-[#315CFF] flex items-center justify-center">
+                          <Icon className="w-5 h-5" />
+                        </div>
+                        <span className="text-xs font-mono font-bold text-[#315CFF]">
+                          {item.step}
+                        </span>
+                      </div>
+                      <h3 className="text-base sm:text-lg font-bold text-[var(--color-foreground)] tracking-tight mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[var(--color-foreground-muted)] leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
-                  <p className="text-[var(--color-foreground)] text-sm font-semibold leading-snug">{item}</p>
+                </FadeUp>
+              );
+            })}
+          </div>
+
+          {/* Embedded Automation Node System Diagram */}
+          <FadeUp delay={0.2}>
+            <div className="pt-8 border-t border-[var(--color-border)]">
+              <div className="text-center mb-4">
+                <span className="text-xs font-mono font-bold text-[#315CFF] uppercase tracking-wider">
+                  The End-to-End Automation Pipeline
+                </span>
+              </div>
+              <AutomationNodeSystem />
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 04 — WHAT'S INCLUDED (6 SERVICE BLOCKS)                    */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 sm:mb-16 gap-4">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  WHAT&apos;S INCLUDED
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-foreground)] tracking-tight">
+                Practical automation systems that scale.
+              </h2>
+            </FadeUp>
+            <div className="hidden sm:flex items-center gap-2 select-none pointer-events-none">
+              <span className="font-handwriting text-xl text-[var(--color-foreground-secondary)] rotate-3">
+                No complex coding needed
+              </span>
+              <HandDrawnArrow
+                variant="curved-down-right"
+                className="w-7 h-6 text-[var(--color-foreground-muted)] opacity-75"
+                color="currentColor"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {whatsIncluded.map((item, idx) => (
+              <FadeUp key={item.num} delay={idx * 0.06}>
+                <div className="glass-glossy rounded-3xl p-6 sm:p-7 border border-[var(--color-border)] shadow-xs h-full flex flex-col justify-between group hover:border-[#315CFF]/30 transition-colors">
+                  <div>
+                    <span className="block text-xs font-mono font-bold text-[#315CFF] mb-2">
+                      {item.num}
+                    </span>
+                    <h3 className="text-lg font-bold text-[var(--color-foreground)] tracking-tight mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[var(--color-foreground-muted)] leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-              </AnimatedSection>
+              </FadeUp>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 lg:py-20 border-t border-[var(--color-border)] relative">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 05 — HOW WE WORK (TIMELINE)                                */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section id="how-we-work" className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-            <div className="lg:col-span-5">
-              <AnimatedSection>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">04 — Process</p>
-                <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)] mb-4 tracking-tight">How an AI project works.</h2>
-                <p className="text-[var(--color-foreground-secondary)] text-base leading-relaxed">We always start by understanding the problem before proposing a solution.</p>
-              </AnimatedSection>
-            </div>
-            <div className="lg:col-span-7">
-              <AnimatedSection delay={0.15}>
-                {process.map((step, i) => (
-                  <ProcessStep key={step.number} {...step} isLast={i === process.length - 1} />
-                ))}
-              </AnimatedSection>
-            </div>
+          <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  HOW WE WORK
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-foreground)] tracking-tight mb-4">
+                Our automation deployment process.
+              </h2>
+              <p className="text-base text-[var(--color-foreground-secondary)]">
+                A thorough, tested workflow that ensures reliable background operations.
+              </p>
+            </FadeUp>
+          </div>
+
+          {/* Process Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {workflow.map((item, i) => (
+              <FadeUp key={item.name} delay={i * 0.06}>
+                <div className="glass-glossy rounded-3xl p-6 border border-[var(--color-border)] shadow-xs flex flex-col justify-between h-full hover:border-[#315CFF]/30 transition-colors">
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-mono font-bold text-[#315CFF]">
+                        {item.step}
+                      </span>
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-[var(--color-foreground-muted)]">
+                        STAGE
+                      </span>
+                    </div>
+                    <h3 className="text-base sm:text-lg font-bold text-[var(--color-foreground)] tracking-tight mb-2">
+                      {item.name}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[var(--color-foreground-secondary)] leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 05 — Automation Case: Orbis */}
-      <section className="py-16 lg:py-20 border-t border-[var(--color-border)] relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <AnimatedSection>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">05 — Automation in Action</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)] mb-8 tracking-tight">Workflow Case: Orbis Automation.</h2>
-            <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-8 lg:p-10 flex flex-col md:flex-row gap-8 items-center justify-between">
-              <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-500 text-xs font-mono font-semibold mb-3">
-                  AI & Process Automation
-                </div>
-                <h3 className="text-2xl font-bold text-[var(--color-foreground)] mb-3">Orbis</h3>
-                <p className="text-[var(--color-foreground-secondary)] leading-relaxed text-sm sm:text-base mb-6">
-                  Orbis streamlined customer inquiry classification and tool synchronisation, removing repetitive spreadsheet management and saving their operations team dozens of weekly manual hours.
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 06 — WHAT YOU GET (DELIVERABLES)                           */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12 sm:mb-14">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  WHAT YOU GET
                 </p>
-                <Link
-                  href="/work"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors"
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--color-foreground)] tracking-tight mb-3">
+                Tangible deliverables on every automation project.
+              </h2>
+              <p className="text-sm sm:text-base text-[var(--color-foreground-secondary)]">
+                Dependable code, documented workflows, and peace of mind.
+              </p>
+            </FadeUp>
+          </div>
+
+          <FadeUp delay={0.1}>
+            <div className="glass-glossy rounded-3xl p-6 sm:p-8 border border-[var(--color-border)] shadow-sm grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {deliverables.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-white/[0.03] border border-[var(--color-border)]"
                 >
-                  View Case Study in Work <ArrowRight size={14} />
-                </Link>
-              </div>
-
-              {/* Client Quote */}
-              <div className="p-6 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)] md:max-w-xs shrink-0">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-foreground-muted)] mb-2">07 — Client Feedback</p>
-                <p className="text-sm italic text-[var(--color-foreground)] mb-4">
-                  &ldquo;The automation system they built has saved us hours of manual work. The team is knowledgeable and easy to work with.&rdquo;
-                </p>
-                <p className="text-xs font-bold text-[var(--color-foreground)]">Rohit Verma</p>
-                <p className="text-[11px] text-[var(--color-foreground-muted)]">Operations Head, Orbis</p>
-              </div>
+                  <div className="w-5 h-5 rounded-full bg-[#315CFF] text-white flex items-center justify-center shrink-0">
+                    <Check className="w-3 h-3 stroke-[3]" />
+                  </div>
+                  <span className="text-sm font-semibold text-[var(--color-foreground)]">
+                    {item}
+                  </span>
+                </div>
+              ))}
             </div>
-          </AnimatedSection>
+          </FadeUp>
         </div>
       </section>
 
-      <section className="py-16 border-t border-[var(--color-border)] relative">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <AnimatedSection>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">08 — Next Step</p>
-            <h2 className="text-3xl font-bold text-[var(--color-foreground)] mb-4 tracking-tight">Curious about what AI could do for your business?</h2>
-            <p className="text-[var(--color-foreground-secondary)] text-lg mb-8">You don&apos;t need to have a specific idea. Describe your current workflows and we&apos;ll identify the most practical opportunities.</p>
-            <Link href="/contact" className="group inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_4px_16px_rgba(49,92,255,0.35)]">
-              Let&apos;s explore the possibilities <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
-            </Link>
-          </AnimatedSection>
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 07 — FAQ                                                   */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  FAQ
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--color-foreground)] tracking-tight">
+                Frequently asked questions.
+              </h2>
+            </FadeUp>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, i) => (
+              <FadeUp key={faq.q} delay={i * 0.05}>
+                <div className="glass-glossy rounded-2xl p-6 border border-[var(--color-border)] shadow-xs">
+                  <h3 className="text-base font-bold text-[var(--color-foreground)] tracking-tight mb-2 flex items-start gap-2.5">
+                    <HelpCircle className="w-4 h-4 text-[#315CFF] shrink-0 mt-1" />
+                    <span>{faq.q}</span>
+                  </h3>
+                  <p className="text-sm text-[var(--color-foreground-secondary)] leading-relaxed pl-6.5">
+                    {faq.a}
+                  </p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
         </div>
       </section>
 
-      <FinalCTA />
-    </>
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 08 — ENQUIRE FOR PRICING (SHARED CONVERSION COMPONENT)     */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <ServicePricingEnquiry
+        serviceId="ai-automation"
+        serviceName="AI & Automation"
+        customHeadline="Ready to automate repetitive work and scale your operations?"
+      />
+    </div>
   );
 }

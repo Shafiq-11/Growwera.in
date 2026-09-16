@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import ContactPageClient from "@/components/sections/ContactPageClient";
@@ -31,7 +32,9 @@ export default function ContactPage() {
 
       {/* Form section */}
       <section className="pt-2 pb-16 relative">
-        <ContactPageClient />
+        <Suspense fallback={<div className="min-h-[400px] flex items-center justify-center text-sm text-[var(--color-foreground-muted)]">Loading contact form...</div>}>
+          <ContactPageClient />
+        </Suspense>
       </section>
     </>
   );

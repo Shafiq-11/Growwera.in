@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { ArrowRight, CheckCircle2, AlertCircle, ChevronRight } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import { cn } from "@/lib/utils";
@@ -167,6 +168,15 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
     timeline: "",
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+
+  useEffect(() => {
+    if (prefillData?.service) {
+      setForm((prev) => ({ ...prev, service: prefillData.service || prev.service }));
+    }
+    if (prefillData?.description) {
+      setForm((prev) => ({ ...prev, description: prefillData.description || prev.description }));
+    }
+  }, [prefillData]);
 
   const validate = (): boolean => {
     const newErrors: Partial<Record<keyof FormData, string>> = {};
@@ -380,9 +390,38 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
 }
 
 export default function ContactPageClient() {
-  const [showForm, setShowForm] = useState(false);
-  const [prefillData, setPrefillData] = useState<Partial<FormData>>();
+  const searchParams = useSearchParams();
+  const serviceParam = searchParams?.get("service");
+
+  const serviceMap: Record<string, string> = {
+    "web-development": "Web Design & Development",
+    "web": "Web Design & Development",
+    "seo": "SEO",
+    "digital-marketing": "Digital Marketing",
+    "marketing": "Digital Marketing",
+    "ai-automation": "AI & Automation",
+    "ai": "AI & Automation",
+  };
+
+  const initialService =
+    serviceParam && serviceMap[serviceParam.toLowerCase()]
+      ? serviceMap[serviceParam.toLowerCase()]
+      : undefined;
+
+  const [showForm, setShowForm] = useState(!!initialService);
+  const [prefillData, setPrefillData] = useState<Partial<FormData> | undefined>(
+    initialService ? { service: initialService } : undefined
+  );
   const [activeMode, setActiveMode] = useState<"direct" | "discovery">("direct");
+
+  useEffect(() => {
+    if (serviceParam && serviceMap[serviceParam.toLowerCase()]) {
+      const matched = serviceMap[serviceParam.toLowerCase()];
+      setPrefillData((prev) => ({ ...prev, service: matched }));
+      setActiveMode("direct");
+      setShowForm(true);
+    }
+  }, [serviceParam]);
 
   const handleDiscoveryComplete = (data: Partial<FormData>) => {
     setPrefillData(data);

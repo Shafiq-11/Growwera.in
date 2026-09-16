@@ -1,254 +1,482 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
-import AnimatedSection from "@/components/shared/AnimatedSection";
-import ProcessStep from "@/components/shared/ProcessStep";
-import FinalCTA from "@/components/sections/FinalCTA";
-import DoodleStar from "@/components/decorative/DoodleStar";
-import { WebDesignVisual } from "@/components/shared/ServiceVisualizations";
+import {
+  ArrowRight,
+  Check,
+  CheckCircle2,
+  ChevronRight,
+  Layout,
+  Layers,
+  Palette,
+  Code2,
+  ShieldCheck,
+  Rocket,
+  HelpCircle,
+} from "lucide-react";
+import FadeUp from "@/components/motion/FadeUp";
+import WebDevHeroVisual from "@/components/services/WebDevHeroVisual";
+import ServicePricingEnquiry from "@/components/services/ServicePricingEnquiry";
+import HandDrawnArrow from "@/components/decorative/HandDrawnArrow";
 
-export const metadata: Metadata = {
-  title: "Web Design & Development",
-  description:
-    "Growwera designs and builds business websites, landing pages, e-commerce stores, and custom web applications that turn visitors into customers.",
-};
-
-const whatWeDeliver = [
-  "Business websites and portfolio sites",
-  "Landing pages optimised for conversion",
-  "E-commerce stores and product catalogues",
-  "Custom web applications and portals",
-  "Website redesigns and modernisations",
-  "Mobile-first, responsive layouts",
-  "Fast-loading, SEO-ready builds",
-  "CMS integration (so you can update content yourself)",
+/* ── 03: WHAT WE DO STEPS ── */
+const whatWeDo = [
+  {
+    step: "01",
+    title: "Strategy",
+    description: "Understand your business, audience, goals, and requirements.",
+    icon: Layers,
+  },
+  {
+    step: "02",
+    title: "UX & Structure",
+    description: "Plan the pages, navigation, content hierarchy, and user journey.",
+    icon: Layout,
+  },
+  {
+    step: "03",
+    title: "UI Design",
+    description: "Create a clean visual system around your brand.",
+    icon: Palette,
+  },
+  {
+    step: "04",
+    title: "Development",
+    description: "Turn the design into a responsive, functional website.",
+    icon: Code2,
+  },
+  {
+    step: "05",
+    title: "Testing",
+    description: "Check responsiveness, usability, performance, and functionality.",
+    icon: ShieldCheck,
+  },
+  {
+    step: "06",
+    title: "Launch",
+    description: "Deploy the finished website and make it ready for your audience.",
+    icon: Rocket,
+  },
 ];
 
-const process = [
+/* ── 04: WHAT'S INCLUDED (6 BLOCKS) ── */
+const whatsIncluded = [
   {
-    number: "01",
-    title: "Discovery",
-    description: "We learn about your business, customers, and goals. We review any existing site and understand what's working and what isn't.",
+    num: "01",
+    title: "Business Websites",
+    description: "Professional websites designed around your business.",
   },
   {
-    number: "02",
-    title: "Strategy & structure",
-    description: "We define the site structure, content hierarchy, and user journeys before touching any design.",
+    num: "02",
+    title: "Landing Pages",
+    description: "Focused pages designed around a specific goal.",
   },
   {
-    number: "03",
-    title: "Design",
-    description: "We create a clean, professional design that reflects your brand and communicates clearly to your customers.",
+    num: "03",
+    title: "E-commerce",
+    description: "Online stores and product experiences.",
   },
   {
-    number: "04",
-    title: "Development",
-    description: "We build the site to a high technical standard — fast, accessible, and optimised for search engines from the start.",
+    num: "04",
+    title: "Portfolio Websites",
+    description: "Personal, professional, and creative portfolios.",
   },
   {
-    number: "05",
-    title: "Launch & handover",
-    description: "We launch the site, train you on how to update content, and remain available for any post-launch support.",
+    num: "05",
+    title: "Web Applications",
+    description: "Custom browser-based applications and tools.",
+  },
+  {
+    num: "06",
+    title: "Website Improvements",
+    description: "Redesigns, UI improvements, responsiveness, and performance improvements.",
+  },
+];
+
+/* ── 05: HOW WE WORK (ANIMATED TIMELINE) ── */
+const workflow = [
+  "YOUR BUSINESS",
+  "DISCOVERY",
+  "STRUCTURE",
+  "DESIGN",
+  "DEVELOPMENT",
+  "TESTING",
+  "LAUNCH",
+];
+
+/* ── 06: WHAT YOU GET (DELIVERABLES) ── */
+const deliverables = [
+  "Responsive experience",
+  "Clear user journey",
+  "Modern interface",
+  "Functional development",
+  "Mobile optimization",
+  "Performance consideration",
+  "SEO-ready foundation",
+];
+
+/* ── 07: FAQS ── */
+const faqs = [
+  {
+    q: "How long does it take to design and build a website?",
+    a: "Most business websites take between 2 to 6 weeks, depending on the scope, number of pages, and technical integrations required. We outline an exact timeline before we begin.",
+  },
+  {
+    q: "Will I be able to update text and photos myself?",
+    a: "Yes. We configure intuitive content management workflows so you and your team can effortlessly edit text, add blog posts, and update photos without touching code.",
+  },
+  {
+    q: "Do you build custom designs or use generic templates?",
+    a: "We do not use generic templates. Every site is custom designed and engineered around your business identity, audience expectations, and specific growth goals.",
+  },
+  {
+    q: "Can you redesign or improve our existing website?",
+    a: "Absolutely. We routinely modernise outdated websites, fix mobile responsiveness, speed up slow page loads, and restructure user journeys for higher conversion.",
   },
 ];
 
 export default function WebDevelopmentPage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="pt-28 pb-16 lg:pt-36 lg:pb-20 relative">
+    <div className="relative overflow-hidden bg-[var(--color-background)]">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 01 — HERO                                                 */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-7">
-              <AnimatedSection>
-                <div className="flex items-center gap-2 mb-6">
-                  <Link href="/services" className="text-sm text-[var(--color-foreground-muted)] hover:text-[var(--color-accent)] transition-colors">
-                    Services
-                  </Link>
-                  <span className="text-[var(--color-foreground-muted)]">/</span>
-                  <span className="text-sm text-[var(--color-foreground)] font-medium">Web Design & Development</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+            {/* Left Column: Copy & Actions */}
+            <div className="lg:col-span-6">
+              <FadeUp>
+                <div className="inline-flex items-center gap-2 mb-4">
+                  <span className="w-2 h-2 rounded-full bg-[#315CFF] shadow-[0_0_8px_#315CFF]" />
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                    WEB DESIGN & DEVELOPMENT
+                  </p>
                 </div>
-                <div className="flex items-center gap-2 mb-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)]">01 — Web Design & Development</p>
-                  <DoodleStar variant="sparkle" size={13} color="var(--color-accent)" />
-                </div>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--color-foreground)] leading-tight tracking-tight mb-6">
-                  A website that works as hard as you do.
+
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[var(--color-foreground)] tracking-tight leading-[1.12] mb-6">
+                  Your business deserves a digital home{" "}
+                  <span className="font-serif italic font-normal text-[#315CFF]">
+                    that works.
+                  </span>
                 </h1>
-                <p className="text-xl text-[var(--color-foreground-secondary)] leading-relaxed mb-10 font-normal">
-                  Websites and digital products that make your business look credible,
-                  communicate clearly, and turn visitors into customers.
+
+                <p className="text-base sm:text-lg text-[var(--color-foreground-secondary)] leading-relaxed max-w-xl mb-8">
+                  We design and build modern websites and digital experiences that
+                  communicate your business clearly, build credibility, and make it
+                  easier for visitors to take the next step.
                 </p>
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_4px_16px_rgba(49,92,255,0.35)]"
-                >
-                  Start your web project
-                  <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
-              </AnimatedSection>
-            </div>
 
-            {/* Right: Floating Visual */}
-            <div className="lg:col-span-5">
-              <AnimatedSection delay={0.15}>
-                <div className="p-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl shadow-md">
-                  <WebDesignVisual />
+                <div className="flex flex-wrap items-center gap-4">
+                  <Link
+                    href="/contact?service=web-development"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white bg-[#315CFF] hover:bg-[#2446D8] transition-all duration-200 shadow-[0_4px_20px_rgba(49,92,255,0.4),inset_0_1px_0_0_rgba(255,255,255,0.3)] hover:-translate-y-0.5 active:translate-y-0"
+                  >
+                    <span>Enquire for Pricing</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+
+                  <Link
+                    href="/work"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-[var(--color-foreground)] hover:text-[#315CFF] glass-pill transition-all duration-200 hover:-translate-y-0.5"
+                  >
+                    <span>See Our Work</span>
+                    <ChevronRight className="w-4 h-4 text-[var(--color-foreground-muted)]" />
+                  </Link>
                 </div>
-              </AnimatedSection>
+              </FadeUp>
+            </div>
+
+            {/* Right Column: 3D Glossy Interactive Browser Composition */}
+            <div className="lg:col-span-6 relative">
+              <FadeUp delay={0.15}>
+                <WebDevHeroVisual />
+              </FadeUp>
             </div>
           </div>
         </div>
       </section>
 
-      {/* What & Who */}
-      <section className="py-16 lg:py-20 border-t border-[var(--color-border)] relative">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 02 — WHY WEB DESIGN? (WHY IT MATTERS)                      */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <AnimatedSection>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">01 — What is this?</p>
-              <h2 className="text-3xl font-bold text-[var(--color-foreground)] mb-6 tracking-tight">More than a website.</h2>
-              <p className="text-[var(--color-foreground-secondary)] leading-relaxed mb-4 text-base">
-                A well-built website is often a business&apos;s most important sales tool. It&apos;s where
-                potential customers form their first impression, decide whether to trust you, and
-                choose whether to contact you.
-              </p>
-              <p className="text-[var(--color-foreground-secondary)] leading-relaxed text-base">
-                Growwera builds websites that are designed with your customers in mind — easy to
-                navigate, clear about what you offer, and structured to encourage action.
-              </p>
-            </AnimatedSection>
-            <AnimatedSection delay={0.1}>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">02 — Who needs this?</p>
-              <h2 className="text-3xl font-bold text-[var(--color-foreground)] mb-6 tracking-tight">Is this right for you?</h2>
-              <ul className="space-y-3.5">
-                {[
-                  "You don't have a website, or your current one is outdated",
-                  "Your website isn't generating enquiries or sales",
-                  "Your website looks unprofessional or doesn't reflect your brand",
-                  "You need a specific landing page for a product or campaign",
-                  "You need a custom web application or customer portal",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[var(--color-foreground-secondary)] text-base">
-                    <CheckCircle2 size={18} className="text-[var(--color-accent)] mt-1 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </AnimatedSection>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-6">
+              <FadeUp>
+                <div className="inline-flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                    WHY WEB DESIGN?
+                  </p>
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--color-foreground)] tracking-tight mb-5 leading-tight">
+                  Your website is often the first impression of your business.
+                </h2>
+                <p className="text-base text-[var(--color-foreground-secondary)] leading-relaxed mb-6">
+                  A website shouldn&apos;t simply look attractive. It should help people
+                  understand your business immediately without confusion.
+                </p>
+                <p className="text-sm font-semibold text-[#315CFF] mb-2">
+                  A good website makes four things crystal clear:
+                </p>
+              </FadeUp>
+            </div>
+
+            <div className="lg:col-span-6">
+              <FadeUp delay={0.15}>
+                <div className="glass-glossy rounded-3xl p-6 sm:p-8 border border-[var(--color-border)] shadow-sm space-y-4">
+                  {[
+                    "Who you are and what you stand for",
+                    "What you offer and who it helps",
+                    "Why customers should trust you over competitors",
+                    "What they should do next (enquire, book, purchase)",
+                  ].map((point) => (
+                    <div key={point} className="flex items-center gap-3">
+                      <div className="w-6 h-6 rounded-full bg-[#315CFF] text-white flex items-center justify-center shrink-0 shadow-xs">
+                        <Check className="w-3.5 h-3.5 stroke-[3]" />
+                      </div>
+                      <span className="text-sm font-semibold text-[var(--color-foreground)]">
+                        {point}
+                      </span>
+                    </div>
+                  ))}
+                  <div className="pt-4 border-t border-[var(--color-border)] mt-4">
+                    <p className="text-xs text-[var(--color-foreground-muted)] leading-relaxed">
+                      Poor structure creates hesitation and bounces. Purposeful design turns clarity into business growth.
+                    </p>
+                  </div>
+                </div>
+              </FadeUp>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* What we deliver */}
-      <section className="py-16 lg:py-20 border-t border-[var(--color-border)] relative">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 03 — WHAT WE DO                                            */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <AnimatedSection>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">03 — What we provide</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)] mb-12 tracking-tight">What Growwera can build.</h2>
-          </AnimatedSection>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {whatWeDeliver.map((item, i) => (
-              <AnimatedSection key={item} delay={i * 0.05}>
-                <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 shadow-xs hover:border-[var(--color-border-strong)] hover:bg-[var(--color-surface-elevated)] transition-all duration-200">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-mono text-[var(--color-foreground-muted)] font-semibold">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="w-6 h-6 bg-[var(--color-accent)]/15 rounded-lg flex items-center justify-center border border-[var(--color-accent)]/25">
-                      <div className="w-1.5 h-1.5 bg-[var(--color-accent)] rounded-full" />
+          <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  WHAT WE DO
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-foreground)] tracking-tight mb-4">
+                What exactly does Growwera provide?
+              </h2>
+              <p className="text-base text-[var(--color-foreground-secondary)] leading-relaxed">
+                From initial blueprint to production launch, we handle every stage of your website.
+              </p>
+            </FadeUp>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {whatWeDo.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <FadeUp key={item.step} delay={idx * 0.08}>
+                  <div className="glass-glossy rounded-3xl p-6 sm:p-7 border border-[var(--color-border)] hover:border-[#315CFF]/40 hover:-translate-y-1.5 transition-all duration-300 shadow-xs h-full flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-[#315CFF] flex items-center justify-center">
+                          <Icon className="w-5 h-5" />
+                        </div>
+                        <span className="text-xs font-mono font-bold text-[#315CFF]">
+                          {item.step}
+                        </span>
+                      </div>
+                      <h3 className="text-base sm:text-lg font-bold text-[var(--color-foreground)] tracking-tight mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[var(--color-foreground-muted)] leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
-                  <p className="text-[var(--color-foreground)] text-sm font-semibold leading-snug">{item}</p>
+                </FadeUp>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 04 — WHAT'S INCLUDED (6 SERVICE BLOCKS)                    */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 sm:mb-16 gap-4">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  WHAT&apos;S INCLUDED
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-foreground)] tracking-tight">
+                Solutions built around your needs.
+              </h2>
+            </FadeUp>
+            <div className="hidden sm:flex items-center gap-2 select-none pointer-events-none">
+              <span className="font-handwriting text-xl text-[var(--color-foreground-secondary)] rotate-3">
+                Built to perform
+              </span>
+              <HandDrawnArrow variant="curved-down-right" className="w-7 h-6 text-[var(--color-foreground-muted)] opacity-75" color="currentColor" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {whatsIncluded.map((item, idx) => (
+              <FadeUp key={item.num} delay={idx * 0.06}>
+                <div className="glass-glossy rounded-3xl p-6 sm:p-7 border border-[var(--color-border)] shadow-xs h-full flex flex-col justify-between group hover:border-[#315CFF]/30 transition-colors">
+                  <div>
+                    <span className="block text-xs font-mono font-bold text-[#315CFF] mb-2">
+                      {item.num}
+                    </span>
+                    <h3 className="text-lg font-bold text-[var(--color-foreground)] tracking-tight mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[var(--color-foreground-muted)] leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-              </AnimatedSection>
+              </FadeUp>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Process */}
-      <section className="py-16 lg:py-20 border-t border-[var(--color-border)] relative">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 05 — HOW WE WORK (ANIMATED VISUAL TIMELINE)                */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-            <div className="lg:col-span-5">
-              <AnimatedSection>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">04 — Process</p>
-                <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)] mb-4 tracking-tight">How a web project works.</h2>
-                <p className="text-[var(--color-foreground-secondary)] text-base leading-relaxed">A straightforward process with no surprises.</p>
-              </AnimatedSection>
-            </div>
-            <div className="lg:col-span-7">
-              <AnimatedSection delay={0.15}>
-                {process.map((step, i) => (
-                  <ProcessStep key={step.number} {...step} isLast={i === process.length - 1} />
-                ))}
-              </AnimatedSection>
-            </div>
+          <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  HOW WE WORK
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-foreground)] tracking-tight mb-4">
+                Our step-by-step process.
+              </h2>
+              <p className="text-base text-[var(--color-foreground-secondary)]">
+                A predictable, collaborative workflow from concept to live deployment.
+              </p>
+            </FadeUp>
+          </div>
+
+          {/* Horizontal Process Ribbon */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 max-w-6xl mx-auto">
+            {workflow.map((stg, i) => (
+              <FadeUp key={stg} delay={i * 0.05}>
+                <div className="glass-glossy rounded-2xl p-4 text-center border border-[var(--color-border)] shadow-xs flex flex-col items-center justify-center h-24">
+                  <span className="text-[10px] font-mono font-bold text-[#315CFF] mb-1">
+                    0{i + 1}
+                  </span>
+                  <span className="text-xs font-bold text-[var(--color-foreground)] tracking-tight">
+                    {stg}
+                  </span>
+                </div>
+              </FadeUp>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 05 — Finished Solution Preview (Nexora) */}
-      <section className="py-16 lg:py-20 border-t border-[var(--color-border)] relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <AnimatedSection>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">05 — Finished Solution</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)] mb-8 tracking-tight">Featured Web Project: Nexora.</h2>
-            <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-8 lg:p-10 flex flex-col md:flex-row gap-8 items-center justify-between">
-              <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-accent)]/10 text-[var(--color-accent)] text-xs font-mono font-semibold mb-3">
-                  Web Development & SEO
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 06 — WHAT YOU GET (DELIVERABLES)                           */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12 sm:mb-14">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  WHAT YOU GET
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--color-foreground)] tracking-tight mb-3">
+                Tangible standards on every project.
+              </h2>
+              <p className="text-sm sm:text-base text-[var(--color-foreground-secondary)]">
+                We build with technical rigor and user-centered design principles.
+              </p>
+            </FadeUp>
+          </div>
+
+          <FadeUp delay={0.1}>
+            <div className="glass-glossy rounded-3xl p-6 sm:p-8 border border-[var(--color-border)] shadow-sm grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {deliverables.map((item) => (
+                <div key={item} className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-white/[0.03] border border-[var(--color-border)]">
+                  <div className="w-5 h-5 rounded-full bg-[#315CFF] text-white flex items-center justify-center shrink-0">
+                    <Check className="w-3 h-3 stroke-[3]" />
+                  </div>
+                  <span className="text-sm font-semibold text-[var(--color-foreground)]">
+                    {item}
+                  </span>
                 </div>
-                <h3 className="text-2xl font-bold text-[var(--color-foreground)] mb-3">Nexora</h3>
-                <p className="text-[var(--color-foreground-secondary)] leading-relaxed text-sm sm:text-base mb-6">
-                  Nexora needed a modern, professional website that could clearly communicate their services and improve their visibility on search engines. We designed and developed a clean, high-converting website and implemented an SEO strategy tailored to their industry.
-                </p>
-                <Link
-                  href="/work"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors"
-                >
-                  View Case Study in Work <ArrowRight size={14} />
-                </Link>
-              </div>
-
-              {/* Client Quote */}
-              <div className="p-6 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)] md:max-w-xs shrink-0">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-foreground-muted)] mb-2">07 — Client Feedback</p>
-                <p className="text-sm italic text-[var(--color-foreground)] mb-4">
-                  &ldquo;Growwera understood what we were trying to achieve and turned the idea into something that actually works for our business.&rdquo;
-                </p>
-                <p className="text-xs font-bold text-[var(--color-foreground)]">Aarav Menon</p>
-                <p className="text-[11px] text-[var(--color-foreground-muted)]">Founder, Nexora</p>
-              </div>
+              ))}
             </div>
-          </AnimatedSection>
+          </FadeUp>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-14 border-t border-[var(--color-border)] relative">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <AnimatedSection>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-foreground-muted)] mb-2">08 — Next Step</p>
-            <h2 className="text-3xl font-bold text-[var(--color-foreground)] mb-4 tracking-tight">
-              Ready to build your website?
-            </h2>
-            <p className="text-[var(--color-foreground-secondary)] text-lg mb-8">
-              Tell us about your business and what you need. We&apos;ll come back with a clear plan and quote.
-            </p>
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_4px_16px_rgba(49,92,255,0.35)]"
-            >
-              Start a Web Project
-              <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
-            </Link>
-          </AnimatedSection>
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 07 — FAQ                                                   */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28 border-t border-[var(--color-border)] relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#315CFF]" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#315CFF] select-none">
+                  FAQ
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--color-foreground)] tracking-tight">
+                Frequently asked questions.
+              </h2>
+            </FadeUp>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, i) => (
+              <FadeUp key={faq.q} delay={i * 0.05}>
+                <div className="glass-glossy rounded-2xl p-6 border border-[var(--color-border)] shadow-xs">
+                  <h3 className="text-base font-bold text-[var(--color-foreground)] tracking-tight mb-2 flex items-start gap-2.5">
+                    <HelpCircle className="w-4 h-4 text-[#315CFF] shrink-0 mt-1" />
+                    <span>{faq.q}</span>
+                  </h3>
+                  <p className="text-sm text-[var(--color-foreground-secondary)] leading-relaxed pl-6.5">
+                    {faq.a}
+                  </p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
         </div>
       </section>
 
-      <FinalCTA />
-    </>
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* 08 — ENQUIRE FOR PRICING (SHARED CONVERSION COMPONENT)     */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <ServicePricingEnquiry
+        serviceId="web-development"
+        serviceName="Web Design & Development"
+        customHeadline="Have a website in mind? Tell us what you're trying to build."
+      />
+    </div>
   );
 }
