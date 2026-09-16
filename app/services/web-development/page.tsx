@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import FadeUp from "@/components/motion/FadeUp";
 import WebDevHeroVisual from "@/components/services/WebDevHeroVisual";
+import WebDevValueChainDiagram from "@/components/services/WebDevValueChainDiagram";
 import ServicePricingEnquiry from "@/components/services/ServicePricingEnquiry";
 import HandDrawnArrow from "@/components/decorative/HandDrawnArrow";
 
@@ -303,6 +304,18 @@ export default function WebDevelopmentPage() {
               );
             })}
           </div>
+
+          {/* Embedded Web Development Value Chain Diagram */}
+          <FadeUp delay={0.2}>
+            <div className="pt-10 border-t border-[var(--color-border)]">
+              <div className="text-center mb-4">
+                <span className="text-xs font-mono font-bold text-[#315CFF] uppercase tracking-wider">
+                  The Complete Web Development Value Chain
+                </span>
+              </div>
+              <WebDevValueChainDiagram />
+            </div>
+          </FadeUp>
         </div>
       </section>
 

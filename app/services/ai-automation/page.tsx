@@ -14,7 +14,8 @@ import {
   HelpCircle,
 } from "lucide-react";
 import FadeUp from "@/components/motion/FadeUp";
-import AIHeroVisual, { AutomationNodeSystem } from "@/components/services/AIHeroVisual";
+import AIHeroVisual from "@/components/services/AIHeroVisual";
+import AIValueChainDiagram from "@/components/services/AIValueChainDiagram";
 import ServicePricingEnquiry from "@/components/services/ServicePricingEnquiry";
 import HandDrawnArrow from "@/components/decorative/HandDrawnArrow";
 
@@ -343,13 +344,13 @@ export default function AIAutomationPage() {
 
           {/* Embedded Automation Node System Diagram */}
           <FadeUp delay={0.2}>
-            <div className="pt-8 border-t border-[var(--color-border)]">
+            <div className="pt-10 border-t border-[var(--color-border)]">
               <div className="text-center mb-4">
                 <span className="text-xs font-mono font-bold text-[#315CFF] uppercase tracking-wider">
                   The End-to-End Automation Pipeline
                 </span>
               </div>
-              <AutomationNodeSystem />
+              <AIValueChainDiagram />
             </div>
           </FadeUp>
         </div>

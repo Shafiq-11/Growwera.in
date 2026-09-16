@@ -14,7 +14,8 @@ import {
   HelpCircle,
 } from "lucide-react";
 import FadeUp from "@/components/motion/FadeUp";
-import MarketingHeroVisual, { MarketingFlowDiagram } from "@/components/services/MarketingHeroVisual";
+import MarketingHeroVisual from "@/components/services/MarketingHeroVisual";
+import MarketingValueChainDiagram from "@/components/services/MarketingValueChainDiagram";
 import ServicePricingEnquiry from "@/components/services/ServicePricingEnquiry";
 import HandDrawnArrow from "@/components/decorative/HandDrawnArrow";
 
@@ -342,13 +343,13 @@ export default function DigitalMarketingPage() {
 
           {/* Embedded Marketing Flow Diagram */}
           <FadeUp delay={0.2}>
-            <div className="pt-8 border-t border-[var(--color-border)]">
+            <div className="pt-10 border-t border-[var(--color-border)]">
               <div className="text-center mb-4">
                 <span className="text-xs font-mono font-bold text-[#315CFF] uppercase tracking-wider">
                   The Complete Marketing Value Chain
                 </span>
               </div>
-              <MarketingFlowDiagram />
+              <MarketingValueChainDiagram />
             </div>
           </FadeUp>
         </div>

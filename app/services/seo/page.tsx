@@ -14,7 +14,8 @@ import {
   HelpCircle,
 } from "lucide-react";
 import FadeUp from "@/components/motion/FadeUp";
-import SEOHeroVisual, { SEODiscoveryFlow } from "@/components/services/SEOHeroVisual";
+import SEOHeroVisual from "@/components/services/SEOHeroVisual";
+import SEOValueChainDiagram from "@/components/services/SEOValueChainDiagram";
 import ServicePricingEnquiry from "@/components/services/ServicePricingEnquiry";
 import HandDrawnArrow from "@/components/decorative/HandDrawnArrow";
 
@@ -341,13 +342,13 @@ export default function SEOPage() {
 
           {/* Embedded Flow Diagram */}
           <FadeUp delay={0.2}>
-            <div className="pt-8 border-t border-[var(--color-border)]">
+            <div className="pt-10 border-t border-[var(--color-border)]">
               <div className="text-center mb-4">
                 <span className="text-xs font-mono font-bold text-[#315CFF] uppercase tracking-wider">
-                  The Organic Discovery Path
+                  The Organic Discovery Value Chain
                 </span>
               </div>
-              <SEODiscoveryFlow />
+              <SEOValueChainDiagram />
             </div>
           </FadeUp>
         </div>
