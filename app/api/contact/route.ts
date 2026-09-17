@@ -71,58 +71,82 @@ export async function POST(req: NextRequest) {
       : [];
     const serviceFormatted = serviceList.length > 0 ? serviceList.join(", ") : null;
 
-    // Prepare Supabase client
+    // Prepare Supabase client (supports service_role key or anon key)
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const supabaseKey =
+      process.env.SUPABASE_SERVICE_ROLE_KEY ||
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+      process.env.SUPABASE_KEY;
     let supabase = null;
 
     if (supabaseUrl && supabaseKey) {
-      const { createClient } = await import("@supabase/supabase-js");
-      supabase = createClient(supabaseUrl, supabaseKey);
+      try {
+        const { createClient } = await import("@supabase/supabase-js");
+        supabase = createClient(supabaseUrl, supabaseKey);
+      } catch (err) {
+        console.error("Failed to initialize Supabase client:", err);
+      }
     }
 
     // 5. Generate Unique Enquiry ID (e.g. GW-2026-0001)
     const enquiryId = await generateUniqueEnquiryId(supabase);
     const submissionDate = new Date();
+    const generatedUuid = crypto.randomUUID();
 
-    // 6. Save to Supabase
+    const enquiryRecord = {
+      id: generatedUuid,
+      enquiry_id: enquiryId,
+      created_at: submissionDate.toISOString(),
+      name: name.trim(),
+      mobile_number: mobileResult.normalized,
+      email: email.trim().toLowerCase(),
+      company: company?.trim() || null,
+      service: serviceFormatted,
+      budget: budget?.trim() || null,
+      timeline: timeline?.trim() || null,
+      message: userMessage,
+      source: "Website",
+      status: "New" as const,
+      notes: null,
+    };
+
+    // 6. ALWAYS save to persistent local store so it immediately displays in Admin
+    try {
+      const { saveLocalEnquiry } = await import("@/lib/enquiry-store");
+      await saveLocalEnquiry(enquiryRecord);
+    } catch (saveErr) {
+      console.error("Local enquiry save error:", saveErr);
+    }
+
+    // 7. Also save to Supabase if configured
     if (supabase) {
-      const { error: dbError } = await supabase.from("enquiries").insert([
-        {
-          enquiry_id: enquiryId,
-          name: name.trim(),
-          mobile_number: mobileResult.normalized,
-          email: email.trim().toLowerCase(),
-          company: company?.trim() || null,
-          service: serviceFormatted,
-          budget: budget?.trim() || null,
-          timeline: timeline?.trim() || null,
-          message: userMessage,
-          source: "Website",
-          status: "New",
-          notes: null,
-        },
-      ]);
+      try {
+        const { error: dbError } = await supabase.from("enquiries").insert([
+          {
+            id: enquiryRecord.id,
+            enquiry_id: enquiryRecord.enquiry_id,
+            name: enquiryRecord.name,
+            mobile_number: enquiryRecord.mobile_number,
+            email: enquiryRecord.email,
+            company: enquiryRecord.company,
+            service: enquiryRecord.service,
+            budget: enquiryRecord.budget,
+            timeline: enquiryRecord.timeline,
+            message: enquiryRecord.message,
+            source: enquiryRecord.source,
+            status: enquiryRecord.status,
+            notes: enquiryRecord.notes,
+          },
+        ]);
 
-      if (dbError) {
-        console.error("Supabase insert error:", dbError);
-        return NextResponse.json(
-          { error: "Something went wrong while saving your enquiry. Please try again." },
-          { status: 500 }
-        );
+        if (dbError) {
+          console.error("Supabase insert error (stored locally as fallback):", dbError);
+        }
+      } catch (supabaseErr) {
+        console.error("Supabase request error (stored locally as fallback):", supabaseErr);
       }
     } else {
-      console.log("Contact form submission (Supabase not configured):", {
-        enquiryId,
-        name,
-        mobile: mobileResult.normalized,
-        email,
-        company,
-        services: serviceList,
-        budget,
-        timeline,
-        message: userMessage,
-      });
+      console.log("Contact form submission stored locally (Supabase not configured):", enquiryRecord);
     }
 
     // 7. Send Email Notification via Resend

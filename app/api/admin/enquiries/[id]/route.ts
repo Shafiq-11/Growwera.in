@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAuthenticatedAdmin } from "@/lib/admin-auth";
+import { updateLocalEnquiry, deleteLocalEnquiry } from "@/lib/enquiry-store";
+import type { EnquiryStatus } from "@/lib/enquiry-helpers";
 
 export async function PATCH(
   req: NextRequest,
@@ -14,41 +16,38 @@ export async function PATCH(
   const body = await req.json();
   const { status, notes } = body;
 
+  // 1. Always update local store
+  const updatedLocal = await updateLocalEnquiry(id, {
+    status: status as EnquiryStatus,
+    notes,
+  });
+
+  // 2. Also update Supabase if configured
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseKey =
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    process.env.SUPABASE_KEY;
 
-  if (!supabaseUrl || !supabaseKey) {
-    return NextResponse.json(
-      { error: "Supabase not configured." },
-      { status: 500 }
-    );
-  }
+  if (supabaseUrl && supabaseKey) {
+    try {
+      const { createClient } = await import("@supabase/supabase-js");
+      const supabase = createClient(supabaseUrl, supabaseKey);
 
-  try {
-    const { createClient } = await import("@supabase/supabase-js");
-    const supabase = createClient(supabaseUrl, supabaseKey);
+      const updatePayload: Record<string, unknown> = {};
+      if (status !== undefined) updatePayload.status = status;
+      if (notes !== undefined) updatePayload.notes = notes;
 
-    const updatePayload: Record<string, unknown> = {};
-    if (status !== undefined) updatePayload.status = status;
-    if (notes !== undefined) updatePayload.notes = notes;
-
-    const { data, error } = await supabase
-      .from("enquiries")
-      .update(updatePayload)
-      .eq("id", id)
-      .select()
-      .single();
-
-    if (error) {
-      console.error("Supabase update error:", error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      await supabase
+        .from("enquiries")
+        .update(updatePayload)
+        .or(`id.eq.${id},enquiry_id.eq.${id}`);
+    } catch (err) {
+      console.warn("Supabase update error (updated locally):", err);
     }
-
-    return NextResponse.json({ success: true, enquiry: data }, { status: 200 });
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "Failed to update enquiry";
-    return NextResponse.json({ error: message }, { status: 500 });
   }
+
+  return NextResponse.json({ success: true, enquiry: updatedLocal }, { status: 200 });
 }
 
 export async function DELETE(
@@ -62,29 +61,26 @@ export async function DELETE(
 
   const { id } = await params;
 
+  // 1. Delete from local store
+  await deleteLocalEnquiry(id);
+
+  // 2. Delete from Supabase if configured
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseKey =
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    process.env.SUPABASE_KEY;
 
-  if (!supabaseUrl || !supabaseKey) {
-    return NextResponse.json(
-      { error: "Supabase not configured." },
-      { status: 500 }
-    );
-  }
+  if (supabaseUrl && supabaseKey) {
+    try {
+      const { createClient } = await import("@supabase/supabase-js");
+      const supabase = createClient(supabaseUrl, supabaseKey);
 
-  try {
-    const { createClient } = await import("@supabase/supabase-js");
-    const supabase = createClient(supabaseUrl, supabaseKey);
-
-    const { error } = await supabase.from("enquiries").delete().eq("id", id);
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      await supabase.from("enquiries").delete().or(`id.eq.${id},enquiry_id.eq.${id}`);
+    } catch (err) {
+      console.warn("Supabase delete error (deleted locally):", err);
     }
-
-    return NextResponse.json({ success: true }, { status: 200 });
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "Failed to delete enquiry";
-    return NextResponse.json({ error: message }, { status: 500 });
   }
+
+  return NextResponse.json({ success: true }, { status: 200 });
 }

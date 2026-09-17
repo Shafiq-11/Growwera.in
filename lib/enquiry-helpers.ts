@@ -112,7 +112,22 @@ export async function generateUniqueEnquiryId(
     }
   }
 
-  // Local/offline fallback
-  const rand = Math.floor(1000 + Math.random() * 9000);
-  return `${prefix}${rand}`;
+  // Check local store enquiries
+  try {
+    const { getLocalEnquiries } = await import("./enquiry-store");
+    const local = await getLocalEnquiries();
+    let maxNum = 0;
+    for (const row of local) {
+      if (row.enquiry_id && row.enquiry_id.startsWith(prefix)) {
+        const numPart = row.enquiry_id.replace(prefix, "");
+        const parsed = parseInt(numPart, 10);
+        if (!isNaN(parsed) && parsed > maxNum) {
+          maxNum = parsed;
+        }
+      }
+    }
+    return `${prefix}${String(maxNum + 1).padStart(4, "0")}`;
+  } catch {
+    return `${prefix}0001`;
+  }
 }
