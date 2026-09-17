@@ -3,7 +3,15 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, company, service, description, budget, timeline } = body;
+    const { name, email, company, service, services, description, timeline } = body;
+
+    // Support both services array and single service string for backwards compatibility
+    const serviceList: string[] = Array.isArray(services)
+      ? services
+      : typeof service === "string" && service
+      ? [service]
+      : [];
+    const serviceFormatted = serviceList.length > 0 ? serviceList.join(", ") : null;
 
     // Basic validation
     if (!name?.trim() || !email?.trim() || !description?.trim()) {
@@ -35,9 +43,9 @@ export async function POST(req: NextRequest) {
           name: name.trim(),
           email: email.trim().toLowerCase(),
           company: company?.trim() || null,
-          service: service || null,
+          service: serviceFormatted,
           description: description.trim(),
-          budget: budget || null,
+          budget: null,
           timeline: timeline || null,
         },
       ]);
@@ -52,7 +60,12 @@ export async function POST(req: NextRequest) {
     } else {
       // Log to console in development when Supabase isn't configured
       console.log("Contact form submission (Supabase not configured):", {
-        name, email, company, service, description, budget, timeline,
+        name,
+        email,
+        company,
+        services: serviceList,
+        description,
+        timeline,
       });
     }
 
@@ -74,8 +87,7 @@ export async function POST(req: NextRequest) {
             <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Name</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${name}</td></tr>
             <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Email</td><td style="padding: 8px; border-bottom: 1px solid #eee;"><a href="mailto:${email}">${email}</a></td></tr>
             <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Company</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${company || "—"}</td></tr>
-            <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Service</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${service || "—"}</td></tr>
-            <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Budget</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${budget || "—"}</td></tr>
+            <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Services Requested</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${serviceFormatted || "—"}</td></tr>
             <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Timeline</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${timeline || "—"}</td></tr>
             <tr><td style="padding: 8px; font-weight: bold;">Description</td><td style="padding: 8px; white-space: pre-wrap;">${description}</td></tr>
           </table>

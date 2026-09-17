@@ -12,9 +12,8 @@ interface FormData {
   name: string;
   email: string;
   company: string;
-  service: string;
+  services: string[];
   description: string;
-  budget: string;
   timeline: string;
 }
 
@@ -36,14 +35,6 @@ const discoveryGoals = [
   "I'm not sure yet",
 ];
 
-const budgets = [
-  "Under £1,000",
-  "£1,000 – £5,000",
-  "£5,000 – £15,000",
-  "£15,000+",
-  "Prefer not to say",
-];
-
 const timelines = [
   "As soon as possible",
   "Within 1 month",
@@ -63,9 +54,20 @@ function DiscoveryQuestionnaire({ onComplete }: { onComplete: (data: Partial<For
     setStep(1);
   };
 
+  const goalToServiceMap: Record<string, string> = {
+    "I need a website": "Web Design & Development",
+    "I want more customers": "Digital Marketing",
+    "I want to rank on Google": "SEO",
+    "I want to improve my digital presence": "Digital Marketing",
+    "I want to automate repetitive work": "AI & Automation",
+    "I have an idea for a software/product": "Web Design & Development",
+    "I'm not sure yet": "Not sure yet",
+  };
+
   const handleSubmit = () => {
+    const matchedService = goalToServiceMap[goal] || (services.includes(goal) ? goal : "Not sure yet");
     onComplete({
-      service: goal === "I'm not sure yet" ? "Not sure yet" : goal,
+      services: [matchedService],
       description: `Goal: ${goal}\n\nBusiness: ${businessDesc}\n\nProblem: ${problem}`,
     });
   };
@@ -162,21 +164,41 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
     name: "",
     email: "",
     company: "",
-    service: prefillData?.service || "",
+    services: prefillData?.services || [],
     description: prefillData?.description || "",
-    budget: "",
     timeline: "",
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
 
   useEffect(() => {
-    if (prefillData?.service) {
-      setForm((prev) => ({ ...prev, service: prefillData.service || prev.service }));
+    if (prefillData?.services && prefillData.services.length > 0) {
+      setForm((prev) => ({ ...prev, services: prefillData.services || prev.services }));
     }
     if (prefillData?.description) {
       setForm((prev) => ({ ...prev, description: prefillData.description || prev.description }));
     }
   }, [prefillData]);
+
+  const toggleService = (s: string) => {
+    setForm((prev) => {
+      const current = prev.services || [];
+      if (s === "Not sure yet") {
+        return {
+          ...prev,
+          services: current.includes("Not sure yet") ? [] : ["Not sure yet"],
+        };
+      } else {
+        const withoutNotSure = current.filter((item) => item !== "Not sure yet");
+        const nextServices = withoutNotSure.includes(s)
+          ? withoutNotSure.filter((item) => item !== s)
+          : [...withoutNotSure, s];
+        return {
+          ...prev,
+          services: nextServices,
+        };
+      }
+    });
+  };
 
   const validate = (): boolean => {
     const newErrors: Partial<Record<keyof FormData, string>> = {};
@@ -279,27 +301,38 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
         />
       </div>
 
-      {/* Service */}
+      {/* Services */}
       <div>
-        <label className="block text-sm font-semibold text-[var(--color-foreground)] mb-2">What do you need?</label>
-        <div className="flex flex-wrap gap-2">
-          {services.map((s) => (
-            <button
-              key={s}
-              type="button"
-              onClick={() => setForm({ ...form, service: s })}
-              className={cn(
-                "px-4 py-2 text-sm font-medium rounded-full border transition-colors cursor-pointer",
-                form.service === s
-                  ? "bg-[var(--color-accent)] text-black font-bold border-[var(--color-accent)]"
-                  : "bg-[var(--color-surface-elevated)] text-[var(--color-foreground-secondary)] border-[var(--color-border)] hover:border-[var(--color-accent)] hover:text-[var(--color-foreground)]"
-              )}
-            >
-              {s}
-            </button>
-          ))}
+        <div className="flex items-center justify-between mb-2">
+          <label className="block text-sm font-semibold text-[var(--color-foreground)]">
+            What do you need?
+          </label>
+          <span className="text-xs text-[var(--color-foreground-muted)]">
+            Select all that apply
+          </span>
         </div>
-        {form.service === "Not sure yet" && (
+        <div className="flex flex-wrap gap-2">
+          {services.map((s) => {
+            const isSelected = form.services.includes(s);
+            return (
+              <button
+                key={s}
+                type="button"
+                onClick={() => toggleService(s)}
+                className={cn(
+                  "px-4 py-2 text-sm font-medium rounded-full border transition-all cursor-pointer flex items-center gap-1.5",
+                  isSelected
+                    ? "bg-[var(--color-accent)] text-black font-bold border-[var(--color-accent)] shadow-sm"
+                    : "bg-[var(--color-surface-elevated)] text-[var(--color-foreground-secondary)] border-[var(--color-border)] hover:border-[var(--color-accent)] hover:text-[var(--color-foreground)]"
+                )}
+              >
+                {isSelected && <CheckCircle2 size={14} className="text-black shrink-0" />}
+                {s}
+              </button>
+            );
+          })}
+        </div>
+        {form.services.includes("Not sure yet") && (
           <p className="mt-3 text-xs text-[var(--color-foreground-secondary)] bg-[var(--color-accent)]/5 border border-[var(--color-accent)]/20 rounded-xl p-3 flex items-start gap-2 leading-relaxed">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] shrink-0 mt-1.5" />
             That&apos;s completely normal. Most clients don&apos;t know the exact technical solution when they start. Just describe your goals or challenges below, and we&apos;ll recommend the right direction.
@@ -323,30 +356,18 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
         {errors.description && <p className="mt-1 text-xs text-rose-500">{errors.description}</p>}
       </div>
 
-      {/* Budget + Timeline */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-semibold text-[var(--color-foreground)] mb-2">Budget (optional)</label>
-          <select
-            value={form.budget}
-            onChange={(e) => setForm({ ...form, budget: e.target.value })}
-            className="w-full px-4 py-3 border border-[var(--color-border)] rounded-xl text-sm text-[var(--color-foreground)] bg-[var(--color-surface-elevated)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent"
-          >
-            <option value="" className="bg-[var(--color-surface)]">Select a range</option>
-            {budgets.map((b) => <option key={b} value={b} className="bg-[var(--color-surface)]">{b}</option>)}
-          </select>
-        </div>
-        <div>
-          <label className="block text-sm font-semibold text-[var(--color-foreground)] mb-2">Timeline (optional)</label>
-          <select
-            value={form.timeline}
-            onChange={(e) => setForm({ ...form, timeline: e.target.value })}
-            className="w-full px-4 py-3 border border-[var(--color-border)] rounded-xl text-sm text-[var(--color-foreground)] bg-[var(--color-surface-elevated)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent"
-          >
-            <option value="" className="bg-[var(--color-surface)]">Select a timeline</option>
-            {timelines.map((t) => <option key={t} value={t} className="bg-[var(--color-surface)]">{t}</option>)}
-          </select>
-        </div>
+      {/* Timeline */}
+      <div>
+        <label className="block text-sm font-semibold text-[var(--color-foreground)] mb-2" htmlFor="timeline">Timeline (optional)</label>
+        <select
+          id="timeline"
+          value={form.timeline}
+          onChange={(e) => setForm({ ...form, timeline: e.target.value })}
+          className="w-full px-4 py-3 border border-[var(--color-border)] rounded-xl text-sm text-[var(--color-foreground)] bg-[var(--color-surface-elevated)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent"
+        >
+          <option value="" className="bg-[var(--color-surface)]">Select a timeline</option>
+          {timelines.map((t) => <option key={t} value={t} className="bg-[var(--color-surface)]">{t}</option>)}
+        </select>
       </div>
 
       {/* Error state */}
@@ -410,14 +431,14 @@ export default function ContactPageClient() {
 
   const [showForm, setShowForm] = useState(!!initialService);
   const [prefillData, setPrefillData] = useState<Partial<FormData> | undefined>(
-    initialService ? { service: initialService } : undefined
+    initialService ? { services: [initialService] } : undefined
   );
   const [activeMode, setActiveMode] = useState<"direct" | "discovery">("direct");
 
   useEffect(() => {
     if (serviceParam && serviceMap[serviceParam.toLowerCase()]) {
       const matched = serviceMap[serviceParam.toLowerCase()];
-      setPrefillData((prev) => ({ ...prev, service: matched }));
+      setPrefillData((prev) => ({ ...prev, services: [matched] }));
       setActiveMode("direct");
       setShowForm(true);
     }
