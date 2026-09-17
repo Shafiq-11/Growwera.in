@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Monitor, Search, BarChart2, Cpu, ArrowUpRight } from "lucide-react";
 
 interface NodeData {
@@ -110,12 +111,16 @@ export default function ServicesEcosystem() {
 
       {/* CENTER NODE: GROWWERA (Stable anchor) */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-        <div className="px-5 py-3 rounded-2xl bg-[var(--color-surface-elevated)] border-2 border-[var(--color-border-strong)] shadow-lg text-center min-w-[130px]">
-          <div className="flex items-center justify-center gap-1.5 mb-1">
-            <span className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse" />
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--color-foreground-muted)] font-bold">
-              GROWWERA
-            </span>
+        <div className="px-5 py-3 rounded-2xl bg-[var(--color-surface-elevated)] border-2 border-[var(--color-border-strong)] shadow-lg text-center min-w-[140px]">
+          <div className="flex items-center justify-center gap-1.5 mb-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] animate-pulse" />
+            <Image
+              src="/images/logo.png"
+              alt="Growwera"
+              width={80}
+              height={12}
+              className="h-3.5 w-auto object-contain"
+            />
           </div>
           <span className="text-xs font-bold text-[var(--color-foreground)] tracking-tight">
             Digital Ecosystem

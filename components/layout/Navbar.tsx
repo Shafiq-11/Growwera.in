@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
@@ -76,10 +77,17 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               href="/"
-              className="font-bold text-xl tracking-[0.14em] text-[var(--color-accent)] hover:opacity-90 transition-opacity flex items-center gap-1.5"
+              className="flex items-center hover:opacity-90 transition-opacity"
               aria-label="Growwera home"
             >
-              <span>GROWWERA</span>
+              <Image
+                src="/images/logo.png"
+                alt="Growwera"
+                width={150}
+                height={23}
+                priority
+                className="h-6 sm:h-7 w-auto object-contain"
+              />
             </Link>
 
             {/* Desktop Navigation */}
@@ -156,9 +164,15 @@ export default function Navbar() {
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between px-6 h-16 border-b border-[var(--color-border)]">
-            <span className="font-bold text-xl tracking-[0.12em] text-[var(--color-foreground)]">
-              GROWWERA
-            </span>
+            <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center">
+              <Image
+                src="/images/logo.png"
+                alt="Growwera"
+                width={130}
+                height={20}
+                className="h-5 sm:h-6 w-auto object-contain"
+              />
+            </Link>
             <button
               onClick={() => setMobileOpen(false)}
               className="p-2 rounded-lg text-[var(--color-foreground-secondary)] hover:text-[var(--color-foreground)] hover:bg-[var(--color-border)]/50 transition-colors"

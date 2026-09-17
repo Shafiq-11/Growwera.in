@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Lock, ArrowRight, ShieldCheck, Eye, EyeOff, AlertCircle } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AdminLoginPage() {
   const [password, setPassword] = useState("");
@@ -52,10 +53,15 @@ export default function AdminLoginPage() {
       <div className="max-w-md w-full relative z-10">
         {/* Brand header */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-block mb-3">
-            <span className="font-bold text-2xl tracking-[0.16em] text-[var(--color-accent)]">
-              GROWWERA
-            </span>
+          <Link href="/" className="inline-flex justify-center mb-3 hover:opacity-90 transition-opacity">
+            <Image
+              src="/images/logo.png"
+              alt="Growwera"
+              width={180}
+              height={27}
+              priority
+              className="h-8 w-auto object-contain mx-auto"
+            />
           </Link>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--color-accent)]/15 border border-[var(--color-accent)]/30 text-[var(--color-accent)] text-xs font-bold uppercase tracking-wider mb-3">
             <ShieldCheck size={14} />

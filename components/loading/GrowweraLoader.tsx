@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function GrowweraLoader() {
   const [stage, setStage] = useState<"logo" | "tagline" | "done">("logo");
@@ -104,9 +105,16 @@ export default function GrowweraLoader() {
                   />
                 </svg>
 
-                <span className="font-bold text-2xl tracking-[0.24em] text-[var(--color-foreground)] relative z-10">
-                  GROWWERA
-                </span>
+                <div className="relative z-10 flex items-center justify-center">
+                  <Image
+                    src="/images/logo.png"
+                    alt="Growwera"
+                    width={220}
+                    height={34}
+                    priority
+                    className="h-9 w-auto object-contain drop-shadow-[0_4px_12px_rgba(245,186,39,0.3)]"
+                  />
+                </div>
                 <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-[var(--color-foreground-muted)] mt-3 relative z-10">
                   Building digital experiences...
                 </span>

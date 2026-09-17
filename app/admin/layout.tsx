@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import {
@@ -54,9 +55,13 @@ export default function AdminLayout({
             {/* Logo + Admin Badge */}
             <div className="flex items-center gap-6">
               <Link href="/admin" className="flex items-center gap-2.5">
-                <span className="font-bold text-xl tracking-[0.14em] text-[var(--color-accent)]">
-                  GROWWERA
-                </span>
+                <Image
+                  src="/images/logo.png"
+                  alt="Growwera"
+                  width={120}
+                  height={18}
+                  className="h-5 w-auto object-contain"
+                />
                 <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[var(--color-accent)]/15 text-[var(--color-accent)] border border-[var(--color-accent)]/30">
                   <ShieldCheck size={12} />
                   Admin

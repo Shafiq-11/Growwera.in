@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const footerLinks = {
@@ -39,9 +40,16 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link
               href="/"
-              className="inline-block font-bold text-2xl tracking-[0.14em] text-[var(--color-accent)] hover:opacity-90 transition-opacity mb-4"
+              className="inline-block hover:opacity-90 transition-opacity mb-4"
+              aria-label="Growwera home"
             >
-              GROWWERA
+              <Image
+                src="/images/logo.png"
+                alt="Growwera"
+                width={160}
+                height={24}
+                className="h-7 w-auto object-contain"
+              />
             </Link>
             <p className="text-[var(--color-foreground-secondary)] text-base leading-relaxed max-w-xs font-normal">
               Digital solutions for growing businesses.
