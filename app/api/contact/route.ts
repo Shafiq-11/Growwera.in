@@ -63,13 +63,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Services formatting
+    // 4. Services formatting & validation
     const serviceList: string[] = Array.isArray(services)
       ? services
       : typeof service === "string" && service
       ? [service]
       : [];
-    const serviceFormatted = serviceList.length > 0 ? serviceList.join(", ") : null;
+    if (serviceList.length === 0) {
+      return NextResponse.json(
+        { error: "Please select at least one service." },
+        { status: 400 }
+      );
+    }
+    const serviceFormatted = serviceList.join(", ");
 
     // Prepare Supabase client (supports service_role key or anon key)
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -86,6 +92,14 @@ export async function POST(req: NextRequest) {
       } catch (err) {
         console.error("Failed to initialize Supabase client:", err);
       }
+    }
+
+    if (!supabase) {
+      console.error("Supabase client is not configured");
+      return NextResponse.json(
+        { error: "Database configuration error. Please try again later." },
+        { status: 500 }
+      );
     }
 
     // 5. Generate Unique Enquiry ID (e.g. GW-2026-0001)
@@ -110,43 +124,47 @@ export async function POST(req: NextRequest) {
       notes: null,
     };
 
-    // 6. ALWAYS save to persistent local store so it immediately displays in Admin
+    // 6. Save directly to Supabase database
+    try {
+      const { error: dbError } = await supabase.from("enquiries").insert([
+        {
+          id: enquiryRecord.id,
+          enquiry_id: enquiryRecord.enquiry_id,
+          name: enquiryRecord.name,
+          mobile_number: enquiryRecord.mobile_number,
+          email: enquiryRecord.email,
+          company: enquiryRecord.company,
+          service: enquiryRecord.service,
+          budget: enquiryRecord.budget,
+          timeline: enquiryRecord.timeline,
+          message: enquiryRecord.message,
+          source: enquiryRecord.source,
+          status: enquiryRecord.status,
+          notes: enquiryRecord.notes,
+        },
+      ]);
+
+      if (dbError) {
+        console.error("Supabase insert error:", dbError);
+        return NextResponse.json(
+          { error: "Failed to save your enquiry to the database. Please try again." },
+          { status: 500 }
+        );
+      }
+    } catch (supabaseErr) {
+      console.error("Supabase request exception:", supabaseErr);
+      return NextResponse.json(
+        { error: "Failed to connect to the database. Please try again." },
+        { status: 500 }
+      );
+    }
+
+    // 7. Save to persistent local store so Admin can display it even offline
     try {
       const { saveLocalEnquiry } = await import("@/lib/enquiry-store");
       await saveLocalEnquiry(enquiryRecord);
     } catch (saveErr) {
-      console.error("Local enquiry save error:", saveErr);
-    }
-
-    // 7. Also save to Supabase if configured
-    if (supabase) {
-      try {
-        const { error: dbError } = await supabase.from("enquiries").insert([
-          {
-            id: enquiryRecord.id,
-            enquiry_id: enquiryRecord.enquiry_id,
-            name: enquiryRecord.name,
-            mobile_number: enquiryRecord.mobile_number,
-            email: enquiryRecord.email,
-            company: enquiryRecord.company,
-            service: enquiryRecord.service,
-            budget: enquiryRecord.budget,
-            timeline: enquiryRecord.timeline,
-            message: enquiryRecord.message,
-            source: enquiryRecord.source,
-            status: enquiryRecord.status,
-            notes: enquiryRecord.notes,
-          },
-        ]);
-
-        if (dbError) {
-          console.error("Supabase insert error (stored locally as fallback):", dbError);
-        }
-      } catch (supabaseErr) {
-        console.error("Supabase request error (stored locally as fallback):", supabaseErr);
-      }
-    } else {
-      console.log("Contact form submission stored locally (Supabase not configured):", enquiryRecord);
+      console.error("Local enquiry save backup error:", saveErr);
     }
 
     // 7. Send Email Notification via Resend
