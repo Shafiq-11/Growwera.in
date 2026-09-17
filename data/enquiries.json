@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": "5306f0ad-1acc-4443-8168-c6c7cdf710c6",
+    "enquiry_id": "GW-2026-0001",
+    "created_at": "2026-09-17T11:09:29.179Z",
+    "name": "Shafiq ahamed",
+    "mobile_number": "+91 90921 98835",
+    "email": "shafiqahamedsha11@gmail.com",
+    "company": null,
+    "service": null,
+    "budget": null,
+    "timeline": null,
+    "message": "dfd",
+    "source": "Website",
+    "status": "New",
+    "notes": null
+  }
+]
