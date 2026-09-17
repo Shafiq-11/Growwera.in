@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { isAuthenticatedAdmin } from "@/lib/admin-auth";
 import type { Enquiry } from "@/lib/enquiry-helpers";
 import { getLocalEnquiries } from "@/lib/enquiry-store";
+import { getSupabaseServerClient } from "@/lib/supabase-server";
 
 export async function GET(req: NextRequest) {
   const isAuth = await isAuthenticatedAdmin(req);
@@ -12,19 +13,12 @@ export async function GET(req: NextRequest) {
   // 1. Fetch local enquiries first (guaranteed fallback)
   const localEnquiries = await getLocalEnquiries();
 
-  // 2. Check Supabase credentials (supports service_role key or anon key)
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey =
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-    process.env.SUPABASE_KEY;
-
+  // 2. Initialize Supabase client
+  const { supabase } = getSupabaseServerClient();
   let allEnquiries: Enquiry[] = [...localEnquiries];
 
-  if (supabaseUrl && supabaseKey) {
+  if (supabase) {
     try {
-      const { createClient } = await import("@supabase/supabase-js");
-      const supabase = createClient(supabaseUrl, supabaseKey);
 
       const { data: dbEnquiries, error: dbError } = await supabase
         .from("enquiries")

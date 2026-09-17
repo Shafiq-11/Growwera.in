@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { isAuthenticatedAdmin } from "@/lib/admin-auth";
 import { updateLocalEnquiry, deleteLocalEnquiry } from "@/lib/enquiry-store";
 import type { EnquiryStatus } from "@/lib/enquiry-helpers";
+import { getSupabaseServerClient } from "@/lib/supabase-server";
 
 export async function PATCH(
   req: NextRequest,
@@ -23,17 +24,10 @@ export async function PATCH(
   });
 
   // 2. Also update Supabase if configured
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey =
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-    process.env.SUPABASE_KEY;
+  const { supabase } = getSupabaseServerClient();
 
-  if (supabaseUrl && supabaseKey) {
+  if (supabase) {
     try {
-      const { createClient } = await import("@supabase/supabase-js");
-      const supabase = createClient(supabaseUrl, supabaseKey);
-
       const updatePayload: Record<string, unknown> = {};
       if (status !== undefined) updatePayload.status = status;
       if (notes !== undefined) updatePayload.notes = notes;
@@ -65,17 +59,10 @@ export async function DELETE(
   await deleteLocalEnquiry(id);
 
   // 2. Delete from Supabase if configured
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey =
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-    process.env.SUPABASE_KEY;
+  const { supabase } = getSupabaseServerClient();
 
-  if (supabaseUrl && supabaseKey) {
+  if (supabase) {
     try {
-      const { createClient } = await import("@supabase/supabase-js");
-      const supabase = createClient(supabaseUrl, supabaseKey);
-
       await supabase.from("enquiries").delete().or(`id.eq.${id},enquiry_id.eq.${id}`);
     } catch (err) {
       console.warn("Supabase delete error (deleted locally):", err);

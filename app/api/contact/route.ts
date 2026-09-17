@@ -3,6 +3,7 @@ import {
   validateAndNormalizeIndianMobile,
   generateUniqueEnquiryId,
 } from "@/lib/enquiry-helpers";
+import { getSupabaseServerClient } from "@/lib/supabase-server";
 
 export async function POST(req: NextRequest) {
   try {
@@ -77,27 +78,16 @@ export async function POST(req: NextRequest) {
     }
     const serviceFormatted = serviceList.join(", ");
 
-    // Prepare Supabase client (supports service_role key or anon key)
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey =
-      process.env.SUPABASE_SERVICE_ROLE_KEY ||
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-      process.env.SUPABASE_KEY;
-    let supabase = null;
-
-    if (supabaseUrl && supabaseKey) {
-      try {
-        const { createClient } = await import("@supabase/supabase-js");
-        supabase = createClient(supabaseUrl, supabaseKey);
-      } catch (err) {
-        console.error("Failed to initialize Supabase client:", err);
-      }
-    }
+    // Initialize server-side Supabase client (handles both env vars and project defaults)
+    const { supabase, error: supabaseInitError, missingVars } = getSupabaseServerClient();
 
     if (!supabase) {
-      console.error("Supabase client is not configured");
+      console.error("Supabase client is not available:", supabaseInitError, missingVars);
       return NextResponse.json(
-        { error: "Database configuration error. Please try again later." },
+        {
+          error: `Database configuration error: ${supabaseInitError || "Supabase credentials missing"}. Please check your environment variables.`,
+          details: missingVars ? `Missing variables: ${missingVars.join(", ")}` : null,
+        },
         { status: 500 }
       );
     }
@@ -145,16 +135,26 @@ export async function POST(req: NextRequest) {
       ]);
 
       if (dbError) {
-        console.error("Supabase insert error:", dbError);
+        console.error("Supabase insert error details:", {
+          message: dbError.message,
+          code: dbError.code,
+          details: dbError.details,
+          hint: dbError.hint,
+        });
         return NextResponse.json(
-          { error: "Failed to save your enquiry to the database. Please try again." },
+          {
+            error: `Database insert failed: ${dbError.message}${dbError.code ? ` (${dbError.code})` : ""}`,
+            details: dbError.details || dbError.hint || null,
+          },
           { status: 500 }
         );
       }
-    } catch (supabaseErr) {
+    } catch (supabaseErr: any) {
       console.error("Supabase request exception:", supabaseErr);
       return NextResponse.json(
-        { error: "Failed to connect to the database. Please try again." },
+        {
+          error: `Database connection error: ${supabaseErr?.message || "Failed to reach Supabase"}`,
+        },
         { status: 500 }
       );
     }
