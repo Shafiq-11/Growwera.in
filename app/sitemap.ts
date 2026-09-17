@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://growwera.com";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
+    "https://growwera-in.vercel.app";
   const now = new Date();
 
   return [

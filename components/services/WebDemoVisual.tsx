@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { MousePointer, ArrowRight } from "lucide-react";
@@ -16,7 +16,7 @@ export default function WebDemoVisual() {
         <div className="w-2 h-2 rounded-full bg-amber-500/70" />
         <div className="w-2 h-2 rounded-full bg-emerald-500/70" />
         <div className="ml-2 text-[9px] font-mono text-[var(--color-foreground-muted)] px-2 py-0.5 bg-[var(--color-surface)] rounded-md border border-[var(--color-border)]">
-          growwera.com/preview
+          growwera-in.vercel.app/preview
         </div>
       </div>
 

@@ -30,8 +30,12 @@ const caveat = Caveat({
   weight: ["400", "500", "600", "700"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
+  "https://growwera-in.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://growwera.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Growwera — Digital Solutions for Growing Businesses",
     template: "%s | Growwera",
@@ -52,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://growwera.com",
+    url: siteUrl,
     siteName: "Growwera",
     title: "Growwera — Digital Solutions for Growing Businesses",
     description:
