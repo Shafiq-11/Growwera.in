@@ -54,6 +54,10 @@ export default function Navbar() {
 
   const isActive = (href: string) => pathname === href;
 
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <>
       <motion.header

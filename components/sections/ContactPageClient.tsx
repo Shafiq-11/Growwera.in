@@ -10,11 +10,13 @@ type FormState = "idle" | "submitting" | "success" | "error";
 
 interface FormData {
   name: string;
+  mobile_number: string;
   email: string;
   company: string;
   services: string[];
-  description: string;
+  budget: string;
   timeline: string;
+  description: string;
 }
 
 const services = [
@@ -23,6 +25,14 @@ const services = [
   "Digital Marketing",
   "AI & Automation",
   "Not sure yet",
+];
+
+const budgets = [
+  "Under ₹50,000 / < £500",
+  "₹50,000 – ₹1,50,000 / £500 – £1,500",
+  "₹1,50,000 – ₹5,00,000 / £1,500 – £5,000",
+  "₹5,00,000+ / £5,000+",
+  "Flexible / Prefer to discuss",
 ];
 
 const discoveryGoals = [
@@ -160,13 +170,17 @@ function DiscoveryQuestionnaire({ onComplete }: { onComplete: (data: Partial<For
 
 function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
   const [formState, setFormState] = useState<FormState>("idle");
+  const [submittedEnquiryId, setSubmittedEnquiryId] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [form, setForm] = useState<FormData>({
     name: "",
+    mobile_number: "",
     email: "",
     company: "",
     services: prefillData?.services || [],
-    description: prefillData?.description || "",
+    budget: "",
     timeline: "",
+    description: prefillData?.description || "",
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
 
@@ -203,9 +217,28 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
   const validate = (): boolean => {
     const newErrors: Partial<Record<keyof FormData, string>> = {};
     if (!form.name.trim()) newErrors.name = "Name is required";
-    if (!form.email.trim()) newErrors.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) newErrors.email = "Enter a valid email address";
-    if (!form.description.trim()) newErrors.description = "Please describe your project";
+
+    // Mobile Number validation (Indian mobile format: 10 digits starting with 6-9)
+    if (!form.mobile_number.trim()) {
+      newErrors.mobile_number = "Please enter your mobile number.";
+    } else {
+      const stripped = form.mobile_number.trim().replace(/[\s\-\(\)\.]/g, "");
+      const indianMobileRegex = /^(?:\+91|91|0)?([6-9]\d{9})$/;
+      if (!indianMobileRegex.test(stripped)) {
+        newErrors.mobile_number = "Please enter a valid mobile number.";
+      }
+    }
+
+    if (!form.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      newErrors.email = "Enter a valid email address";
+    }
+
+    if (!form.description.trim()) {
+      newErrors.description = "Please describe your project or requirements";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -215,18 +248,26 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
     if (!validate()) return;
 
     setFormState("submitting");
+    setErrorMessage("");
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (res.ok) {
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setSubmittedEnquiryId(data.enquiryId || null);
         setFormState("success");
       } else {
+        setErrorMessage(
+          data.error || "Something went wrong while sending your enquiry. Please try again."
+        );
         setFormState("error");
       }
     } catch {
+      setErrorMessage("Something went wrong while sending your enquiry. Please try again.");
       setFormState("error");
     }
   };
@@ -234,26 +275,51 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
   const inputClass = (field: keyof FormData) =>
     cn(
       "w-full px-4 py-3 border rounded-xl text-sm text-[var(--color-foreground)] placeholder-[var(--color-foreground-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-colors",
-      errors[field] ? "border-rose-500/70 bg-rose-500/10" : "border-[var(--color-border)] bg-[var(--color-surface-elevated)] hover:border-[var(--color-border-strong)]"
+      errors[field]
+        ? "border-rose-500/70 bg-rose-500/10"
+        : "border-[var(--color-border)] bg-[var(--color-surface-elevated)] hover:border-[var(--color-border-strong)]"
     );
 
   if (formState === "success") {
     return (
-      <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-10 text-center shadow-[var(--shadow-paper)]">
+      <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-8 sm:p-12 text-center shadow-[var(--shadow-paper)]">
         <div className="w-16 h-16 bg-emerald-500/15 rounded-full flex items-center justify-center mx-auto mb-5 border border-emerald-500/30">
           <CheckCircle2 size={32} className="text-emerald-500" />
         </div>
-        <h3 className="text-2xl font-bold text-[var(--color-foreground)] mb-3">Enquiry received.</h3>
-        <p className="text-[var(--color-foreground-secondary)] leading-relaxed max-w-sm mx-auto">
-          Thank you for reaching out. We&apos;ll review your message and get back to you within 1–2 business days.
+        <h3 className="text-2xl sm:text-3xl font-bold text-[var(--color-foreground)] mb-3">
+          Thanks for reaching out.
+        </h3>
+        <p className="text-[var(--color-foreground-secondary)] leading-relaxed max-w-md mx-auto mb-6 text-sm sm:text-base">
+          We&apos;ve received your enquiry and will get back to you within 1–2 business days.
         </p>
+
+        {submittedEnquiryId && (
+          <div className="inline-flex flex-col items-center justify-center bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/30 rounded-2xl px-6 py-4 mb-8">
+            <span className="text-xs uppercase tracking-wider font-semibold text-[var(--color-accent)] mb-1">
+              Your Enquiry Reference
+            </span>
+            <span className="text-xl sm:text-2xl font-mono font-bold text-[var(--color-foreground)] tracking-wide">
+              Enquiry ID: {submittedEnquiryId}
+            </span>
+          </div>
+        )}
+
+        <div>
+          <a
+            href="/"
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-black text-sm font-bold rounded-xl hover:bg-[var(--color-accent-hover)] transition-all shadow-md cursor-pointer"
+          >
+            Back to Home
+            <ArrowRight size={16} />
+          </a>
+        </div>
       </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit} className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-7 sm:p-9 space-y-6 shadow-[var(--shadow-paper)]" noValidate>
-      {/* Name + Email */}
+      {/* Name + Mobile */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-semibold text-[var(--color-foreground)] mb-2" htmlFor="name">
@@ -271,6 +337,25 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
           {errors.name && <p className="mt-1 text-xs text-rose-500">{errors.name}</p>}
         </div>
         <div>
+          <label className="block text-sm font-semibold text-[var(--color-foreground)] mb-2" htmlFor="mobile_number">
+            Mobile Number <span className="text-rose-500">*</span>
+          </label>
+          <input
+            id="mobile_number"
+            type="tel"
+            autoComplete="tel"
+            value={form.mobile_number}
+            onChange={(e) => setForm({ ...form, mobile_number: e.target.value })}
+            className={inputClass("mobile_number")}
+            placeholder="+91 98765 43210"
+          />
+          {errors.mobile_number && <p className="mt-1 text-xs text-rose-500">{errors.mobile_number}</p>}
+        </div>
+      </div>
+
+      {/* Email + Company */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
           <label className="block text-sm font-semibold text-[var(--color-foreground)] mb-2" htmlFor="email">
             Email <span className="text-rose-500">*</span>
           </label>
@@ -285,20 +370,20 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
           />
           {errors.email && <p className="mt-1 text-xs text-rose-500">{errors.email}</p>}
         </div>
-      </div>
-
-      {/* Company */}
-      <div>
-        <label className="block text-sm font-semibold text-[var(--color-foreground)] mb-2" htmlFor="company">Company</label>
-        <input
-          id="company"
-          type="text"
-          autoComplete="organization"
-          value={form.company}
-          onChange={(e) => setForm({ ...form, company: e.target.value })}
-          className={inputClass("company")}
-          placeholder="Your company name (optional)"
-        />
+        <div>
+          <label className="block text-sm font-semibold text-[var(--color-foreground)] mb-2" htmlFor="company">
+            Company / Business (optional)
+          </label>
+          <input
+            id="company"
+            type="text"
+            autoComplete="organization"
+            value={form.company}
+            onChange={(e) => setForm({ ...form, company: e.target.value })}
+            className={inputClass("company")}
+            placeholder="Your company name"
+          />
+        </div>
       </div>
 
       {/* Services */}
@@ -340,10 +425,42 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
         )}
       </div>
 
-      {/* Description */}
+      {/* Budget + Timeline */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-semibold text-[var(--color-foreground)] mb-2" htmlFor="budget">
+            Budget (optional)
+          </label>
+          <select
+            id="budget"
+            value={form.budget}
+            onChange={(e) => setForm({ ...form, budget: e.target.value })}
+            className="w-full px-4 py-3 border border-[var(--color-border)] rounded-xl text-sm text-[var(--color-foreground)] bg-[var(--color-surface-elevated)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent"
+          >
+            <option value="" className="bg-[var(--color-surface)]">Select a budget range</option>
+            {budgets.map((b) => <option key={b} value={b} className="bg-[var(--color-surface)]">{b}</option>)}
+          </select>
+        </div>
+        <div>
+          <label className="block text-sm font-semibold text-[var(--color-foreground)] mb-2" htmlFor="timeline">
+            Timeline (optional)
+          </label>
+          <select
+            id="timeline"
+            value={form.timeline}
+            onChange={(e) => setForm({ ...form, timeline: e.target.value })}
+            className="w-full px-4 py-3 border border-[var(--color-border)] rounded-xl text-sm text-[var(--color-foreground)] bg-[var(--color-surface-elevated)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent"
+          >
+            <option value="" className="bg-[var(--color-surface)]">Select a timeline</option>
+            {timelines.map((t) => <option key={t} value={t} className="bg-[var(--color-surface)]">{t}</option>)}
+          </select>
+        </div>
+      </div>
+
+      {/* Message / Requirements */}
       <div>
         <label className="block text-sm font-semibold text-[var(--color-foreground)] mb-2" htmlFor="description">
-          Project description <span className="text-rose-500">*</span>
+          Message / Requirements <span className="text-rose-500">*</span>
         </label>
         <textarea
           id="description"
@@ -356,29 +473,15 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
         {errors.description && <p className="mt-1 text-xs text-rose-500">{errors.description}</p>}
       </div>
 
-      {/* Timeline */}
-      <div>
-        <label className="block text-sm font-semibold text-[var(--color-foreground)] mb-2" htmlFor="timeline">Timeline (optional)</label>
-        <select
-          id="timeline"
-          value={form.timeline}
-          onChange={(e) => setForm({ ...form, timeline: e.target.value })}
-          className="w-full px-4 py-3 border border-[var(--color-border)] rounded-xl text-sm text-[var(--color-foreground)] bg-[var(--color-surface-elevated)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent"
-        >
-          <option value="" className="bg-[var(--color-surface)]">Select a timeline</option>
-          {timelines.map((t) => <option key={t} value={t} className="bg-[var(--color-surface)]">{t}</option>)}
-        </select>
-      </div>
-
       {/* Error state */}
       {formState === "error" && (
         <div className="flex items-start gap-3 p-4 bg-rose-500/10 border border-rose-500/30 rounded-xl">
           <AlertCircle size={18} className="text-rose-500 mt-0.5 shrink-0" />
           <div>
-            <p className="text-sm font-semibold text-rose-500">Something went wrong</p>
+            <p className="text-sm font-semibold text-rose-500">Something went wrong while sending your enquiry.</p>
             <p className="text-sm text-rose-500/80 mt-0.5">
-              Your enquiry couldn&apos;t be sent. Please email us directly at{" "}
-              <a href="mailto:hello@growwera.com" className="underline text-rose-500 font-medium">hello@growwera.com</a>
+              {errorMessage || "Please try again or email us directly at "}
+              <a href="mailto:hello@growwera.com" className="underline text-rose-500 font-medium ml-1">hello@growwera.com</a>
             </p>
           </div>
         </div>
@@ -388,16 +491,16 @@ function ContactForm({ prefillData }: { prefillData?: Partial<FormData> }) {
       <button
         type="submit"
         disabled={formState === "submitting"}
-        className="group w-full inline-flex items-center justify-center gap-2 px-7 py-4 bg-[var(--color-accent)] text-white text-base font-semibold rounded-xl hover:bg-[var(--color-accent-hover)] disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 shadow-[0_4px_16px_rgba(245,186,39,0.3)] cursor-pointer"
+        className="group w-full inline-flex items-center justify-center gap-2 px-7 py-4 bg-[var(--color-accent)] text-black text-base font-bold rounded-xl hover:bg-[var(--color-accent-hover)] disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 shadow-[0_4px_16px_rgba(245,186,39,0.3)] cursor-pointer"
       >
         {formState === "submitting" ? (
           <>
-            <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            Sending…
+            <span className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+            Sending...
           </>
         ) : (
           <>
-            Send Project Enquiry
+            Send Enquiry
             <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
           </>
         )}

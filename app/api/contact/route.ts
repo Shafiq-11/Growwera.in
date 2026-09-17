@@ -1,11 +1,69 @@
 import { NextRequest, NextResponse } from "next/server";
+import {
+  validateAndNormalizeIndianMobile,
+  generateUniqueEnquiryId,
+} from "@/lib/enquiry-helpers";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, company, service, services, description, timeline } = body;
+    const {
+      name,
+      mobile_number,
+      mobile,
+      email,
+      company,
+      service,
+      services,
+      budget,
+      timeline,
+      description,
+      message,
+    } = body;
 
-    // Support both services array and single service string for backwards compatibility
+    // 1. Mandatory Name Validation
+    if (!name?.trim()) {
+      return NextResponse.json(
+        { error: "Name is required." },
+        { status: 400 }
+      );
+    }
+
+    // 2. Mandatory Mobile Number Validation (Indian standard)
+    const rawMobile = mobile_number || mobile || "";
+    const mobileResult = validateAndNormalizeIndianMobile(rawMobile);
+    if (!mobileResult.isValid) {
+      return NextResponse.json(
+        { error: mobileResult.error || "Please enter a valid mobile number." },
+        { status: 400 }
+      );
+    }
+
+    // 3. Mandatory Email Validation
+    if (!email?.trim()) {
+      return NextResponse.json(
+        { error: "Email is required." },
+        { status: 400 }
+      );
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address." },
+        { status: 400 }
+      );
+    }
+
+    // 4. Message / Requirements Validation
+    const userMessage = (description || message || "").trim();
+    if (!userMessage) {
+      return NextResponse.json(
+        { error: "Please describe your project or requirements." },
+        { status: 400 }
+      );
+    }
+
+    // Services formatting
     const serviceList: string[] = Array.isArray(services)
       ? services
       : typeof service === "string" && service
@@ -13,63 +71,61 @@ export async function POST(req: NextRequest) {
       : [];
     const serviceFormatted = serviceList.length > 0 ? serviceList.join(", ") : null;
 
-    // Basic validation
-    if (!name?.trim() || !email?.trim() || !description?.trim()) {
-      return NextResponse.json(
-        { error: "Name, email, and description are required." },
-        { status: 400 }
-      );
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Invalid email address." },
-        { status: 400 }
-      );
-    }
-
-    // Attempt Supabase insert if credentials are available
+    // Prepare Supabase client
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    let supabase = null;
 
     if (supabaseUrl && supabaseKey) {
       const { createClient } = await import("@supabase/supabase-js");
-      const supabase = createClient(supabaseUrl, supabaseKey);
+      supabase = createClient(supabaseUrl, supabaseKey);
+    }
 
+    // 5. Generate Unique Enquiry ID (e.g. GW-2026-0001)
+    const enquiryId = await generateUniqueEnquiryId(supabase);
+    const submissionDate = new Date();
+
+    // 6. Save to Supabase
+    if (supabase) {
       const { error: dbError } = await supabase.from("enquiries").insert([
         {
+          enquiry_id: enquiryId,
           name: name.trim(),
+          mobile_number: mobileResult.normalized,
           email: email.trim().toLowerCase(),
           company: company?.trim() || null,
           service: serviceFormatted,
-          description: description.trim(),
-          budget: null,
-          timeline: timeline || null,
+          budget: budget?.trim() || null,
+          timeline: timeline?.trim() || null,
+          message: userMessage,
+          source: "Website",
+          status: "New",
+          notes: null,
         },
       ]);
 
       if (dbError) {
         console.error("Supabase insert error:", dbError);
         return NextResponse.json(
-          { error: "Database error. Please try again." },
+          { error: "Something went wrong while saving your enquiry. Please try again." },
           { status: 500 }
         );
       }
     } else {
-      // Log to console in development when Supabase isn't configured
       console.log("Contact form submission (Supabase not configured):", {
+        enquiryId,
         name,
+        mobile: mobileResult.normalized,
         email,
         company,
         services: serviceList,
-        description,
+        budget,
         timeline,
+        message: userMessage,
       });
     }
 
-    // Attempt email notification via Resend if configured
+    // 7. Send Email Notification via Resend
     const resendKey = process.env.RESEND_API_KEY;
     const notifyEmail = process.env.NOTIFY_EMAIL || "hello@growwera.com";
 
@@ -77,29 +133,84 @@ export async function POST(req: NextRequest) {
       const { Resend } = await import("resend");
       const resend = new Resend(resendKey);
 
+      const formattedDateTime = submissionDate.toLocaleString("en-IN", {
+        dateStyle: "medium",
+        timeStyle: "short",
+      });
+
       await resend.emails.send({
         from: "Growwera Contact Form <noreply@growwera.com>",
         to: notifyEmail,
-        subject: `New project enquiry from ${name}`,
+        subject: `New Growwera Enquiry — ${enquiryId}`,
         html: `
-          <h2>New enquiry from Growwera website</h2>
-          <table style="border-collapse: collapse; width: 100%;">
-            <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Name</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${name}</td></tr>
-            <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Email</td><td style="padding: 8px; border-bottom: 1px solid #eee;"><a href="mailto:${email}">${email}</a></td></tr>
-            <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Company</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${company || "—"}</td></tr>
-            <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Services Requested</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${serviceFormatted || "—"}</td></tr>
-            <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Timeline</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${timeline || "—"}</td></tr>
-            <tr><td style="padding: 8px; font-weight: bold;">Description</td><td style="padding: 8px; white-space: pre-wrap;">${description}</td></tr>
-          </table>
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #111;">
+            <div style="background-color: #f5ba27; padding: 18px 24px; border-radius: 8px 8px 0 0;">
+              <h2 style="margin: 0; color: #000; font-size: 20px;">New Growwera Enquiry Received</h2>
+              <p style="margin: 4px 0 0; color: #222; font-size: 14px; font-weight: bold;">Enquiry ID: ${enquiryId}</p>
+            </div>
+            
+            <div style="padding: 24px; border: 1px solid #e5e5e5; border-top: none; border-radius: 0 0 8px 8px; background-color: #fff;">
+              <table style="border-collapse: collapse; width: 100%; font-size: 14px;">
+                <tr>
+                  <td style="padding: 10px 8px; font-weight: bold; border-bottom: 1px solid #eee; width: 35%;">Enquiry ID</td>
+                  <td style="padding: 10px 8px; border-bottom: 1px solid #eee; font-family: monospace; font-weight: bold; color: #b8860b;">${enquiryId}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 8px; font-weight: bold; border-bottom: 1px solid #eee;">Date & Time</td>
+                  <td style="padding: 10px 8px; border-bottom: 1px solid #eee;">${formattedDateTime}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 8px; font-weight: bold; border-bottom: 1px solid #eee;">Name</td>
+                  <td style="padding: 10px 8px; border-bottom: 1px solid #eee; font-weight: bold;">${name}</td>
+                </tr>
+                <tr style="background-color: #fefce8;">
+                  <td style="padding: 10px 8px; font-weight: bold; border-bottom: 1px solid #eee; color: #854d0e;">Mobile Number *</td>
+                  <td style="padding: 10px 8px; border-bottom: 1px solid #eee; font-weight: bold; color: #854d0e; font-size: 15px;">
+                    <a href="tel:${mobileResult.normalized.replace(/\s+/g, '')}" style="color: #854d0e; text-decoration: none;">${mobileResult.normalized}</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 8px; font-weight: bold; border-bottom: 1px solid #eee;">Email</td>
+                  <td style="padding: 10px 8px; border-bottom: 1px solid #eee;"><a href="mailto:${email}" style="color: #2563eb;">${email}</a></td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 8px; font-weight: bold; border-bottom: 1px solid #eee;">Company / Business</td>
+                  <td style="padding: 10px 8px; border-bottom: 1px solid #eee;">${company || "—"}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 8px; font-weight: bold; border-bottom: 1px solid #eee;">Service(s)</td>
+                  <td style="padding: 10px 8px; border-bottom: 1px solid #eee;">${serviceFormatted || "—"}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 8px; font-weight: bold; border-bottom: 1px solid #eee;">Budget</td>
+                  <td style="padding: 10px 8px; border-bottom: 1px solid #eee;">${budget || "—"}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 8px; font-weight: bold; border-bottom: 1px solid #eee;">Timeline</td>
+                  <td style="padding: 10px 8px; border-bottom: 1px solid #eee;">${timeline || "—"}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 8px; font-weight: bold; vertical-align: top; border-bottom: 1px solid #eee;">Message / Requirements</td>
+                  <td style="padding: 10px 8px; white-space: pre-wrap; border-bottom: 1px solid #eee; line-height: 1.5;">${userMessage}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
         `,
       });
     }
 
-    return NextResponse.json({ success: true }, { status: 200 });
+    return NextResponse.json(
+      {
+        success: true,
+        enquiryId,
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Contact API error:", error);
     return NextResponse.json(
-      { error: "Something went wrong. Please try again." },
+      { error: "Something went wrong while sending your enquiry. Please try again." },
       { status: 500 }
     );
   }
