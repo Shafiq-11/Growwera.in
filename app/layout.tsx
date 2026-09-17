@@ -3,7 +3,6 @@ import { Plus_Jakarta_Sans, Instrument_Serif, Caveat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import ScrollTracker from "@/components/layout/ScrollTracker";
 import GrowweraLoader from "@/components/loading/GrowweraLoader";
 import PaperBackground from "@/components/decorative/PaperBackground";
 import ScrollProgress from "@/components/shared/ScrollProgress";
@@ -112,7 +111,6 @@ export default function RootLayout({
           <GrowweraLoader />
           <PaperBackground />
           <Navbar />
-          <ScrollTracker />
           <main className="flex-1 relative z-10">{children}</main>
           <Footer />
         </ThemeProvider>
