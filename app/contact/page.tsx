@@ -4,9 +4,38 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import ContactPageClient from "@/components/sections/ContactPageClient";
 
 export const metadata: Metadata = {
-  title: "Contact — Start a Project",
+  title: "Contact",
   description:
-    "Tell Growwera about your business and what you're trying to achieve. You don't need to have everything figured out before getting in touch.",
+    "Get in touch with Growwera for websites, SEO, digital marketing, AI automation, and digital growth solutions for your business.",
+
+  alternates: {
+    canonical: "/contact",
+  },
+
+  openGraph: {
+    type: "website",
+    url: "/contact",
+    siteName: "Growwera",
+    title: "Contact | Growwera",
+    description:
+      "Get in touch with Growwera for websites, SEO, digital marketing, AI automation, and digital growth solutions for your business.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Contact Growwera",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | Growwera",
+    description:
+      "Get in touch with Growwera for websites, SEO, digital marketing, AI automation, and digital growth solutions for your business.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function ContactPage() {

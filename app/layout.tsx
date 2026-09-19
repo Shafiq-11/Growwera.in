@@ -54,22 +54,21 @@ export const metadata: Metadata = {
   authors: [{ name: "Growwera" }],
   creator: "Growwera",
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteUrl,
-    siteName: "Growwera",
-    title: "Growwera — Digital Solutions for Growing Businesses",
-    description:
-      "Websites, SEO, digital marketing, AI and automation — built around what your business actually needs.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Growwera — Digital Solutions for Growing Businesses",
-      },
-    ],
-  },
+  type: "website",
+  locale: "en_US",
+  siteName: "Growwera",
+  title: "Growwera — Digital Solutions for Growing Businesses",
+  description:
+    "Websites, SEO, digital marketing, AI and automation — built around what your business actually needs.",
+  images: [
+    {
+      url: "/og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "Growwera — Digital Solutions for Growing Businesses",
+    },
+  ],
+},
   twitter: {
     card: "summary_large_image",
     title: "Growwera — Digital Solutions for Growing Businesses",

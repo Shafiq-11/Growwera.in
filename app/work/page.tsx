@@ -11,6 +11,35 @@ export const metadata: Metadata = {
   title: "Work",
   description:
     "Browse Growwera's project portfolio — websites, SEO campaigns, digital marketing, and AI automation solutions for growing businesses.",
+
+  alternates: {
+    canonical: "/work",
+  },
+
+  openGraph: {
+    type: "website",
+    url: "/work",
+    siteName: "Growwera",
+    title: "Work | Growwera",
+    description:
+      "Browse Growwera's project portfolio — websites, SEO campaigns, digital marketing, and AI automation solutions for growing businesses.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Growwera Work Portfolio",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Work | Growwera",
+    description:
+      "Browse Growwera's project portfolio — websites, SEO campaigns, digital marketing, and AI automation solutions for growing businesses.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function WorkPage() {

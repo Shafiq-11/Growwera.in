@@ -17,6 +17,35 @@ export const metadata: Metadata = {
   title: "Services",
   description:
     "Growwera provides web design & development, SEO, digital marketing, and AI & automation services for growing businesses.",
+
+  alternates: {
+    canonical: "/services",
+  },
+
+  openGraph: {
+    type: "website",
+    url: "/services",
+    siteName: "Growwera",
+    title: "Services | Growwera",
+    description:
+      "Growwera provides web design & development, SEO, digital marketing, and AI & automation services for growing businesses.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Growwera Services",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Services | Growwera",
+    description:
+      "Growwera provides web design & development, SEO, digital marketing, and AI & automation services for growing businesses.",
+    images: ["/og-image.png"],
+  },
 };
 
 const services = [
