@@ -7,6 +7,7 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import DoodleStar from "@/components/decorative/DoodleStar";
 import { testimonials } from "@/data/testimonials";
 
+
 export default function TestimonialsPage() {
   const featured = testimonials[0];
   const remaining = testimonials.slice(1);

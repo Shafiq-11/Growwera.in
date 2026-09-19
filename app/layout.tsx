@@ -30,6 +30,7 @@ const caveat = Caveat({
   weight: ["400", "500", "600", "700"],
 });
 
+
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
   "https://growwera-in.vercel.app";
@@ -42,6 +43,10 @@ export const metadata: Metadata = {
   },
   description:
     "Growwera builds websites, SEO strategies, digital marketing campaigns, and AI & automation solutions — tailored to what your business actually needs.",
+
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "web design",
     "web development",
@@ -54,21 +59,21 @@ export const metadata: Metadata = {
   authors: [{ name: "Growwera" }],
   creator: "Growwera",
   openGraph: {
-  type: "website",
-  locale: "en_US",
-  siteName: "Growwera",
-  title: "Growwera — Digital Solutions for Growing Businesses",
-  description:
-    "Websites, SEO, digital marketing, AI and automation — built around what your business actually needs.",
-  images: [
-    {
-      url: "/og-image.png",
-      width: 1200,
-      height: 630,
-      alt: "Growwera — Digital Solutions for Growing Businesses",
-    },
-  ],
-},
+    type: "website",
+    locale: "en_US",
+    siteName: "Growwera",
+    title: "Growwera — Digital Solutions for Growing Businesses",
+    description:
+      "Websites, SEO, digital marketing, AI and automation — built around what your business actually needs.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Growwera — Digital Solutions for Growing Businesses",
+      },
+    ],
+  },
   twitter: {
     card: "summary_large_image",
     title: "Growwera — Digital Solutions for Growing Businesses",

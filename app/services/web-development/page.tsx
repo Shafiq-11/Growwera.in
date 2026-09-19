@@ -26,6 +26,7 @@ import ServicePricingEnquiry from "@/components/services/ServicePricingEnquiry";
 import HandDrawnArrow from "@/components/decorative/HandDrawnArrow";
 
 /* ── 03: WHAT WE DO STEPS ── */
+
 const whatWeDo = [
   {
     step: "01",
